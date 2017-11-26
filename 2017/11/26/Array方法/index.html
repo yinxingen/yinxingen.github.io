@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Array方法 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Array 方法（增，删，改，截，拼，复，排，转）  增：  unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    1234var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的">
+  <meta name="description" content="Array 方法（增，删，改，截，拼，复，排，转）  增： unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    123var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的前面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Array方法">
 <meta property="og:url" content="http://yoursite.com/2017/11/26/Array方法/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="Array 方法（增，删，改，截，拼，复，排，转）  增：  unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    1234var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的前面增加内容     返回增加之后的数组 123var arr = [1, 2,">
+<meta property="og:description" content="Array 方法（增，删，改，截，拼，复，排，转）  增： unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    123var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的前面增加内容     返回增加之后的数组 123var arr = [1, 2, 3">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-26T04:46:08.440Z">
+<meta property="og:updated_time" content="2017-11-26T04:52:50.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array方法">
-<meta name="twitter:description" content="Array 方法（增，删，改，截，拼，复，排，转）  增：  unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    1234var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的前面增加内容     返回增加之后的数组 123var arr = [1, 2,">
+<meta name="twitter:description" content="Array 方法（增，删，改，截，拼，复，排，转）  增： unshift（增加的内容） 在数组前增加内容 返回增加之后的数组    123var arr = [1, 2, 3]arr.unshift(4, 5, 6)alert(arr)  //4,5,6,1,2,3 2. push(增加的内容)     在数组的前面增加内容     返回增加之后的数组 123var arr = [1, 2, 3">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -178,21 +178,18 @@
       
         <p>Array 方法（增，删，改，截，拼，复，排，转）</p>
 <ol>
-<li><p>增：</p>
-<ol>
+<li>增：<ol>
 <li>unshift（增加的内容）<br> 在数组前增加内容<br> 返回增加之后的数组</li>
 </ol>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var arr = [1, 2, 3]</span><br><span class="line">arr.unshift(4, 5, 6)</span><br><span class="line">alert(arr)  //4,5,6,1,2,3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">arr.unshift(4, 5, 6)</span><br><span class="line">alert(arr)  //4,5,6,1,2,3</span><br></pre></td></tr></table></figure>
 <pre><code>2. push(增加的内容)
     在数组的前面增加内容
     返回增加之后的数组
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">arr.push(4, 5, 6)</span><br><span class="line">alert(arr)  //1,2,3,4,5,6</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p>删：</p>
-<p> 1.shift()</p>
-<pre><code>删除数组首部的元素
+<li>删：<br>1.shift()<pre><code>删除数组首部的元素
 返回删除后的数组
 </code></pre></li>
 </ol>
@@ -202,50 +199,52 @@
     返回被删除的元素
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.pop()</span><br><span class="line">alert(str)  //3</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p>改：<br> splice(开始下标，删除的长度，要增加的内容)<br> 返回被删除的元素<br> 可以实现增，删，改<br> 增：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(3, 1, 4)</span><br><span class="line">alert(arr) //1,2,3,4</span><br><span class="line">alert(str) //1</span><br></pre></td></tr></table></figure>
-<p> 删：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(0, 1)</span><br><span class="line">alert(arr) //2,3</span><br><span class="line">alert(str) //1</span><br></pre></td></tr></table></figure>
-<p> 改：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(0, 1, 4)</span><br><span class="line">alert(arr)  //4,2,3</span><br><span class="line">alert(str)  //1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>截：<br> slice(开始下标，结束下标)（包括开始下标不包括结束下标）<br> 返回被截取到的元素</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.slice(0, 2)</span><br><span class="line">alert(str)  //1,2</span><br><span class="line">alert(arr) //1,2,3</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>拼：<br> concat(要拼接的元素)<br> 返回拼接后的数组</p>
-</li>
+<li>改：<br> splice(开始下标，删除的长度，要增加的内容)<br> 返回被删除的元素<br> 可以实现增，删，改<br> 增:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(3, 1, 4)</span><br><span class="line">alert(arr) //1,2,3,4</span><br><span class="line">alert(str) //1</span><br></pre></td></tr></table></figure>
+<pre><code>删：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(0, 1)</span><br><span class="line">alert(arr) //2,3</span><br><span class="line">alert(str) //1</span><br></pre></td></tr></table></figure>
+<pre><code>改：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.splice(0, 1, 4)</span><br><span class="line">alert(arr)  //4,2,3</span><br><span class="line">alert(str)  //1</span><br></pre></td></tr></table></figure>
+<ol>
+<li>截：<br> slice(开始下标，结束下标)（包括开始下标不包括结束下标）<br> 返回被截取到的元素</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.slice(0, 2)</span><br><span class="line">alert(str)  //1,2</span><br><span class="line">alert(arr) //1,2,3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>拼：<br> concat(要拼接的元素)<br> 返回拼接后的数组</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.concat(4, 5)</span><br><span class="line">alert(str) //1,2,3,4,5</span><br><span class="line">alert(arr) //1,2,3</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p>复制数组</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var a = arr.slice(0)</span><br><span class="line">alert(a) //1,2,3</span><br><span class="line"></span><br><span class="line">var b = arr.concat()</span><br><span class="line">alert(b) //1,2,3</span><br><span class="line"></span><br><span class="line">var str = []</span><br><span class="line">for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    str.push(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">alert(str)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>排：</p>
+<li>复制数组</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var a = arr.slice(0)</span><br><span class="line">alert(a) //1,2,3</span><br><span class="line"></span><br><span class="line">var b = arr.concat()</span><br><span class="line">alert(b) //1,2,3</span><br><span class="line"></span><br><span class="line">var str = []</span><br><span class="line">for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    str.push(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">alert(str)</span><br></pre></td></tr></table></figure>
 <ol>
-<li><p>reverse()<br>将数组元素逆序排列<br>返回逆序后的数组</p>
+<li>排：<ol>
+<li>reverse()<br>将数组元素逆序排列<br>返回逆序后的数组</li>
+</ol>
+</li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3]</span><br><span class="line">var str = arr.reverse()</span><br><span class="line">alert(str) //3,2,1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sort()<br>按编码排序<br>返回排序后的数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [3, 2, 1, 100]</span><br><span class="line">var str = arr.sort()</span><br><span class="line">alert(str) //1,100,2,3</span><br></pre></td></tr></table></figure>
-<p>回掉函数：<br>var arr = [4, 6, 8, 1, 5, 3];<br>var str = []<br>arr.sort(function(a, b) { // b - a 从大到小按数字类型排列<br> return a - b<br>})<br>alert(arr) //1,3,4,5,6,8</p>
-</li>
-</ol>
-</li>
-</ol>
-<ol>
-<li><p>转：</p>
-<ol>
-<li><p>toString()</p>
-<p>将数组转为字符串，以逗号分隔</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3, 4]</span><br><span class="line">var str = arr.toString()</span><br><span class="line">console.log(str) //1,2,3,4</span><br></pre></td></tr></table></figure>
-<ol>
-<li>join(“连接符”)<br>将数组转为指定连接符的字符串</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 3, 4]</span><br><span class="line">var str = arr.join(&quot;&quot;)</span><br><span class="line">console.log(str) //123</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
+<pre><code>2. sort()
+按编码排序
+返回排序后的数组
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var arr = [3, 2, 1, 100]</span><br><span class="line">var str = arr.sort()</span><br><span class="line">alert(str) //1,100,2,3</span><br></pre></td></tr></table></figure>
+<pre><code>回掉函数：
+var arr = [4, 6, 8, 1, 5, 3];
+var str = []
+arr.sort(function(a, b) { // b - a 从大到小按数字类型排列
+    return a - b
+})
+alert(arr) //1,3,4,5,6,8
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. 转：</span><br><span class="line">   1. toString()</span><br><span class="line"></span><br><span class="line">    将数组转为字符串，以逗号分隔</span><br></pre></td></tr></table></figure>
+<pre><code>var arr = [1, 2, 3, 4]
+var str = arr.toString()
+console.log(str) //1,2,3,4
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. join(&quot;连接符&quot;)</span><br><span class="line">将数组转为指定连接符的字符串</span><br></pre></td></tr></table></figure>
+<pre><code>var arr = [1, 2, 3, 4]
+var str = arr.join(&quot;&quot;)
+console.log(str) //123
+</code></pre><p>```</p>
 
       
 
