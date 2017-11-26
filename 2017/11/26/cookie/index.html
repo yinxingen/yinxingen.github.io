@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | yinxingen</title>
+  <title>Cookie | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走在前端的路上">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yinxingen">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="CookieCookie的诞生，为什么叫会话跟踪技术？ 在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）  你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie">
+<meta property="og:url" content="http://yoursite.com/2017/11/26/cookie/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="走在前端的路上">
+<meta property="og:description" content="CookieCookie的诞生，为什么叫会话跟踪技术？ 在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）  你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个身份牌。这样一来，关于你是谁？有没有登录过？购物车里有什么信息？服务器当然就很容">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-26T05:24:23.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yinxingen">
-<meta name="twitter:description" content="走在前端的路上">
+<meta name="twitter:title" content="Cookie">
+<meta name="twitter:description" content="CookieCookie的诞生，为什么叫会话跟踪技术？ 在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）  你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个身份牌。这样一来，关于你是谁？有没有登录过？购物车里有什么信息？服务器当然就很容">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -155,265 +156,227 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-cookie" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/闭包closure/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:45:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/闭包closure/">closure</a>
+    <h1 class="article-title" itemprop="name">
+      Cookie
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/cookie/" class="archive-article-date">
+        
+        <a href="/2017/11/26/cookie/" class="archive-article-date">
   	<time datetime="2017-11-26T04:40:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/cookie/">Cookie</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><h4 id="Cookie的诞生，为什么叫会话跟踪技术？"><a href="#Cookie的诞生，为什么叫会话跟踪技术？" class="headerlink" title="Cookie的诞生，为什么叫会话跟踪技术？"></a>Cookie的诞生，为什么叫会话跟踪技术？</h4><ol>
+<li><p>在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）</p>
+</li>
+<li><p>你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个身份牌。这样一来，关于你是谁？有没有登录过？购物车里有什么信息？服务器当然就很容易知道了。</p>
+</li>
+</ol>
+<h4 id="cookie的特点："><a href="#cookie的特点：" class="headerlink" title="cookie的特点："></a>cookie的特点：</h4><ol>
+<li><p>只能使用文本文件</p>
+</li>
+<li><p>文件有大小限制（4kb）， 数量限制</p>
+</li>
+<li><p>读取有域名限制：不可跨域读取，只能由来自写入cookie的同一域名的网页可进行读取。<br>简单的讲就是，谁写的cookie，谁才有权利读取</p>
+</li>
+<li><p>时效限制：每个cookie都有时效，最短的有效期是，会话级别：就是当浏览器关闭，那么cookie立即销毁</p>
+</li>
+</ol>
+<h4 id="cookie的使用"><a href="#cookie的使用" class="headerlink" title="cookie的使用"></a>cookie的使用</h4><p>一、添加cookie</p>
+<ol>
+<li><p>Document.cookie =“username=123”;//一次写入一个键值对，一次写入多个，只有第一个生效，或者采用&amp;符号链接user=张三&amp;password=123&amp;name=xxxx;</p>
+</li>
+<li><p>保存形式：key=value</p>
+</li>
+<li><p>如果有中文编码问题，使用encodeURIComponent(“xxxx”)编码，再使用decodeURIComponent(document.cookie)解码，能解决中文乱码问题</p>
+</li>
+</ol>
+<p>二、cookie失效时间</p>
+<ol>
+<li><p>如果不加这个参数，默认情况下为临时cookie，也就是关闭浏览器则cookie失效。</p>
+</li>
+<li><p>Expires=date,指定在什么时间，cookie被自动清理，如果手动调整系统的时间，让cookie消失，可以进行恢复，此时为假删除，当覆盖某个键值对，并设置失效时间过期时，则cookie被删除，不能恢复</p>
+</li>
+</ol>
+<p>3.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Var date = <span class="keyword">new</span> <span class="built_in">Date</span>():</span><br><span class="line"></span><br><span class="line">date.setDate(date.getDate() + <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.cookie = “user=” + <span class="built_in">encodeURIComponent</span>(“张志林”) + “;expires=” + date;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Cookie的完整存储形式</li>
+</ol>
+<p>name=value [;expires=date] [;path=path] [;domain=michael.com][;secure];<br>中括号是可选，name=value是必选。</p>
+<ol>
+<li>Cookie的路径问题</li>
+</ol>
+<p>在同一路径下的网页可以共享cookie，路径不同时，不能访问</p>
+<ol>
+<li>Cookie的域名问题</li>
+</ol>
+<p>1)    必须在绑定域名的服务器上才可以设置域名<br>2)    并且只能设置绑定的域名，也就是说，不同服务器间的cookie文件不共享</p>
+<ol>
+<li>Secure安全设置：指明必须通过安全的通信通道来传输（https）才能获取cookie.</li>
+</ol>
+<h4 id="cookie作用："><a href="#cookie作用：" class="headerlink" title="cookie作用："></a>cookie作用：</h4><blockquote>
+<p>1.可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用。</p>
+<p>2.保存用户的登陆状态，用户进行登陆，成功登陆后，服务器生成特定的cookie返回给客户端，客户端下次访问该域名下的任何页面，将该cookie的信息发送给服务器，服务器经过检验，来判断用户是否登陆。</p>
+<p>3.记录用户的行为。</p>
+</blockquote>
+<h4 id="cookie弊端："><a href="#cookie弊端：" class="headerlink" title="cookie弊端："></a>cookie弊端：</h4><blockquote>
+<p>1.增加流量消耗，每次请求都需要带上cookie信息。</p>
+<p>2.安全性隐患，cookie使用明文传输。如果cookie被人拦截了，那人就可以取得所有的session信息。</p>
+<p>3.Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/26/cookie/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/Array方法/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/11/26/闭包closure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          closure
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/26/Array方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Array方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/Array方法/">Array方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/数组，字符串去重排序/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:33:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/数组，字符串去重排序/">数组，字符串去重排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/let and const/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:31:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/let and const/">ES6中 let 和 const</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/21/markdown/" class="archive-article-date">
-  	<time datetime="2017-11-21T15:01:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/21/markdown/">markdown的简述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/21/less/" class="archive-article-date">
-  	<time datetime="2017-11-21T14:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/21/less/">less的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/21/bootstrap/" class="archive-article-date">
-  	<time datetime="2017-11-21T14:21:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/21/bootstrap/">bootstrap 入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/20/hello-world/" class="archive-article-date">
-  	<time datetime="2017-11-20T04:39:48.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -436,8 +399,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
