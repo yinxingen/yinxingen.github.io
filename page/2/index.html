@@ -157,6 +157,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-bootstrap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/21/bootstrap/">bootstrap 入门</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/21/bootstrap/" class="archive-article-date">
+  	<time datetime="2017-11-21T14:21:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><h5 id="入门的使用"><a href="#入门的使用" class="headerlink" title="入门的使用"></a>入门的使用</h5><p>在做前端开发中，其实有百分之四十的时间用来布局写样式，百分之三十用来写JS逻辑交互，百分之三十时间用来测试调bug，可以看的到的是，用在布局+样式的时候会比较多</p>
+<p>所以会有很多的前端框架诞生，例如bootstrap</p>
+<p>前端框架包含有设定好的html布局结构，css样式，一些js效果，理论上将，不需要写一行代码，只需复制粘贴就可以实现一个静态页面</p>
+<p>官方的介绍：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
+<p>用bootstrap不仅可以写PC的页面，还可以做响应式</p>
+<p>响应式：利用媒体查询等技术，通过检测浏览器的尺寸不同，来显示不同的布局结构，原理就是，媒体查询可以检测到屏幕的尺寸是否处于某一个范围，如果是的时候可以让某一段css代码起作用，来实现结构切换</p>
+<p>boot 默认的将屏幕划分成了四种：</p>
+<p>0-768 xs ;768-992 sm ; 992-1200 md;1200- lg ;</p>
+<p>boot 提供了两个布局容器，这两个布局容器是要作为某一个大的区域的最外层元素的，会和其他的一些布局类名配合使用</p>
+<p>.container   .container-fluid</p>
+<p>container-fluid在任意屏幕下宽度都是百分之一百</p>
+<p>container 是在xs屏永远都是100%；768-992，宽度：768；992-1200，宽度：992；1200- 宽度：1200，永远居中</p>
+<p>boot 提供了栅格系统（12栅格化，网格化，网格系统）会让我们在布局的时候，想象着将一行的空间分成12份，通过设置每一个元素占几份来控制元素的排列</p>
+<p>row类名可以在容器中将某一行分成12份</p>
+<p>col-type-num 可以确定某一行中的某一个元素在type屏幕的情况下占num份</p>
+<p>注意，在使用这些类名的时候有小屏优先这样的原则:</p>
+<p>在写媒体查询样式的时候，应该先写小屏的样式，再写大屏的样式，小屏解析的css代码会较少，性能较高</p>
+<p>col-type-offset-num 设定的是某一个元素在某一个屏幕尺寸下向右偏移几份</p>
+<p>visible-type hidden-type  在某一种屏幕下显示或隐藏</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/21/bootstrap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -321,7 +413,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">数组 字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">HTML+CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
             
             <div class="clearfix"></div>
