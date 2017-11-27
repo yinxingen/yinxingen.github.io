@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>less的使用 | yinxingen</title>
+  <title>H5本地存储 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是less？一种 动态 样式 语言. LESS 将 CSS 赋予了动态语言的特性，如 变量， 继承， 运算， 函数. LESS 既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助Node.js或者Rhino在服务端运行（可以在node中进行编译）。 使用方法：  在页面中可以">
+  <meta name="description" content="H5本地存储在以前，我们想要存储一些数据，并且只是在前端使用，服务端并不会使用，我们只能存在cookie里，但是cookie会跟随请求头在客户端和服务端之间来回传递，而且cookie还有一些缺点，H5提供了webStorage的API用来做客户端的数据存储 cookie与webStorage的区别 cookie有大小的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="less的使用">
-<meta property="og:url" content="http://yoursite.com/2017/11/21/less/index.html">
+<meta property="og:title" content="H5本地存储">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/h5本地储存/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="什么是less？一种 动态 样式 语言. LESS 将 CSS 赋予了动态语言的特性，如 变量， 继承， 运算， 函数. LESS 既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助Node.js或者Rhino在服务端运行（可以在node中进行编译）。 使用方法：  在页面中可以直接引入less文件，但是必须引入less.js对其进行客户端编译。一般在练习的">
+<meta property="og:description" content="H5本地存储在以前，我们想要存储一些数据，并且只是在前端使用，服务端并不会使用，我们只能存在cookie里，但是cookie会跟随请求头在客户端和服务端之间来回传递，而且cookie还有一些缺点，H5提供了webStorage的API用来做客户端的数据存储 cookie与webStorage的区别 cookie有大小的限制，只能存储4kb，webStorage可以存储5Mb，cookie还有条数的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-27T02:48:29.100Z">
+<meta property="og:updated_time" content="2017-11-27T01:59:48.016Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="less的使用">
-<meta name="twitter:description" content="什么是less？一种 动态 样式 语言. LESS 将 CSS 赋予了动态语言的特性，如 变量， 继承， 运算， 函数. LESS 既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助Node.js或者Rhino在服务端运行（可以在node中进行编译）。 使用方法：  在页面中可以直接引入less文件，但是必须引入less.js对其进行客户端编译。一般在练习的">
+<meta name="twitter:title" content="H5本地存储">
+<meta name="twitter:description" content="H5本地存储在以前，我们想要存储一些数据，并且只是在前端使用，服务端并不会使用，我们只能存在cookie里，但是cookie会跟随请求头在客户端和服务端之间来回传递，而且cookie还有一些缺点，H5提供了webStorage的API用来做客户端的数据存储 cookie与webStorage的区别 cookie有大小的限制，只能存储4kb，webStorage可以存储5Mb，cookie还有条数的">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -156,65 +156,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-less" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-h5本地储存" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      less的使用
+      H5本地存储
     </h1>
   
 
         
-        <a href="/2017/11/21/less/" class="archive-article-date">
-  	<time datetime="2017-11-21T14:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
+        <a href="/2017/11/27/h5本地储存/" class="archive-article-date">
+  	<time datetime="2017-11-27T01:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="什么是less？"><a href="#什么是less？" class="headerlink" title="什么是less？"></a>什么是less？</h5><p>一种 动态 样式 语言.</p>
-<p>LESS 将 CSS 赋予了动态语言的特性，如 变量， 继承， 运算， 函数. LESS 既可以在 客户端 上运行 (支持IE 6+, Webkit, Firefox)，也可以借助Node.js或者Rhino在服务端运行（可以在node中进行编译）。</p>
-<p>使用方法：</p>
-<ol>
-<li><p>在页面中可以直接引入less文件，但是必须引入less.js对其进行客户端编译。一般在练习的时候可以这样引入，在开发中就不要使用这样的方式了，因为在客户端进行编译会大量的浪费性能，增加页面响应时间</p>
+        <h3 id="H5本地存储"><a href="#H5本地存储" class="headerlink" title="H5本地存储"></a>H5本地存储</h3><p>在以前，我们想要存储一些数据，并且只是在前端使用，服务端并不会使用，我们只能存在cookie里，但是cookie会跟随请求头在客户端和服务端之间来回传递，而且cookie还有一些缺点，H5提供了webStorage的API用来做客户端的数据存储</p>
+<h5 id="cookie与webStorage的区别"><a href="#cookie与webStorage的区别" class="headerlink" title="cookie与webStorage的区别"></a>cookie与webStorage的区别</h5><ol>
+<li>cookie有大小的限制，只能存储4kb，webStorage可以存储5Mb，cookie还有条数的限制</li>
+<li>cookie会跟随请求头在客户端和服务端之间传递，会影响带宽。</li>
+<li>cookie需要设置有效期，localStorage是永久保存，sessionStorage是会话保存，</li>
+<li>cookie可以设置作用path</li>
+<li>cookie的操作较为困难，webStorage的API较为容易</li>
+<li>cookie的兼容性比webStorage兼容性好</li>
+</ol>
+<h5 id="webStorage包含的存储方式"><a href="#webStorage包含的存储方式" class="headerlink" title="webStorage包含的存储方式"></a>webStorage包含的存储方式</h5><ol>
+<li>localStorage ：有效期是永远，永久保存；除非手动删除</li>
+<li>sessionStorage： 有效期是一次会话时间</li>
+<li>globalStorage、indexedDB、webSQL因为兼容性、实用性较差，所以，不使用</li>
+</ol>
+<h5 id="localStorage和sessionStorage-的使用方法（API）"><a href="#localStorage和sessionStorage-的使用方法（API）" class="headerlink" title="localStorage和sessionStorage 的使用方法（API）"></a>localStorage和sessionStorage 的使用方法（API）</h5><ol>
+<li><p>localStorage和sessionStorage的使用方法一样</p>
 </li>
-<li><p>利用gulp等工具对less进行编译，再项目中引入编译后的css文件</p>
+<li><p>增删改查</p>
+<p> 增/改： localStorage.setItem(key,value)/ localStorage.a = 1</p>
+<p> 查： length；key方法（index）得到对应的key  getItem(key)/localStorage.a</p>
+<p> 删： removeItem（key）</p>
+<p> 清空: clear()</p>
 </li>
 </ol>
-<h5 id="使用gulp搭建less编译环境"><a href="#使用gulp搭建less编译环境" class="headerlink" title="使用gulp搭建less编译环境"></a>使用gulp搭建less编译环境</h5><ol>
-<li>全局安装gulp</li>
-</ol>
-<p>npm install gulp –global</p>
-<ol>
-<li><p>在项目目录下进行 npm init创建package.json</p>
-</li>
-<li><p>下载gulp依赖包和gulp-less工具以及gulp-autoprefixer、gulp-clean-css工具</p>
-</li>
-</ol>
-<p>npm install gulp gulp-less gulp-autoprefixer gulp-clean-css –save-dev</p>
-<ol>
-<li>创建gulpfile.js文件编写任务<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>)</span><br><span class="line"><span class="keyword">var</span> less = <span class="built_in">require</span>(<span class="string">"gulp-less"</span>)</span><br><span class="line"><span class="comment">//css 前缀兼容</span></span><br><span class="line"><span class="keyword">var</span> auto = <span class="built_in">require</span>(<span class="string">"gulp-autoprefixer"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"compile:less"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.src(<span class="string">"./less/**/*.less"</span>)</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(auto(&#123;</span><br><span class="line">            grid:<span class="literal">true</span>,</span><br><span class="line">            browsers:[<span class="string">'last 2 versions'</span>]</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./css'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"watch"</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">"./less/**/*.less"</span>,[<span class="string">'compile:less'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">"default"</span>,[<span class="string">'compile:less'</span>,<span class="string">'watch'</span>])</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>这样就可以在该项目中，。执行gulp来开启监听less文件并编译的任务</p>
-<h4 id="使用LESS来实现栅格化布局框架"><a href="#使用LESS来实现栅格化布局框架" class="headerlink" title="使用LESS来实现栅格化布局框架"></a>使用LESS来实现栅格化布局框架</h4><p>借助less预处理器与gulp自动化构建工具来实现响应式十二栅格化布局</p>
-<ol>
-<li>定需求</li>
-</ol>
-<p>利用三个阀值将屏幕尺寸分成四种类型：</p>
-<p>阀值： 768-992-1200</p>
-<p>类型： xs-sm-md-lg</p>
-<p>栅格化数量：12</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@screen1:<span class="number">768</span>px;</span><br><span class="line">@screen1:<span class="number">992</span>px;</span><br><span class="line">@screen1:<span class="number">1200</span>px;</span><br><span class="line">@gridnum:<span class="number">12</span>;</span><br></pre></td></tr></table></figure>
-<p>栅格化类名与样式</p>
-<p>container,container-fluid</p>
-<p>row</p>
-<p>col-type-num</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mixins</span></span><br><span class="line"></span><br><span class="line">.width(@w:<span class="number">100</span>%)&#123;</span><br><span class="line">    width: @w;</span><br><span class="line">    margin-left:auto; </span><br><span class="line">    margin-right:auto; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.padding-content(@w:<span class="number">15</span>px)&#123;</span><br><span class="line">    padding-left: @w;</span><br><span class="line">    padding-right: @w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.clearfix&#123;   </span><br><span class="line">    &amp;:after&#123;</span><br><span class="line">        content:<span class="string">''</span>;</span><br><span class="line">        display:block;</span><br><span class="line">        height: <span class="number">0</span>;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        visibility: hidden;</span><br><span class="line">        clear:both;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 0-768 xs</span></span><br><span class="line"><span class="comment">//container container-fluid</span></span><br><span class="line"></span><br><span class="line">.container,.container-fluid&#123;</span><br><span class="line">    .width;</span><br><span class="line">    .padding-content;</span><br><span class="line">    .clearfix;</span><br><span class="line">    .row&#123;</span><br><span class="line">        margin-left: <span class="number">-15</span>px;</span><br><span class="line">        margin-right: <span class="number">-15</span>px;</span><br><span class="line">        .clearfix;</span><br><span class="line">    &#125;</span><br><span class="line">    .ghb(xs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.visible-xs&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">.visible-sm&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">.visible-md&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">.visible-lg&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line"></span><br><span class="line">.hidden-xs&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">.hidden-sm&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">.hidden-md&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">.hidden-lg&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 768-992 sm</span></span><br><span class="line"><span class="comment">//container container-fluid</span></span><br><span class="line"></span><br><span class="line">@media screen and (min-width:@screen1)&#123;</span><br><span class="line">    .container&#123;</span><br><span class="line">        .width(@screen1);</span><br><span class="line">    &#125;   </span><br><span class="line">    .container,.container-fluid&#123;</span><br><span class="line">        .ghb(sm); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .visible-xs&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-sm&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .visible-md&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-lg&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    </span><br><span class="line">    .hidden-xs&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-sm&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .hidden-md&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-lg&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 992-1200 md</span></span><br><span class="line"><span class="comment">//container container-fluid</span></span><br><span class="line"></span><br><span class="line">@media screen and (min-width:@screen2)&#123;</span><br><span class="line">    .container&#123;</span><br><span class="line">        .width(@screen2);</span><br><span class="line">    &#125;    </span><br><span class="line">    .container,.container-fluid&#123;</span><br><span class="line">        .ghb(md); </span><br><span class="line">    &#125;</span><br><span class="line">    .visible-xs&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-sm&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-md&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .visible-lg&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    </span><br><span class="line">    .hidden-xs&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-sm&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-md&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .hidden-lg&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1200- lg</span></span><br><span class="line"><span class="comment">//container container-fluid</span></span><br><span class="line"></span><br><span class="line">@media screen and (min-width:@screen3)&#123;</span><br><span class="line">    .container&#123;</span><br><span class="line">        .width(@screen3);</span><br><span class="line">    &#125;    </span><br><span class="line">    .container,.container-fluid&#123;</span><br><span class="line">        .ghb(lg); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .visible-xs&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-sm&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-md&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">    .visible-lg&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    </span><br><span class="line">    .hidden-xs&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-sm&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-md&#123;<span class="attr">display</span>: block;&#125;</span><br><span class="line">    .hidden-lg&#123;<span class="attr">display</span>: none;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// .abc (@i:1) when (@i &lt;= 100) &#123;  </span></span><br><span class="line"><span class="comment">//     .a@&#123;i&#125;&#123;</span></span><br><span class="line"><span class="comment">//         width: unit(@i,px);// number-&gt;pixel</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     .abc(@i+1);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// .abc;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.ghb (@type,@i:<span class="number">0</span>) when(@i&lt;=@gridnum) &#123;</span><br><span class="line"></span><br><span class="line">    .col-@&#123;type&#125;-@&#123;i&#125;&#123;</span><br><span class="line">        width:@i/@gridnum*<span class="number">100</span>%;</span><br><span class="line">        float:left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .col-@&#123;type&#125;-offset-@&#123;i&#125;&#123;</span><br><span class="line">        margin-left:@i/@gridnum*<span class="number">100</span>%;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .ghb(@type,@i+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -299,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/21/less/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/27/h5本地储存/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,18 +298,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/21/markdown/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          markdown的简述
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/21/bootstrap/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">bootstrap 入门</div>
+    <a href="/2017/11/26/闭包closure/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">closure</div>
       <i class="icon-circle-right"></i>
     </a>
   
