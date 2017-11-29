@@ -157,6 +157,139 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-缓存的一些问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/缓存的一些问题/">浏览器缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/29/缓存的一些问题/" class="archive-article-date">
+  	<time datetime="2017-11-29T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近恶补http基础，看到缓存章节，然后前段时间又正好读到一篇介绍浏览器缓存的文章，两者结合，受益匪浅。自己也半抄半总结的记录一下。</p>
+<h3 id="浏览器缓存概述"><a href="#浏览器缓存概述" class="headerlink" title="浏览器缓存概述"></a>浏览器缓存概述</h3><p>浏览器缓存分为强缓存和协商缓存。当客户端请求某个资源时，获取缓存的流程如下：</p>
+<blockquote>
+<p>1、先根据这个资源的一些http header判断它是否命中强缓存（后文再解释什么是强缓存），如果命中(cache hit)，则直接从本地获取缓存资源，不会发请求到服务器；</p>
+<p>2、当强缓存没有命中时，客户端会发送请求到服务器，服务器通过另一些request header验证这个资源是否命中协商缓存（后文再解释什么是协商缓存），称为http再验证(revalidation)，如果命中(revalidate hit再验证命中)，服务器将请求返回，但不返回资源，而是告诉客户端直接从缓存中获取，客户端收到返回后就会从缓存中获取资源；</p>
+<p>3、强缓存和协商缓存共同之处在于，如果命中缓存，服务器都不会返回资源；区别是，强缓存不对发送请求到服务器，但协商缓存会。</p>
+<p>4、当协商缓存也没命中时，服务器就会将资源发送回客户端。</p>
+</blockquote>
+<h3 id="浏览器缓存分类"><a href="#浏览器缓存分类" class="headerlink" title="浏览器缓存分类"></a>浏览器缓存分类</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存:"></a>强缓存:</h4><blockquote>
+<p>直白点的方式描述下：客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，告诉客户端将这个资源保存在本地，并且在未来的某个时点之前如果还需要这个资源，直接从本地获取就行了，不用向服务器请求。这种方式缓存下来的资源称为强缓存。<br>强缓存利用http的返回头部的中Expires（实体首部字段）或者Cache-Control（通用首部字段）两个字段来控制的，用来表示资源的缓存时间。服务器通过这两个首部字段告知客户端资源的缓存过期时间和缓存最大生命周期。客户端得知资源的缓存过期时间和最大生命周期后，即可自行判断是否可不建立与服务器的链接，直接从浏览器缓存中获取资源。</p>
+</blockquote>
+<p>命中强缓存时，浏览器同样会受到status=200的response，chrome中可通过size区分从服务器返回的资源还是强缓存获得的资源。</p>
+<h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires:"></a>Expires:</h5><blockquote>
+<p>该字段是http1.0时的规范，值为一个绝对时间的GMT格式的时间字符串，代表缓存资源的过期时间，在这个时点之前，即命中缓存。其过程如下：</p>
+</blockquote>
+<ol>
+<li>浏览器第一次跟服务器请求一个资源时，服务器在返回这个资源时，在相应头部会加上Expires，如图：<br> <img src="img/expires.png" alt=""></li>
+<li>浏览器接收到该资源后，会把这个资源连同response header一起缓存下来；</li>
+<li>浏览器再次请求这个资源时，会先从缓存中找到这个资源，然后获取Expires时间与当前的请求时间比较，如果Expires时间比当前浏览器的请求时间晚，说明缓存未过期，即命中缓存；</li>
+<li>如果当前请求时间比Expires晚，说明缓存过期，即未命中缓存，浏览器就会发送请求到服务器申请获取资源。</li>
+</ol>
+<p>缺点：服务器返回的Expires时点是服务器上的时间，可能与客户端有时间差，时间差太大时可能造成缓存混乱。</p>
+<h5 id="Cache-Control-max-age"><a href="#Cache-Control-max-age" class="headerlink" title="Cache-Control:max-age:"></a>Cache-Control:max-age:</h5><blockquote>
+<p>该字段是http1.1的规范，强缓存利用其max-age值来判断缓存资源的最大生命周期，它的值单位为秒，Cache-Control : max-age=3600代表缓存资源有效时间为1小时，即从第一次获取该资源起一小时内的请求都被认为可命中强缓存。其过程如下：</p>
+</blockquote>
+<ol>
+<li>浏览器第一次跟服务器请求一个资源时，服务器在返回这个资源时，在相应头部会加上Cache-Control:max-age=XXXXXXXX，如图：<br> <img src="img/cache.png" alt=""></li>
+<li>浏览器接收到资源后，连同response header一起缓存下来；</li>
+<li>浏览器再次跟服务器请求同一个资源时，会先从缓存中找到这个资源，获取date(第一次资源返回的响应时间)和max-age并计算出一个有效期(date + max-age)，然后再和浏览器请求时间比较最后判断是否命中缓存（逻辑同Expires）；</li>
+<li>如果没有命中缓存，浏览器直接从服务器请求资源，Cache-Control会在重新获取到服务器返回资源时更新。</li>
+</ol>
+<p>Cache-Control描述的是相对时间，采用本地时间来计算资源的有效期，所以相比Expires更可靠。<br>这两个Header可以只用其一，也可以一起使用。一起使用时以Cache-Control为准。</p>
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><blockquote>
+<p>直白点的方式描述下：客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，将该资源的一些信息（文件摘要、或者最后修改时间）也返回给客户端，告诉客户端将这个资源缓存在本地。当客户端下一次需要这个资源时，将请求以及相关信息（文件摘要、或者最后修改时间）一并发送给服务器，由服务器来判断客户端缓存的资源是否需要更新：如不需要更新，就直接告诉客户端获取本地缓存资源；如需要更新，则将最新的资源连同相应的信息一并返回给客户端。</p>
+<p>当强缓存未命中时，浏览器就会发送请求到服务器，服务器会验证协商缓存是否命中，如果协商缓存命中，请求返回的http状态为304，并会显示说明Not Modified，浏览器收到该返回后，就会从缓存中加载了。</p>
+</blockquote>
+<p>协商缓存利用[Last-Modified , If-Modified-Since] 和 [ETag , If-None-Match]这两对Header来管理。</p>
+<h5 id="ETag-amp-If-None-Match"><a href="#ETag-amp-If-None-Match" class="headerlink" title="ETag &amp; If-None-Match"></a>ETag &amp; If-None-Match</h5><p>有些情况下仅判断最后修改日期来验证资源是否有改动是不够的：</p>
+<blockquote>
+<ol>
+<li>存在周期性重写某些资源，但资源实际包含的内容并无变化；</li>
+<li>被修改的信息并不重要，如注释等；</li>
+<li>Last-Modified无法精确到毫秒，但有些资源更新频率有时会小于一秒。</li>
+</ol>
+</blockquote>
+<p>为解决这些问题，http允许用户对资源打上标签(ETag)来区分两个相同路径获取的资源内容是否一致。通常会采用MD5等密码散列函数对资源编码得到标签(强验证器)；或者通过版本号等方式，如W/”v1.0”(W/表示弱验证器)。</p>
+<p>ETag为相应头部字段，表示资源内容的唯一标识，随服务器response返回；</p>
+<p>If-None-Match为请求头部字段，服务器通过比较请求头部的If-None-Match与当前资源的ETag是否一致来判断资源是否在两次请求之间有过修改，如果没有修改，则命中协商缓存，浏览器从缓存中获取资源；如果有过修改，则服务器返回资源，同时返回新的ETag。其过程如下：</p>
+<blockquote>
+<ol>
+<li>服务器第一次收到浏览器发出的资源请求时，会在response headers中加上ETag，这个ETag是根据该资源生成的唯一标识，这个唯一标识是个字符串，只要服务器认为资源有变化且应该提供新的资源，则ETag就必须有变化。浏览器将资源连同ETag一并缓存。</li>
+<li>当浏览器再一次向服务器发送该资源的请求时，会在request headers中加上If-None-Match，该值即为第一次服务器返回的ETag值；</li>
+<li>服务器收到资源请求后，会根据要请求的资源重新计算生成相应的ETag，然后与If-None-Match比较。对比结果一致即命中缓存，不一致则未命中缓存，返回资源同时将新的ETag发送至浏览器。</li>
+</ol>
+</blockquote>
+<h5 id="协商缓存管理"><a href="#协商缓存管理" class="headerlink" title="协商缓存管理"></a>协商缓存管理</h5><p>[Last-Modified , If-Modified-Since]和[ETag , If-None-Match]一般同时启用，这是为了处理Last-Modified不可靠的情况。</p>
+<h4 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h4><blockquote>
+<p>1.分布式系统里多台服务器间的文件的Last-Modified必须保持一致，以免负载均衡到不同服务器导致对比结果不一致；</p>
+<p>2.分布式系统尽量关闭掉ETag（每台机器生成的ETag都会不一样，淘宝页面中的静态资源response headers中都没有ETag）。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/29/缓存的一些问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-网页性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -436,11 +569,12 @@
 </li>
 <li><p>块级元素：div ul ol li dl dd h1 h2 h3 h4 h5 h6 p</p>
 </li>
-<li><p>常见的空元素：<br> <hr> <img> <input> <link> <meta></p>
-<p> 鲜为人知的：<area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wdr></wdr></p>
+<li><p>常见的空元素：</p>
 </li>
 </ol>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</span><br></pre></td></tr></table></figure>
+<p>鲜为人知的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wdr&gt;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1063,94 +1197,6 @@
 
 
   
-    <article id="post-css选择符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/css选择符/">css 选择符</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/css选择符/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="css-选择符"><a href="#css-选择符" class="headerlink" title="css 选择符"></a>css 选择符</h2><ol>
-<li>id选择器（#myid）</li>
-<li>类选择器（.myclassname）</li>
-<li>标签选择器（div,h1,p）</li>
-<li>相邻选择器（h1 + p）</li>
-<li>子选择器（ul&lt;li）</li>
-<li>后代选择器（li a）</li>
-<li>通配符选择器（*）</li>
-<li>属性选择器（a[rel=”external”]）</li>
-<li>伪类选择器（a:hover,li:nth-child）</li>
-</ol>
-<p>可继承：font-size，font-family，color</p>
-<p>不可继承：border padding margin width height</p>
-<p>优先级就近原则，样式定义最近者为准；载入样式以最后载入的定位为准；</p>
-<p>优先级为：!important &gt; 内联 &gt; id &gt; class &gt; tag</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/css选择符/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1264,15 +1310,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>
