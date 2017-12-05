@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | yinxingen</title>
+  <title>JS的继承 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走在前端的路上">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yinxingen">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="JS的继承 JS里常用的两种继承： 原型链继承（对象间的继承） 类式继承（构造函数间的继承）   由于JS不像java那样是真正面向对象的语言，js是基于对象的，它没有类的概念。所以，要想实现继承，可以用js的原型prototype机制或者用apply和call方法去实现。 我们可以简单的把prototype看作是一个">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS的继承">
+<meta property="og:url" content="http://yoursite.com/2017/12/04/JS的继承/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="走在前端的路上">
+<meta property="og:description" content="JS的继承 JS里常用的两种继承： 原型链继承（对象间的继承） 类式继承（构造函数间的继承）   由于JS不像java那样是真正面向对象的语言，js是基于对象的，它没有类的概念。所以，要想实现继承，可以用js的原型prototype机制或者用apply和call方法去实现。 我们可以简单的把prototype看作是一个模板，新创建的自定义对象都是这个模板（prototype）的一个拷贝（实际上不是">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-05T00:56:21.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yinxingen">
-<meta name="twitter:description" content="走在前端的路上">
+<meta name="twitter:title" content="JS的继承">
+<meta name="twitter:description" content="JS的继承 JS里常用的两种继承： 原型链继承（对象间的继承） 类式继承（构造函数间的继承）   由于JS不像java那样是真正面向对象的语言，js是基于对象的，它没有类的概念。所以，要想实现继承，可以用js的原型prototype机制或者用apply和call方法去实现。 我们可以简单的把prototype看作是一个模板，新创建的自定义对象都是这个模板（prototype）的一个拷贝（实际上不是">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -155,36 +157,105 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JS的继承" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/04/JS的继承/" class="archive-article-date">
-  	<time datetime="2017-12-04T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/04/JS的继承/">JS的继承</a>
+    <h1 class="article-title" itemprop="name">
+      JS的继承
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/04/JS的继承/" class="archive-article-date">
+  	<time datetime="2017-12-04T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS的继承"><a href="#JS的继承" class="headerlink" title="JS的继承"></a>JS的继承</h1><hr>
+<h3 id="JS里常用的两种继承："><a href="#JS里常用的两种继承：" class="headerlink" title="JS里常用的两种继承："></a>JS里常用的两种继承：</h3><ol>
+<li>原型链继承（对象间的继承）</li>
+<li>类式继承（构造函数间的继承）</li>
+</ol>
+<blockquote>
+<p>由于JS不像java那样是真正面向对象的语言，js是基于对象的，它没有类的概念。所以，要想实现继承，可以用js的原型prototype机制或者用apply和call方法去实现。</p>
+<p>我们可以简单的把prototype看作是一个模板，新创建的自定义对象都是这个模板（prototype）的一个拷贝（实际上不是拷贝而是链接，只不过这种链接是不可见，新实例化的对象内部有一个看不见的<em>proto</em>指针，指向原型对象）。</p>
+<p>js可以通过构造函数和原型的方式模拟实现类的功能。另外，js类式继承的实现也是依靠原型链来实现的。</p>
+</blockquote>
+<h3 id="原型式继承与类式继承"><a href="#原型式继承与类式继承" class="headerlink" title="原型式继承与类式继承"></a>原型式继承与类式继承</h3><h4 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h4><blockquote>
+<p>类式继承是在子类型构造函数的内部调用超类型的构造函数。<br>严格的类式继承并不是很常见，一般都是组合着用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">this</span>.colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">Super.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>原型式继承是借助已有的对象创建新的对象，将子类的原型指向父类，就相当于加入了父类这条原型链</p>
+<hr>
+<h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><blockquote>
+<p>为了让子类继承父类的属性（也包括方法），首先需要定义一个构造函数。然后，将父类的新实例赋值给个构造函数的原型：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'mike'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent();<span class="comment">//Child继承Parent,通过原型，形成链条</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> text = <span class="keyword">new</span> Child();</span><br><span class="line">alert(text.age);</span><br><span class="line">alert(text.name);<span class="comment">//得到继承的属性</span></span><br><span class="line"><span class="comment">//继续原型链继承</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Brother</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">this</span>.weight = <span class="number">60</span>;</span><br><span class="line">&#125;</span><br><span class="line">Brother.prototype = <span class="keyword">new</span> Child();<span class="comment">//继续原型链继承</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> brother = <span class="keyword">new</span> Brother();</span><br><span class="line">alert(brother.name);<span class="comment">//继承了Parent和Child，弹出mike</span></span><br><span class="line">alert(brother.age);<span class="comment">//弹出12</span></span><br></pre></td></tr></table></figure>
+<p>以上原型链集成还缺少一环，那就是Object，所有的构造函数都继承Object。而继承Object是自动完成的，并不需要我们自己手动继承，那么他们的从属关系是怎样？</p>
+<hr>
+<h3 id="确定原型和实例的关系"><a href="#确定原型和实例的关系" class="headerlink" title="确定原型和实例的关系"></a>确定原型和实例的关系</h3><blockquote>
+<p>可以通过两种方式来确定原型和实例之间的关系。操作符instanceof和isPrototypeof()方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(brother <span class="keyword">instanceof</span> <span class="built_in">Object</span>)<span class="comment">//true</span></span><br><span class="line">alert(test <span class="keyword">instanceof</span> Brother);<span class="comment">//false,test是brother的超类 </span></span><br><span class="line">alert(brother <span class="keyword">instanceof</span> Child);<span class="comment">//true</span></span><br><span class="line">alert(brother <span class="keyword">instanceof</span> Parent);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>只要是原型链中出现过的原型，都可以说是该原型链派生的实例的原型，因此，isPrototypeof()方法也会返回true<br>在js中，被继承的函数称为超类型（父类，基类也行），继承的函数称为子类型（子类，派生类）。使用原型继承主要由两个问题：<br>一是字面量重写原型会中断关系，使用引用类型的原型，并且子类型还无法给超类型传递参数。</p>
+<p>借用构造函数（类式继承）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = [<span class="string">'mike'</span>,<span class="string">'jack'</span>,<span class="string">'smith'</span>];</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,age);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="number">21</span>);</span><br><span class="line">    alert(test.age);<span class="comment">//21</span></span><br><span class="line">    alert(test.name);<span class="comment">//mike,jack,smith</span></span><br><span class="line">    test.name.push(<span class="string">'bill'</span>);</span><br><span class="line">    alert(test.name);<span class="comment">//mike,jack,smith,bill&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>借用构造函数虽然解决了刚才两种问题，但没有原型，则复用无从谈起，所以我们需要原型链+借用构造函数的模式，这种模式称为组合继承.</p>
+<hr>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = [<span class="string">'mike'</span>,<span class="string">'jack'</span>,<span class="string">'smith'</span>];</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    Parent.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name  + <span class="string">' are both'</span> + <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;;	</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,age);<span class="comment">//对象冒充，给超类型传参</span></span><br><span class="line">    &#125;</span><br><span class="line">    Child.prototype = <span class="keyword">new</span> Parent();<span class="comment">//原型链继承</span></span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="number">21</span>);<span class="comment">//写new Parent(21)也行</span></span><br><span class="line">    alert(test.run());<span class="comment">//mike,jack,smith are both21</span></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>组合式继承是比较常用的一种继承方法，其背后的思路是:</p>
+<blockquote>
+<p>使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又保证每个实例都有它自己的属性。<br>call()的用法：调用一个对象的一个方法，以另一个对象替换当前对象。<br>call([thisObj[,arg1[, arg2[, [,.argN]]]]]) </p>
+</blockquote>
+<hr>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><blockquote>
+<p>这种继承借助原型并基于已有的对象创建新对象，同时还不用创建自定义类型的方式称为原型式继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">obj</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">         <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">         F.prototype = o;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="keyword">var</span> box = &#123;</span><br><span class="line">        name : <span class="string">'trigkit4'</span>,</span><br><span class="line">        arr : [<span class="string">'brother'</span>,<span class="string">'sister'</span>,<span class="string">'baba'</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> b1 = obj(box);</span><br><span class="line">    alert(b1.name);<span class="comment">//trigkit4</span></span><br><span class="line"></span><br><span class="line">    b1.name = <span class="string">'mike'</span>;</span><br><span class="line">    alert(b1.name);<span class="comment">//mike</span></span><br><span class="line"></span><br><span class="line">    alert(b1.arr);<span class="comment">//brother,sister,baba</span></span><br><span class="line">    b1.arr.push(<span class="string">'parents'</span>);</span><br><span class="line">    alert(b1.arr);<span class="comment">//brother,sister,baba,parents</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> b2 = obj(box);</span><br><span class="line">    alert(b2.name);<span class="comment">//trigkit4</span></span><br><span class="line">    alert(b2.arr);<span class="comment">//brother,sister,baba,parents</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>原型式继承首先在obj()函数内部创建一个临时性的构造函数 ，然后将传入的对象作为这个构造函数的原型，最后返回这个临时类型的一个新实例。</p>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><blockquote>
+<p>这种继承方式是把原型式+工厂模式结合起来，目的是为了封装创建的过程。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> f= obj(o);</span><br><span class="line">        f.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.arr;<span class="comment">//同样，会共享引用</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">```    </span></span><br><span class="line"><span class="regexp">---</span></span><br><span class="line"><span class="regexp">#### 组合式继承的小问题:</span></span><br><span class="line"><span class="regexp">&gt;组合式继承是js最常用的继承模式，但组合继承的超类型在使用过程中会被调用两次；一次是创建子类型的时候，另一次是在子类型构造函数的内部</span></span><br><span class="line"><span class="regexp">```javascript</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function Parent(name)&#123;</span></span><br><span class="line"><span class="regexp">        this.name = name;</span></span><br><span class="line"><span class="regexp">        this.arr = ['哥哥','妹妹','父母'];</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    Parent.prototype.run = function () &#123;</span></span><br><span class="line"><span class="regexp">        return this.name;</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    function Child(name,age)&#123;</span></span><br><span class="line"><span class="regexp">        Parent.call(this,age);/</span><span class="regexp">/第二次调用</span></span><br><span class="line"><span class="regexp">        this.age = age;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    Child.prototype = new Parent();/</span><span class="regexp">/第一次调用</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>以上代码是之前的组合继承，那么寄生组合继承，解决了两次调用的问题。</p>
+<hr>
+<p>寄生组合式继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">obj</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">        F.prototype = o;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">parent,test</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> f = obj(parent.prototype);<span class="comment">//创建对象</span></span><br><span class="line">        f.constructor = test;<span class="comment">//增强对象</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.arr = [<span class="string">'brother'</span>,<span class="string">'sister'</span>,<span class="string">'parents'</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Parent.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,name);</span><br><span class="line">        <span class="keyword">this</span>.age =age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    inheritPrototype(Parent,Child);<span class="comment">//通过这里实现继承</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="string">'trigkit4'</span>,<span class="number">21</span>);</span><br><span class="line">    test.arr.push(<span class="string">'nephew'</span>);</span><br><span class="line">    alert(test.arr);<span class="comment">//</span></span><br><span class="line">    alert(test.run());<span class="comment">//只共享了方法</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> test2 = <span class="keyword">new</span> Child(<span class="string">'jack'</span>,<span class="number">22</span>);</span><br><span class="line">    alert(test2.arr);<span class="comment">//引用问题解决</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h4><p>全局函数apply和call可以用来改变函数中this的指向，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个全局函数</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>.fruit);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 定义一个全局变量</span></span><br><span class="line">   <span class="keyword">var</span> fruit = <span class="string">"apple"</span>;</span><br><span class="line">   <span class="comment">// 自定义一个对象</span></span><br><span class="line">   <span class="keyword">var</span> pack = &#123;</span><br><span class="line">       fruit: <span class="string">"orange"</span></span><br><span class="line">   &#125;;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 等价于window.foo();</span></span><br><span class="line">   foo.apply(<span class="built_in">window</span>);  <span class="comment">// "apple",此时this等于window</span></span><br><span class="line">   <span class="comment">// 此时foo中的this === pack</span></span><br><span class="line">   foo.apply(pack);    <span class="comment">// "orange"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="自己的总结"><a href="#自己的总结" class="headerlink" title="自己的总结"></a>自己的总结</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">//ES5</span><br><span class="line">function 构造函数名(形参)&#123;</span><br><span class="line">    //实例属性</span><br><span class="line">    this.属性名 = 值;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br><span class="line">//原型方法</span><br><span class="line">构造函数名.prototype.方法名 = function()&#123; ……&#125;;</span><br><span class="line">……</span><br><span class="line">//或</span><br><span class="line">构造函数名.prototype = &#123;</span><br><span class="line">    方法名 : function()&#123;……&#125;,</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//继承</span><br><span class="line">function 子类(形参)&#123;</span><br><span class="line">    父类.call(this,父类所需的形参); //或父类.apply(this,arguments);</span><br><span class="line">    子类自己的属性</span><br><span class="line">&#125;</span><br><span class="line">for(var i in 父类.prototype)&#123;</span><br><span class="line">    子类.prototype[i] = 父类.prototype[i];</span><br><span class="line">&#125;</span><br><span class="line">子类.prototype = &#123;</span><br><span class="line">    子类自己的原型方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//ES6</span><br><span class="line">class 类名(原构造函数名) &#123;</span><br><span class="line">    constructor(形参)&#123;</span><br><span class="line">        //实例属性</span><br><span class="line">        this.属性名 = 值;</span><br><span class="line">    &#125;</span><br><span class="line">    //原型方法</span><br><span class="line">    方法名()&#123;</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//继承</span><br><span class="line">class 子类 extends 父类&#123;</span><br><span class="line">    constructor(形参)&#123;</span><br><span class="line">        super(父类所需的参数);</span><br><span class="line">        子类自己的属性 ……</span><br><span class="line">    &#125;</span><br><span class="line">    子类自己的原型方法……</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -196,364 +267,105 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/04/JS的继承/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/缓存的一些问题/" class="archive-article-date">
-  	<time datetime="2017-11-29T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/29/缓存的一些问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浏览器缓存</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/29/缓存的一些问题/">浏览器缓存</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器缓存</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/网页性能优化/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/前端页面的构成/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/前端页面的构成/">前端页面的构成</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/元素的分类/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/元素的分类/">元素的分类</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/rem和em/">rem与em</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/盒模型/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/响应式布局/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/响应式布局/">响应式布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/web标准及W3C的理解/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/web标准及W3C的理解/">web标准及W3C的理解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/IE6bug/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -577,8 +389,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
