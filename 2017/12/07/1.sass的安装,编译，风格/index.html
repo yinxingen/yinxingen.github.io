@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: ES6 | yinxingen</title>
+  <title>sass的安装，编译与风格 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走在前端的路上">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yinxingen">
-<meta property="og:url" content="http://yoursite.com/tags/ES6/index.html">
+  <meta name="description" content="1.安装sass1.安装ruby 因为sass是用ruby语言写的，所以需要安装ruby环境  打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径   Add Ruby executables to your PATH  安装完成之后继续下一步操作  2.安装sass在cmd里通过gem安装sass  gem">
+<meta name="keywords" content="sass详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass的安装，编译与风格">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/1.sass的安装,编译，风格/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="走在前端的路上">
+<meta property="og:description" content="1.安装sass1.安装ruby 因为sass是用ruby语言写的，所以需要安装ruby环境  打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径   Add Ruby executables to your PATH  安装完成之后继续下一步操作  2.安装sass在cmd里通过gem安装sass  gem是ruby的包管理工具，类似于nodejs 的npm  1gem install">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-07T12:01:14.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yinxingen">
-<meta name="twitter:description" content="走在前端的路上">
+<meta name="twitter:title" content="sass的安装，编译与风格">
+<meta name="twitter:description" content="1.安装sass1.安装ruby 因为sass是用ruby语言写的，所以需要安装ruby环境  打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径   Add Ruby executables to your PATH  安装完成之后继续下一步操作  2.安装sass在cmd里通过gem安装sass  gem是ruby的包管理工具，类似于nodejs 的npm  1gem install">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -155,60 +157,250 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1.sass的安装,编译，风格" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/let and const/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:31:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/let and const/">ES6中 let 和 const</a>
+    <h1 class="article-title" itemprop="name">
+      sass的安装，编译与风格
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/12/07/1.sass的安装,编译，风格/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:11:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-安装sass"><a href="#1-安装sass" class="headerlink" title="1.安装sass"></a>1.安装sass</h2><h3 id="1-安装ruby"><a href="#1-安装ruby" class="headerlink" title="1.安装ruby"></a>1.安装ruby</h3><blockquote>
+<p>因为sass是用ruby语言写的，所以需要安装ruby环境</p>
+</blockquote>
+<p>打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Add Ruby executables to your PATH</li>
+</ul>
+<p>安装完成之后继续下一步操作</p>
+<hr>
+<h3 id="2-安装sass"><a href="#2-安装sass" class="headerlink" title="2.安装sass"></a>2.安装sass</h3><p>在cmd里通过gem安装sass</p>
+<blockquote>
+<p>gem是ruby的包管理工具，类似于nodejs 的npm</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure>
+<p>这个时候如果不翻墙的话是会出问题的，因为：</p>
+<p>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。这时候我们可以通过gem sources命令来配置源，先移除默认的<a href="https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem" target="_blank" rel="noopener">https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem</a> install sass了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove https:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -a https:<span class="comment">//ruby.taobao.org/ 【如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org】</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//ruby.taobao.org</span></span><br><span class="line"># 请确保只有 ruby.taobao.org</span><br><span class="line">$ gem install sass</span><br></pre></td></tr></table></figure>
+<p>安装好之后执行sass -v就可以看到sass的版本了</p>
+<p>实在实在不行，就安装离线文件吧,但是失败率也很高</p>
+<p>gem install  ./…/sass-3.4.22.gem</p>
+<h2 id="2-编译sass文件的方式"><a href="#2-编译sass文件的方式" class="headerlink" title="2.编译sass文件的方式"></a>2.编译sass文件的方式</h2><h3 id="1-命令行编译"><a href="#1-命令行编译" class="headerlink" title="1.命令行编译"></a>1.命令行编译</h3><blockquote>
+<p>可以通过cmd命令行执行sass方法来编译</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass scss/a.scss:css/a.css</span><br></pre></td></tr></table></figure>
+<p>sass 后面写要编译的sass文件的路径，‘：’后面写的是<br>要输出的目录及名字</p>
+<blockquote>
+<ul>
+<li>需要注意的是：必须有这个文件夹才能在里面生成css</li>
+</ul>
+</blockquote>
+<p>这样的话写一句执行一次编译一次有些太麻烦</p>
+<p>可以开启一个watch来监听文件变化来进行编译</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css</span><br></pre></td></tr></table></figure>
+<p>–watch表示要监听 ：前后的两个都是文件夹，表示scss文件夹的文件改变就编译到css文件夹</p>
+<hr>
+<h3 id="2-其他方式编译"><a href="#2-其他方式编译" class="headerlink" title="2.其他方式编译"></a>2.其他方式编译</h3><p>除了命令行工具其实还可以用考拉、gulp等工具进行编译，但是ruby和sass是必须要安装的</p>
+<p>考拉的方式就不多做介绍了，大家i自己去看一下</p>
+<p>gulp的话呢是需要gulp-sass的模块来编译，使用方式类似于gulp-less</p>
+<p>这里是网址，<a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener">点击查看</a></p>
+<h2 id="3-sass四种风格"><a href="#3-sass四种风格" class="headerlink" title="3.sass四种风格"></a>3.sass四种风格</h2><h3 id="sass编译的格式"><a href="#sass编译的格式" class="headerlink" title="sass编译的格式"></a>sass编译的格式</h3><p>sass编译输出的css有四种格式</p>
+<ul>
+<li>nested 嵌套</li>
+<li>compact 紧凑</li>
+<li>expanded 扩展</li>
+<li>compressed 压缩</li>
+</ul>
+<blockquote>
+<p>这些样式会影响输出的css的格式</p>
+</blockquote>
+<p>简单介绍一下：</p>
+<p>css默认输出的嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">  ul li &#123;</span><br><span class="line">    list-style: none; &#125;</span><br></pre></td></tr></table></figure>
+<p>紧凑compact<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compact</span><br></pre></td></tr></table></figure>
+<p>这个时候输出的代码就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ul &#123; font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">ul li &#123; list-style: none; padding: <span class="number">5</span>px; &#125;</span><br></pre></td></tr></table></figure>
+<p>compressed 压缩<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;font-size:<span class="number">15</span>px&#125;ul li&#123;list-style:none;animation:all <span class="number">0.4</span>s&#125;</span><br></pre></td></tr></table></figure>
+<p>expanded 扩展<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style expanded</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line">ul li &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">  animation: all <span class="number">0.3</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>compressed 压缩<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.a&#123;<span class="attr">width</span>:<span class="number">100</span>px;height:<span class="number">100</span>px;border:<span class="number">1</span>px solid red&#125;.a .b&#123;<span class="attr">background</span>:red&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-sass与scss"><a href="#4-sass与scss" class="headerlink" title="4.sass与scss"></a>4.sass与scss</h2><h3 id="sass的两个语法版本"><a href="#sass的两个语法版本" class="headerlink" title="sass的两个语法版本"></a>sass的两个语法版本</h3><p>sass一开始用的是一种缩进式的语法格式</p>
+<p>采用这种格式文件的后缀名是.sass</p>
+<p>在sass3.0版本后我们常用的是sassy css语法，扩展名是.scss，更接近与css语法</p>
+<h3 id="两个版本的区别"><a href="#两个版本的区别" class="headerlink" title="两个版本的区别"></a>两个版本的区别</h3><ul>
+<li>后缀名不同 .sass和.scss</li>
+<li>语法不同，请看下面</li>
+</ul>
+<p>新版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">//单行文本注释</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span>;</span><br><span class="line"></span><br><span class="line">@mixin alert&#123;</span><br><span class="line">	color:red;</span><br><span class="line">	background:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">  单行文本注释*/</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span></span><br><span class="line"></span><br><span class="line">=alert</span><br><span class="line">	color:red</span><br><span class="line">	background:blue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.alert-warning</span><br><span class="line">	+alert</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ul</span><br><span class="line">	font-size:<span class="number">15</span>px</span><br><span class="line">	li</span><br><span class="line">		list-style:none</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/07/1.sass的安装,编译，风格/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -231,9 +423,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

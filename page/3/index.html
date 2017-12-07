@@ -157,6 +157,448 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-伪数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/27/伪数组/">伪数组</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/27/伪数组/" class="archive-article-date">
+  	<time datetime="2017-11-27T02:31:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关于伪数组"><a href="#关于伪数组" class="headerlink" title="关于伪数组"></a>关于伪数组</h3><ol>
+<li><p>常见的伪数组都有哪些？arguments、通过document.getElements..获取到的内容；</p>
+</li>
+<li><p>伪数组有什么特点？具有length属性，也是一个一个的元素组成的，但是构造器不是Array，不能使用数组的方法,按索引方式存储数据</p>
+</li>
+<li><p>转换为真正数组的方法：</p>
+<p> 通过遍历将伪数组里元素放入到一个新的数组里</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arg = <span class="built_in">arguments</span><span class="comment">//这就是一个典型的伪数组</span></span><br><span class="line"><span class="keyword">let</span> arr = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arg.length; i++) &#123;</span><br><span class="line">    arr.push(arg[i])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></table></figure>
+<p>通过call改变数组slice方法里的this指向</p>
+<p>因为我想要让伪数组也能使用数组的方法，为什么伪数组就不能使用数组方法，为什么数组就能使用push方法了<br>一个数组都是由它的构造器实例化出来的，var a = []//这是js的语法；正规的用法：var a = new Array()</p>
+<p>因为Array是一个构造函数，每一个构造函数都有原型,且构造函数构造出来的实例可以使用原型上的方法，也就是说因为Array的原型上有一些方法，所以每一个数组都可以使用这些push等等的方法<br>因为伪数组的构造器不是Array，当然不能使用Array原型上的push方法<br>现在数组有一个方法slice，这个方法每次都会返回一个新数组，如果不传参数的话，返回的新数组的元素和原数组的元素是一模一样的</p>
+<p>如果伪数组也能执行这个slice方法的话，那么是不是就会返回一个新的真正的数组，并且元素一样，但是不能直接执行<br>所以我们使用偷梁换柱的方法，让一个真正的数据，或者直接从Array.prototype上执行slice方法，但是在执行的时候通过call来将里面的this换成咱们的伪数组，这样的话，就会返回一个元素和伪数组元素一样的真正数组了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [].slice.call(arg) <span class="comment">//Array.prototype.slice.call(arg)</span></span><br></pre></td></tr></table></figure></p>
+<p>最后总结：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeArray</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(c);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; c.length;i++)&#123;</span><br><span class="line">            ret[i] = c[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">数组 字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/27/伪数组/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-h5本地储存" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/27/h5本地储存/">H5本地存储</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/27/h5本地储存/" class="archive-article-date">
+  	<time datetime="2017-11-27T01:34:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="H5本地存储"><a href="#H5本地存储" class="headerlink" title="H5本地存储"></a>H5本地存储</h3><p>在以前，我们想要存储一些数据，并且只是在前端使用，服务端并不会使用，我们只能存在cookie里，但是cookie会跟随请求头在客户端和服务端之间来回传递，而且cookie还有一些缺点，H5提供了webStorage的API用来做客户端的数据存储</p>
+<h5 id="cookie与webStorage的区别"><a href="#cookie与webStorage的区别" class="headerlink" title="cookie与webStorage的区别"></a>cookie与webStorage的区别</h5><ol>
+<li>cookie有大小的限制，只能存储4kb，webStorage可以存储5Mb，cookie还有条数的限制</li>
+<li>cookie会跟随请求头在客户端和服务端之间传递，会影响带宽。</li>
+<li>cookie需要设置有效期，localStorage是永久保存，sessionStorage是会话保存，</li>
+<li>cookie可以设置作用path</li>
+<li>cookie的操作较为困难，webStorage的API较为容易</li>
+<li>cookie的兼容性比webStorage兼容性好</li>
+</ol>
+<h5 id="webStorage包含的存储方式"><a href="#webStorage包含的存储方式" class="headerlink" title="webStorage包含的存储方式"></a>webStorage包含的存储方式</h5><ol>
+<li>localStorage ：有效期是永远，永久保存；除非手动删除</li>
+<li>sessionStorage： 有效期是一次会话时间</li>
+<li>globalStorage、indexedDB、webSQL因为兼容性、实用性较差，所以，不使用</li>
+</ol>
+<h5 id="localStorage和sessionStorage-的使用方法（API）"><a href="#localStorage和sessionStorage-的使用方法（API）" class="headerlink" title="localStorage和sessionStorage 的使用方法（API）"></a>localStorage和sessionStorage 的使用方法（API）</h5><ol>
+<li><p>localStorage和sessionStorage的使用方法一样</p>
+</li>
+<li><p>增删改查</p>
+<p> 增/改： localStorage.setItem(key,value)/ localStorage.a = 1</p>
+<p> 查： length；key方法（index）得到对应的key  getItem(key)/localStorage.a</p>
+<p> 删： removeItem（key）</p>
+<p> 清空: clear()</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/27/h5本地储存/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-闭包closure" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/26/闭包closure/">closure</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/26/闭包closure/" class="archive-article-date">
+  	<time datetime="2017-11-26T04:45:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="我对闭包的理解"><a href="#我对闭包的理解" class="headerlink" title="我对闭包的理解"></a>我对闭包的理解</h3><ol>
+<li><p>个人理解 ： 闭包就是能够读取其他函数内部变量的函数。使用闭包主要是设计私有的方法和变量 </p>
+</li>
+<li><p>优点：可以避免全局变量的污染</p>
+</li>
+<li><p>缺点： 闭包会常驻内存，会增大内存使用量，使用不当很容易造成内存泄露。</p>
+</li>
+<li><p>在js中，函数即闭包，只有函数才会产生作用域的概念</p>
+</li>
+<li><p>闭包有三个特性：</p>
+<p> 1）函数嵌套函数</p>
+<p> 2）函数内部可以引用外部的参数和变量</p>
+<p> 3）参数和变量不会被垃圾回收机制回收</p>
+</li>
+<li><p>闭包常见用途：</p>
+<p> 创建特权方法用于访问控制</p>
+<p> 事件处理程序及回调</p>
+</li>
+</ol>
+<h4 id="什么是闭包（Closure）"><a href="#什么是闭包（Closure）" class="headerlink" title="什么是闭包（Closure）"></a>什么是闭包（Closure）</h4><blockquote>
+<p>简单讲，闭包就是指有权访问另一个函数作用域中的变量的函数。</p>
+</blockquote>
+<h4 id="产生一个闭包"><a href="#产生一个闭包" class="headerlink" title="产生一个闭包"></a>产生一个闭包</h4><blockquote>
+<p>创建闭包最常见方式，就是在一个函数内部创建另一个函数。下面例子中的 closure 就是一个闭包：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>,b = <span class="number">2</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">closure</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> closure;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>闭包的作用域链包含着它自己的作用域，以及包含它的函数的作用域和全局作用域。</p>
+</blockquote>
+<h4 id="闭包的注意事项"><a href="#闭包的注意事项" class="headerlink" title="闭包的注意事项"></a>闭包的注意事项</h4><blockquote>
+<p>通常，函数的作用域及其所有变量都会在函数执行结束后被销毁。但是，在创建了一个闭包以后，这个函数的作用域就会一直保存到闭包不存在为止。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAdder</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add5 = makeAdder(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> add10 = makeAdder(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add5(<span class="number">2</span>));  <span class="comment">// 7</span></span><br><span class="line"><span class="built_in">console</span>.log(add10(<span class="number">2</span>)); <span class="comment">// 12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放对闭包的引用</span></span><br><span class="line">add5 = <span class="literal">null</span>;</span><br><span class="line">add10 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>add5 和 add10 都是闭包。它们共享相同的函数定义，但是保存了不同的环境。在 add5 的环境中，x 为 5。而在 add10 中，x 则为 10。最后通过 null 释放了 add5 和 add10 对闭包的引用。<br>在javascript中，如果一个对象不再被引用，那么这个对象就会被垃圾回收机制回收；<br>如果两个对象互相引用，而不再被第3者所引用，那么这两个互相引用的对象也会被回收。<br>闭包只能取得包含函数中任何变量的最后一个值，这是因为闭包所保存的是整个变量对象，而不是某个特殊的变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>;i++)&#123;</span><br><span class="line">    arr[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> a = <span class="number">0</span>;a &lt; <span class="number">10</span>;a++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr[a]());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 连续打印 10 个 10</span></span><br></pre></td></tr></table></figure>
+<p>对于上面的情况，如果我们改变代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>;i++)&#123;  <span class="comment">// 仅在这里作出了改动</span></span><br><span class="line">    arr[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> a = <span class="number">0</span>;a &lt; <span class="number">10</span>;a++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr[a]());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 打印 0 到 9</span></span><br></pre></td></tr></table></figure>
+<p>•    闭包中的 this 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">name: <span class="string">"My Object"</span>,</span><br><span class="line"></span><br><span class="line">getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.getName()());  <span class="comment">// The Window</span></span><br></pre></td></tr></table></figure>
+<p>obj.getName()()实际上是在全局作用域中调用了匿名函数，this指向了window。这里要理解函数名与函数功能（或者称函数值）是分割开的，不要认为函数在哪里，其内部的this就指向哪里。匿名函数的执行环境具有全局性，因此其 this 对象通常指向 window。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"The Window"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">name: <span class="string">"My Object"</span>,</span><br><span class="line"></span><br><span class="line">getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> that.name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj.getName()());  <span class="comment">// My Object</span></span><br></pre></td></tr></table></figure>
+<h4 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h4><p>•    应用闭包的主要场合是：设计私有的方法和变量。<br>任何在函数中定义的变量，都可以认为是私有变量，因为不能在函数外部访问这些变量。私有变量包括函数的参数、局部变量和函数内定义的其他函数。<br>把有权访问私有变量的公有方法称为特权方法（privileged method）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 私有变量</span></span><br><span class="line"><span class="keyword">var</span> series = <span class="string">"哺乳动物"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Run!!!"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 特权方法</span></span><br><span class="line"><span class="keyword">this</span>.getSeries = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> series;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>模块模式（The Module Pattern）：为单例创建私有变量和方法。<br>单例（singleton）：指的是只有一个实例的对象。JavaScript 一般以对象字面量的方式来创建一个单例对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> singleton = &#123;</span><br><span class="line">  name: <span class="string">"percy"</span>,</span><br><span class="line">  speak:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"speaking!!!"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  getName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面是普通模式创建的单例，下面使用模块模式创建单例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> singleton = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 私有变量</span></span><br><span class="line">  <span class="keyword">var</span> age = <span class="number">22</span>;</span><br><span class="line">  <span class="keyword">var</span> speak = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"speaking!!!"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 特权（或公有）属性和方法</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">"percy"</span>,</span><br><span class="line">    getAge: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>匿名函数最大的用途是创建闭包，并且还可以构建命名空间，以减少全局变量的使用。从而使用闭包模块化代码，减少全局变量的污染。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> objEvent = objEvent || &#123;&#125;;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="keyword">var</span> addEvent = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">      <span class="comment">// some code</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">// some code</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    objEvent.addEvent = addEvent;</span><br><span class="line">    objEvent.removeEvent = removeEvent;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>在这段代码中函数 addEvent 和 removeEvent 都是局部变量，但我们可以通过全局变量 objEvent 使用它，这就大大减少了全局变量的使用，增强了网页的安全性。<br>一个闭包计数器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countNumber = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ++num;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<h4 id="闭包的缺陷"><a href="#闭包的缺陷" class="headerlink" title="闭包的缺陷"></a>闭包的缺陷</h4><blockquote>
+<p>   闭包的缺点就是常驻内存会增大内存使用量，并且使用不当很容易造成内存泄露。<br>   如果不是因为某些特殊任务而需要闭包，在没有必要的情况下，在其它函数中创建函数是不明智的，因为闭包对脚本性能具有负面影响，包括处理速度和内存消耗。<br>最后再来一些有关闭包的面试题<br>•    下面代码中，标记 ？ 的地方输出分别是什么？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">n,o</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(o);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    fun: <span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = fun(<span class="number">0</span>);  <span class="comment">// ?</span></span><br><span class="line">a.fun(<span class="number">1</span>);        <span class="comment">// ?        </span></span><br><span class="line">a.fun(<span class="number">2</span>);        <span class="comment">// ?</span></span><br><span class="line">a.fun(<span class="number">3</span>);        <span class="comment">// ?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = fun(<span class="number">0</span>).fun(<span class="number">1</span>).fun(<span class="number">2</span>).fun(<span class="number">3</span>);  <span class="comment">// ?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = fun(<span class="number">0</span>).fun(<span class="number">1</span>);  <span class="comment">// ?</span></span><br><span class="line">c.fun(<span class="number">2</span>);        <span class="comment">// ?</span></span><br><span class="line">c.fun(<span class="number">3</span>);        <span class="comment">// ?</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="literal">undefined</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="literal">undefined</span>, <span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/26/闭包closure/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/26/cookie/">Cookie</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/26/cookie/" class="archive-article-date">
+  	<time datetime="2017-11-26T04:40:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><h4 id="Cookie的诞生，为什么叫会话跟踪技术？"><a href="#Cookie的诞生，为什么叫会话跟踪技术？" class="headerlink" title="Cookie的诞生，为什么叫会话跟踪技术？"></a>Cookie的诞生，为什么叫会话跟踪技术？</h4><ol>
+<li><p>在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）</p>
+</li>
+<li><p>你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个身份牌。这样一来，关于你是谁？有没有登录过？购物车里有什么信息？服务器当然就很容易知道了。</p>
+</li>
+</ol>
+<h4 id="cookie的特点："><a href="#cookie的特点：" class="headerlink" title="cookie的特点："></a>cookie的特点：</h4><ol>
+<li><p>只能使用文本文件</p>
+</li>
+<li><p>文件有大小限制（4kb）， 数量限制</p>
+</li>
+<li><p>读取有域名限制：不可跨域读取，只能由来自写入cookie的同一域名的网页可进行读取。<br>简单的讲就是，谁写的cookie，谁才有权利读取</p>
+</li>
+<li><p>时效限制：每个cookie都有时效，最短的有效期是，会话级别：就是当浏览器关闭，那么cookie立即销毁</p>
+</li>
+</ol>
+<h4 id="cookie的使用"><a href="#cookie的使用" class="headerlink" title="cookie的使用"></a>cookie的使用</h4><p>一、添加cookie</p>
+<ol>
+<li><p>Document.cookie =“username=123”;//一次写入一个键值对，一次写入多个，只有第一个生效，或者采用&amp;符号链接user=张三&amp;password=123&amp;name=xxxx;</p>
+</li>
+<li><p>保存形式：key=value</p>
+</li>
+<li><p>如果有中文编码问题，使用encodeURIComponent(“xxxx”)编码，再使用decodeURIComponent(document.cookie)解码，能解决中文乱码问题</p>
+</li>
+</ol>
+<p>二、cookie失效时间</p>
+<ol>
+<li><p>如果不加这个参数，默认情况下为临时cookie，也就是关闭浏览器则cookie失效。</p>
+</li>
+<li><p>Expires=date,指定在什么时间，cookie被自动清理，如果手动调整系统的时间，让cookie消失，可以进行恢复，此时为假删除，当覆盖某个键值对，并设置失效时间过期时，则cookie被删除，不能恢复</p>
+</li>
+</ol>
+<p>3.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Var date = <span class="keyword">new</span> <span class="built_in">Date</span>():</span><br><span class="line"></span><br><span class="line">date.setDate(date.getDate() + <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.cookie = “user=” + <span class="built_in">encodeURIComponent</span>(“张志林”) + “;expires=” + date;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Cookie的完整存储形式</li>
+</ol>
+<p>name=value [;expires=date] [;path=path] [;domain=michael.com][;secure];<br>中括号是可选，name=value是必选。</p>
+<ol>
+<li>Cookie的路径问题</li>
+</ol>
+<p>在同一路径下的网页可以共享cookie，路径不同时，不能访问</p>
+<ol>
+<li>Cookie的域名问题</li>
+</ol>
+<p>1)    必须在绑定域名的服务器上才可以设置域名<br>2)    并且只能设置绑定的域名，也就是说，不同服务器间的cookie文件不共享</p>
+<ol>
+<li>Secure安全设置：指明必须通过安全的通信通道来传输（https）才能获取cookie.</li>
+</ol>
+<h4 id="cookie作用："><a href="#cookie作用：" class="headerlink" title="cookie作用："></a>cookie作用：</h4><blockquote>
+<p>1.可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用。</p>
+<p>2.保存用户的登陆状态，用户进行登陆，成功登陆后，服务器生成特定的cookie返回给客户端，客户端下次访问该域名下的任何页面，将该cookie的信息发送给服务器，服务器经过检验，来判断用户是否登陆。</p>
+<p>3.记录用户的行为。</p>
+</blockquote>
+<h4 id="cookie弊端："><a href="#cookie弊端：" class="headerlink" title="cookie弊端："></a>cookie弊端：</h4><blockquote>
+<p>1.增加流量消耗，每次请求都需要带上cookie信息。</p>
+<p>2.安全性隐患，cookie使用明文传输。如果cookie被人拦截了，那人就可以取得所有的session信息。</p>
+<p>3.Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/26/cookie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Array方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -828,172 +1270,9 @@
 
 
   
-    <article id="post-bootstrap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/bootstrap/">bootstrap 入门</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/21/bootstrap/" class="archive-article-date">
-  	<time datetime="2017-11-21T14:21:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><h5 id="入门的使用"><a href="#入门的使用" class="headerlink" title="入门的使用"></a>入门的使用</h5><p>在做前端开发中，其实有百分之四十的时间用来布局写样式，百分之三十用来写JS逻辑交互，百分之三十时间用来测试调bug，可以看的到的是，用在布局+样式的时候会比较多</p>
-<p>所以会有很多的前端框架诞生，例如bootstrap</p>
-<p>前端框架包含有设定好的html布局结构，css样式，一些js效果，理论上将，不需要写一行代码，只需复制粘贴就可以实现一个静态页面</p>
-<p>官方的介绍：简洁、直观、强悍的前端开发框架，让web开发更迅速、简单。</p>
-<p>用bootstrap不仅可以写PC的页面，还可以做响应式</p>
-<p>响应式：利用媒体查询等技术，通过检测浏览器的尺寸不同，来显示不同的布局结构，原理就是，媒体查询可以检测到屏幕的尺寸是否处于某一个范围，如果是的时候可以让某一段css代码起作用，来实现结构切换</p>
-<p>boot 默认的将屏幕划分成了四种：</p>
-<p>0-768 xs ;768-992 sm ; 992-1200 md;1200- lg ;</p>
-<p>boot 提供了两个布局容器，这两个布局容器是要作为某一个大的区域的最外层元素的，会和其他的一些布局类名配合使用</p>
-<p>.container   .container-fluid</p>
-<p>container-fluid在任意屏幕下宽度都是百分之一百</p>
-<p>container 是在xs屏永远都是100%；768-992，宽度：768；992-1200，宽度：992；1200- 宽度：1200，永远居中</p>
-<p>boot 提供了栅格系统（12栅格化，网格化，网格系统）会让我们在布局的时候，想象着将一行的空间分成12份，通过设置每一个元素占几份来控制元素的排列</p>
-<p>row类名可以在容器中将某一行分成12份</p>
-<p>col-type-num 可以确定某一行中的某一个元素在type屏幕的情况下占num份</p>
-<p>注意，在使用这些类名的时候有小屏优先这样的原则:</p>
-<p>在写媒体查询样式的时候，应该先写小屏的样式，再写大屏的样式，小屏解析的css代码会较少，性能较高</p>
-<p>col-type-offset-num 设定的是某一个元素在某一个屏幕尺寸下向右偏移几份</p>
-<p>visible-type hidden-type  在某一种屏幕下显示或隐藏</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/21/bootstrap/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/20/hello-world/" class="archive-article-date">
-  	<time datetime="2017-11-20T04:39:48.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/20/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1092,11 +1371,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1112,6 +1391,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
@@ -1120,7 +1403,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">sass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
               </li>
             
             <div class="clearfix"></div>

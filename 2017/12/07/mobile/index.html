@@ -14,12 +14,12 @@
 <meta property="og:title" content="mobile">
 <meta property="og:url" content="http://yoursite.com/2017/12/07/mobile/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="移动端开发我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站 app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。 移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app 开发移动端应用我们需要学习的知识点可以分成如下几个：  移动端布局适配  移动端事">
+<meta property="og:description" content="移动端开发我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站 app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。 移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app 开发移动端应用我们需要学习的知识点可以分成如下几个： 1.移动端布局适配 2.移动">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-07T10:15:38.237Z">
+<meta property="og:updated_time" content="2017-12-07T10:29:38.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mobile">
-<meta name="twitter:description" content="移动端开发我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站 app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。 移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app 开发移动端应用我们需要学习的知识点可以分成如下几个：  移动端布局适配  移动端事">
+<meta name="twitter:description" content="移动端开发我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站 app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。 移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app 开发移动端应用我们需要学习的知识点可以分成如下几个： 1.移动端布局适配 2.移动">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -181,18 +181,11 @@
 <p>app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。</p>
 <p>移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app</p>
 <p>开发移动端应用我们需要学习的知识点可以分成如下几个：</p>
-<ol>
-<li><p>移动端布局适配</p>
-</li>
-<li><p>移动端事件</p>
-</li>
-<li><p>移动端交互效果</p>
-</li>
-<li><p>移动端前端框架</p>
-</li>
-<li><p>移动端调试</p>
-</li>
-</ol>
+<p>1.移动端布局适配</p>
+<p>2.移动端事件</p>
+<p>3.移动端交互效果</p>
+<p>4.移动端前端框架</p>
+<p>5.移动端调试</p>
 <h3 id="移动端布局适配"><a href="#移动端布局适配" class="headerlink" title="移动端布局适配"></a>移动端布局适配</h3><blockquote>
 <p>从屏幕尺寸、屏幕类型等方面来看的话，移动设备和PC设备大有不同，所以从布局、适配等方面都需要我们考虑到</p>
 </blockquote>
@@ -240,20 +233,13 @@
 </tbody>
 </table>
 <h4 id="移动端布局方式与设计图"><a href="#移动端布局方式与设计图" class="headerlink" title="移动端布局方式与设计图"></a>移动端布局方式与设计图</h4><p>现有的布局方式：</p>
-<ol>
-<li><p>固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
-<p> 内容区域的尺寸：980,1000,1100,1200</p>
-</li>
-</ol>
-<ol>
-<li><p>响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
-<p> 一般会有三张设计图，PC,平板,手机</p>
-</li>
-<li><p>自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
-<p> 设计图一般只有一张，640、750居多</p>
-</li>
-</ol>
-<h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
+<p>1.固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
+<pre><code>内容区域的尺寸：980,1000,1100,1200
+</code></pre><p>2.响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
+<pre><code>一般会有三张设计图，PC,平板,手机
+</code></pre><p>3.自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
+<pre><code>设计图一般只有一张，640、750居多
+</code></pre><h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
 <p>retina屏幕有一个属性叫DPR（设备像素缩放比） = 物理像素/逻辑像素</p>
 <p>例如，iphone 5s手机商宣传手机的尺寸是：640宽，这个值就是物理像素，而从开发者眼里我们所指的其实是320px（逻辑像素）</p>
 <p>在dpr为2的手机中，我们的一个逻辑像素会从横纵两个方向分别以2个像素点来渲染</p>
@@ -263,20 +249,20 @@
 <p>因为我们的移动设备有很多种，所以我们的布局不可能是固定布局，所以我们要使用自适应布局</p>
 </blockquote>
 <p>我们在开发中可以选用很多自适应布局单位，这些单位必须满足一个条件</p>
-<ol>
-<li><p>% </p>
-<p> 优点：简单，无需设置，兼容性好<br> 缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效</p>
-</li>
-<li><p>vwvh</p>
-<p> 一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一<br> vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个</p>
-<p> 优点：简单，无需设置<br> 缺点：兼容性不好</p>
-</li>
-<li><p>rem</p>
-<p> 一个rem等于根元素（html）的字体大小，兼容性很好</p>
-<p> 优点：兼容好，使用简单<br> 缺点：需要设置</p>
-</li>
-</ol>
-<h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
+<p>1.% </p>
+<pre><code>优点：简单，无需设置，兼容性好
+缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效
+</code></pre><p>2.vwvh</p>
+<pre><code>一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一
+vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
+
+优点：简单，无需设置
+缺点：兼容性不好
+</code></pre><p>3.rem</p>
+<pre><code>一个rem等于根元素（html）的字体大小，兼容性很好    
+优点：兼容好，使用简单
+缺点：需要设置
+</code></pre><h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
 <p>rem的兼容性好一点，它也确实是一个布局单位，不受父子元素的影响，设置了rem之后，也不会对px、em等单位造成影响，它是一个理想的单位</p>
 <p>rem也有一个致命的问题，就是它不是一个自适应的单位，不会跟着设备尺寸不同而不同，但是没有关系，我们有万能的js，可以去动态的设置它</p>
 <h6 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h6><p>我们可以将1rem设置成屏幕的某一个比例，比如将1rem设置成屏幕的十分之一</p>
@@ -405,6 +391,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/12/07/4.sass的分支结构、循环结构、函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          sass的分支结构
+        
+      </div>
+    </a>
   
   
     <a href="/2017/12/04/JS的继承/" id="article-nav-older" class="article-nav-link-wrap">
@@ -538,11 +533,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,6 +553,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
@@ -566,7 +565,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">sass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
               </li>
             
             <div class="clearfix"></div>

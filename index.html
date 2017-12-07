@@ -157,6 +157,593 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1.sass的安装,编译，风格" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/1.sass的安装,编译，风格/">sass的安装，编译与风格</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/1.sass的安装,编译，风格/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:11:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-安装sass"><a href="#1-安装sass" class="headerlink" title="1.安装sass"></a>1.安装sass</h2><h3 id="1-安装ruby"><a href="#1-安装ruby" class="headerlink" title="1.安装ruby"></a>1.安装ruby</h3><blockquote>
+<p>因为sass是用ruby语言写的，所以需要安装ruby环境</p>
+</blockquote>
+<p>打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Add Ruby executables to your PATH</li>
+</ul>
+<p>安装完成之后继续下一步操作</p>
+<hr>
+<h3 id="2-安装sass"><a href="#2-安装sass" class="headerlink" title="2.安装sass"></a>2.安装sass</h3><p>在cmd里通过gem安装sass</p>
+<blockquote>
+<p>gem是ruby的包管理工具，类似于nodejs 的npm</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure>
+<p>这个时候如果不翻墙的话是会出问题的，因为：</p>
+<p>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。这时候我们可以通过gem sources命令来配置源，先移除默认的<a href="https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem" target="_blank" rel="noopener">https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem</a> install sass了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove https:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -a https:<span class="comment">//ruby.taobao.org/ 【如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org】</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//ruby.taobao.org</span></span><br><span class="line"># 请确保只有 ruby.taobao.org</span><br><span class="line">$ gem install sass</span><br></pre></td></tr></table></figure>
+<p>安装好之后执行sass -v就可以看到sass的版本了</p>
+<p>实在实在不行，就安装离线文件吧,但是失败率也很高</p>
+<p>gem install  ./…/sass-3.4.22.gem</p>
+<h2 id="2-编译sass文件的方式"><a href="#2-编译sass文件的方式" class="headerlink" title="2.编译sass文件的方式"></a>2.编译sass文件的方式</h2><h3 id="1-命令行编译"><a href="#1-命令行编译" class="headerlink" title="1.命令行编译"></a>1.命令行编译</h3><blockquote>
+<p>可以通过cmd命令行执行sass方法来编译</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass scss/a.scss:css/a.css</span><br></pre></td></tr></table></figure>
+<p>sass 后面写要编译的sass文件的路径，‘：’后面写的是<br>要输出的目录及名字</p>
+<blockquote>
+<ul>
+<li>需要注意的是：必须有这个文件夹才能在里面生成css</li>
+</ul>
+</blockquote>
+<p>这样的话写一句执行一次编译一次有些太麻烦</p>
+<p>可以开启一个watch来监听文件变化来进行编译</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css</span><br></pre></td></tr></table></figure>
+<p>–watch表示要监听 ：前后的两个都是文件夹，表示scss文件夹的文件改变就编译到css文件夹</p>
+<hr>
+<h3 id="2-其他方式编译"><a href="#2-其他方式编译" class="headerlink" title="2.其他方式编译"></a>2.其他方式编译</h3><p>除了命令行工具其实还可以用考拉、gulp等工具进行编译，但是ruby和sass是必须要安装的</p>
+<p>考拉的方式就不多做介绍了，大家i自己去看一下</p>
+<p>gulp的话呢是需要gulp-sass的模块来编译，使用方式类似于gulp-less</p>
+<p>这里是网址，<a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener">点击查看</a></p>
+<h2 id="3-sass四种风格"><a href="#3-sass四种风格" class="headerlink" title="3.sass四种风格"></a>3.sass四种风格</h2><h3 id="sass编译的格式"><a href="#sass编译的格式" class="headerlink" title="sass编译的格式"></a>sass编译的格式</h3><p>sass编译输出的css有四种格式</p>
+<ul>
+<li>nested 嵌套</li>
+<li>compact 紧凑</li>
+<li>expanded 扩展</li>
+<li>compressed 压缩</li>
+</ul>
+<blockquote>
+<p>这些样式会影响输出的css的格式</p>
+</blockquote>
+<p>简单介绍一下：</p>
+<p>css默认输出的嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">  ul li &#123;</span><br><span class="line">    list-style: none; &#125;</span><br></pre></td></tr></table></figure>
+<p>紧凑compact<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compact</span><br></pre></td></tr></table></figure>
+<p>这个时候输出的代码就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ul &#123; font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">ul li &#123; list-style: none; padding: <span class="number">5</span>px; &#125;</span><br></pre></td></tr></table></figure>
+<p>compressed 压缩<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;font-size:<span class="number">15</span>px&#125;ul li&#123;list-style:none;animation:all <span class="number">0.4</span>s&#125;</span><br></pre></td></tr></table></figure>
+<p>expanded 扩展<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style expanded</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line">ul li &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">  animation: all <span class="number">0.3</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>compressed 压缩<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.a&#123;<span class="attr">width</span>:<span class="number">100</span>px;height:<span class="number">100</span>px;border:<span class="number">1</span>px solid red&#125;.a .b&#123;<span class="attr">background</span>:red&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-sass与scss"><a href="#4-sass与scss" class="headerlink" title="4.sass与scss"></a>4.sass与scss</h2><h3 id="sass的两个语法版本"><a href="#sass的两个语法版本" class="headerlink" title="sass的两个语法版本"></a>sass的两个语法版本</h3><p>sass一开始用的是一种缩进式的语法格式</p>
+<p>采用这种格式文件的后缀名是.sass</p>
+<p>在sass3.0版本后我们常用的是sassy css语法，扩展名是.scss，更接近与css语法</p>
+<h3 id="两个版本的区别"><a href="#两个版本的区别" class="headerlink" title="两个版本的区别"></a>两个版本的区别</h3><ul>
+<li>后缀名不同 .sass和.scss</li>
+<li>语法不同，请看下面</li>
+</ul>
+<p>新版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">//单行文本注释</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span>;</span><br><span class="line"></span><br><span class="line">@mixin alert&#123;</span><br><span class="line">	color:red;</span><br><span class="line">	background:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">  单行文本注释*/</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span></span><br><span class="line"></span><br><span class="line">=alert</span><br><span class="line">	color:red</span><br><span class="line">	background:blue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.alert-warning</span><br><span class="line">	+alert</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ul</span><br><span class="line">	font-size:<span class="number">15</span>px</span><br><span class="line">	li</span><br><span class="line">		list-style:none</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/1.sass的安装,编译，风格/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="变量、嵌套、混合（mixin）、继承拓展、-import、comment"><a href="#变量、嵌套、混合（mixin）、继承拓展、-import、comment" class="headerlink" title="变量、嵌套、混合（mixin）、继承拓展、@import、comment"></a>变量、嵌套、混合（mixin）、继承拓展、@import、comment</h2><h3 id="变量的意义"><a href="#变量的意义" class="headerlink" title="变量的意义"></a>变量的意义</h3><p>在sass里我们可以定义多个变量来存放颜色、边框等等的样式，这样就可以在下面想要使用样式的时候使用变量了</p>
+<p>这样的优点就是便于维护，更改方便</p>
+<hr>
+<h3 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h3><p>可以通过$来定义变量，在变量名字中可以使用-和<em>来作为连接，并且-和</em>是可以互通的，就是用起来一模一样。</p>
+<p>变量的值可以是字符串、数字、颜色等等，在变量里还可以使用其他变量，使用的时候直接写变量名就好了</p>
+<p>例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$primary-color:#ff6600;</span><br><span class="line">$primary-border:<span class="number">1</span>px solid $primary_color;</span><br><span class="line"></span><br><span class="line">div.box&#123;</span><br><span class="line">	background:$primary-color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header&#123;</span><br><span class="line">	border:$primary-border;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">div.box &#123;</span><br><span class="line">  background: #ff6600;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header &#123;</span><br><span class="line">  border: 1px solid #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="嵌套的使用"><a href="#嵌套的使用" class="headerlink" title="嵌套的使用"></a>嵌套的使用</h3><p>合理的使用嵌套语法，可以使我们编写代码更为快捷</p>
+<p>假设我们想写这样的css：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在sass里我们可以这样写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">	height:<span class="number">100</span>px;</span><br><span class="line">	ul&#123;</span><br><span class="line">		margin:<span class="number">0</span>;</span><br><span class="line">		li &#123;</span><br><span class="line">			float:left;</span><br><span class="line">			list-style:none;</span><br><span class="line">			padding:<span class="number">5</span>px;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家会发现，写出来的代码父和子之间都有空格隔开，如果我们需要给a加上伪类的话我们这样写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        :hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在里面就会出现这样的情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.nav a :hover &#123;</span><br><span class="line">  color: #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们发现在a和:hover之间有了空格，这样是不好的，所以我们需要在写的时候在：hover之前把a加上，这样就需要用到在之类里引用父类选择器的方式，我们可以用&amp;符号代替父类</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        &amp;:hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就好了，下面来个完整的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    ul&#123;</span><br><span class="line">    	margin:<span class="number">0</span>;</span><br><span class="line">    	li&#123;</span><br><span class="line">    		float:left;</span><br><span class="line">    		list-style:none;</span><br><span class="line">    		padding:<span class="number">5</span>px;</span><br><span class="line">    	&#125;</span><br><span class="line">    	a&#123;</span><br><span class="line">    		display:block;</span><br><span class="line">    		color:#000;</span><br><span class="line">    		&amp;:hover&#123;</span><br><span class="line">    			color:#f60;</span><br><span class="line">    			background:red;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp; &amp;-text&#123;</span><br><span class="line">    	font-size:<span class="number">15</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a:hover &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line">.nav .nav-text &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="嵌套属性"><a href="#嵌套属性" class="headerlink" title="嵌套属性"></a>嵌套属性</h3><p>我们可以把一些个复合属性的子属性来嵌套编写，加快编写速度，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		family:Helvitica;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">		weight:bold;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">.nav&#123;</span><br><span class="line">	border:<span class="number">1</span>px solid red&#123;</span><br><span class="line">		left:none;</span><br><span class="line">		right:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next&#123;</span><br><span class="line">	transition:&#123;</span><br><span class="line">		property:all;</span><br><span class="line">		delay:<span class="number">2</span>s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  font-family: Helvitica;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.nav &#123;</span><br><span class="line">  border: <span class="number">1</span>px solid red;</span><br><span class="line">  border-left: none;</span><br><span class="line">  border-right: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next &#123;</span><br><span class="line">  transition-property: all;</span><br><span class="line">  transition-delay: <span class="number">2</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="mixin-混合"><a href="#mixin-混合" class="headerlink" title="mixin 混合"></a>mixin 混合</h3><blockquote>
+<p>你可以把它想象成一个有名字的定义好的样式</p>
+</blockquote>
+<p>每一个mixin都有自己的名字，类似于js里的函数定义方法如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@mixin 名字(参数<span class="number">1</span>，参数<span class="number">2.</span>..)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方法是在其他选择器css样式里通过@include引入，其实就相当于将mixin里的代码写入到这个选择器的css里，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert &#123;</span><br><span class="line">	color:#f60;</span><br><span class="line">	background-color:#f60;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:pink;</span><br><span class="line">	&#125;</span><br><span class="line">	&amp;-a&#123;</span><br><span class="line">		color:red;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background-color: #f60;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: pink;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning-a &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>刚才是没有参数的mixin，mixin也可以拥有参数，需要注意的是：</p>
+<ul>
+<li>形参的名字前要加$</li>
+<li>传参的时候只写值的话要按顺序传</li>
+<li>传参的时候不想按顺序的话需要加上形参名字</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert($color,$background) &#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background-color:$background;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:darken($color,<span class="number">10</span>%);<span class="comment">//把颜色加深百分之十</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert(red,blue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info&#123;</span><br><span class="line">	@include alert($background:red,<span class="attr">$color</span>:blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>——》</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  background-color: blue;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: #cc0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  color: blue;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">.alert-info a &#123;</span><br><span class="line">  color: #0000cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="继承拓展-extend"><a href="#继承拓展-extend" class="headerlink" title="继承拓展 extend"></a>继承拓展 extend</h3><p>如果我们有一个选择器想要拥有另一个选择所有的东西，不管是样式还是子元素等等，可以使用@extend来继承</p>
+<p>大家需要注意的是，++b继承a的时候，a的子元素设置了样式，也会给b的子元素设置样式++，达到完全一样的情况，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert &#123;</span><br><span class="line">	padding:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—-》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="partials"><a href="#partials" class="headerlink" title="partials"></a>partials</h3><p>在以前咱们编写css的时候，一个css引入另一个css需要使用@import，其实这是不好的，会多发一次http请求，影响咱们站点的响应速度。</p>
+<p>在sass里，咱们可以把小的sass文件分出去，叫做partials，在某个sass里通过@import ‘partials名’去引入，注意路径哟，这样的话就可以把partials里的代码引到咱们大的sass里一起编译</p>
+<ul>
+<li>需要注意的是 partials的文件名前要加_</li>
+</ul>
+<h6 id="base-sass"><a href="#base-sass" class="headerlink" title="_base.sass  :"></a>_base.sass  :</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	margin:<span class="number">0</span>;</span><br><span class="line">	padding:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="style-sass"><a href="#style-sass" class="headerlink" title="style.sass :"></a>style.sass :</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;base&quot;;</span><br><span class="line"></span><br><span class="line">.alert &#123;</span><br><span class="line">	padding:5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:15px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>———–&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">  padding: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的话我们就可以把模块化的思想引入到sass里了</p>
+<hr>
+<h3 id="comment注释"><a href="#comment注释" class="headerlink" title="comment注释"></a>comment注释</h3><p>sass里的注释有三种</p>
+<ul>
+<li>多行注释</li>
+<li>单行注释</li>
+<li>强制注释</li>
+</ul>
+<p>多行注释：压缩后不会出现在css里 /<em>  </em>/</p>
+<p>单行注释: 不会出现在css里 //</p>
+<p>强制注释：压缩后也会出现在css里 /<em>!  </em>/</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-3.sass的数据类型与函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/3.sass的数据类型与函数/">sass的数据类型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/3.sass的数据类型与函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在sass里有数字、字符串、列表、颜色等类型</p>
+<p>在cmd里 输入 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass -i</span><br></pre></td></tr></table></figure>
+<p>就会进入到交互模式，输入的计算可以马上得到结果</p>
+<p>type-of()可以用来得到数据类型，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>注意数字类型的可以包含单位，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>字符串类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(hello) -&gt; string</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="string">'hello'</span>) -&gt; string</span><br></pre></td></tr></table></figure>
+<p>list类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">1</span>px solid red) -&gt; list</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px <span class="number">10</span>px) -&gt; list</span><br></pre></td></tr></table></figure>
+<p>颜色：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(red)  -&gt; color</span><br><span class="line">type-<span class="keyword">of</span>(rgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)  -&gt; color</span><br><span class="line">type-of(#333)  -&gt; color</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="number-计算"><a href="#number-计算" class="headerlink" title="number 计算"></a>number 计算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>+<span class="number">9</span> -》<span class="number">10</span></span><br><span class="line"><span class="number">2</span>*<span class="number">8</span> -》<span class="number">16</span></span><br><span class="line">(<span class="number">8</span>/<span class="number">2</span>) -&gt;<span class="number">4</span> <span class="comment">//除法要写括号</span></span><br></pre></td></tr></table></figure>
+<p>也可以包含单位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px + <span class="number">5</span>px -&gt; <span class="number">10</span>px</span><br><span class="line"><span class="number">5</span>px <span class="number">-2</span> -&gt;<span class="number">3</span>px</span><br><span class="line"><span class="number">5</span>px *<span class="number">2</span> -&gt;<span class="number">10</span>px</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px * <span class="number">2</span>px -&gt;<span class="number">10</span>px*px <span class="comment">//这样就不对了哟</span></span><br><span class="line"></span><br><span class="line">（<span class="number">10</span>px/<span class="number">2</span>px） -&gt; <span class="number">5</span><span class="comment">//除法单位取消</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>+<span class="number">2</span>*<span class="number">5</span>px-&gt;<span class="number">13</span>px</span><br></pre></td></tr></table></figure>
+<h2 id="好吧，都是一些小学的数学题，很简单对吧"><a href="#好吧，都是一些小学的数学题，很简单对吧" class="headerlink" title="好吧，都是一些小学的数学题，很简单对吧"></a>好吧，都是一些小学的数学题，很简单对吧</h2><h3 id="处理数字的函数"><a href="#处理数字的函数" class="headerlink" title="处理数字的函数"></a>处理数字的函数</h3><p>绝对值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abs(<span class="number">10</span>) -&gt; <span class="number">10</span>;</span><br><span class="line">abs(<span class="number">10</span>px) -&gt; <span class="number">10</span>px;</span><br><span class="line">abs(<span class="number">-10</span>px) -&gt; <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
+<p>四舍五入相关</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">round(<span class="number">3.4</span>)-&gt;<span class="number">3</span>  <span class="comment">//四舍五入</span></span><br><span class="line">round(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">ceil(<span class="number">3.2</span>)-&gt;<span class="number">4</span>  <span class="comment">//向上取整</span></span><br><span class="line">ceil(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">floor(<span class="number">3.2</span>)-&gt;<span class="number">3</span>  <span class="comment">//向下取整</span></span><br><span class="line">floor(<span class="number">3.9</span>)-&gt;<span class="number">3</span></span><br><span class="line"></span><br><span class="line">percentage(<span class="number">600</span>px/<span class="number">1000</span>px) -&gt;<span class="number">65</span>%  <span class="comment">//百分之</span></span><br><span class="line"></span><br><span class="line">min(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) -&gt; <span class="number">1</span>   <span class="comment">//最小值</span></span><br><span class="line"></span><br><span class="line">max(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) -&gt; <span class="number">5</span>  <span class="comment">//最大值</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串相关"><a href="#字符串相关" class="headerlink" title="字符串相关"></a>字符串相关</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//带引号和不带引号的字符串想加为带引号的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="string">"a"</span> + b -&gt;<span class="string">"ab"</span></span><br><span class="line">a + <span class="string">"b"</span> -&gt;<span class="string">"ab"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串+数字</span></span><br><span class="line"><span class="string">"ab"</span> + <span class="number">1</span> -&gt;<span class="string">"ab1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串 - 和 / 字符串</span></span><br><span class="line"><span class="string">"a"</span> - b -&gt;<span class="string">"a-b"</span></span><br><span class="line"><span class="string">"a"</span> / b -&gt;<span class="string">"a/b"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意字符串不能相乘</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>大写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"hello"</span>;</span><br><span class="line">to-upper-<span class="keyword">case</span>($word) -&gt; <span class="string">"HELLO"</span></span><br></pre></td></tr></table></figure>
+<p>小写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">to-lower-<span class="keyword">case</span>($word) -&gt; <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>得到length：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-length($word) -&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>得到字符串在字符串里的位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-index($word,<span class="string">"el"</span>) -&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>字符串中插入字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-insert($word,<span class="string">"aa"</span>,<span class="number">2</span>) -&gt; <span class="string">"Haaello"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="颜色相关"><a href="#颜色相关" class="headerlink" title="颜色相关"></a>颜色相关</h3><p>在sass里除了关键字、十六进制、rgb和rgba之外还有一种颜色是HSL</p>
+<p>分别表示的是 色相 0-360（deg） 饱和度 0-100% 明度 0-100%</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">0</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以有透明哟<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%，<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><p>lighten函数和darken函数可以把颜色加深或减淡，即调整明度，第一个参数为颜色，第二个参数为百分比，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:#ff0000;</span><br><span class="line"></span><br><span class="line">$light-color:lighten($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">$dark-color:darken($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$light-color;</span><br><span class="line">	border-color:$dark-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #ff0000;</span><br><span class="line">  background: #ff9999;</span><br><span class="line">  border-color: #660000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>saturate和desaturate函数可以调整颜色的纯度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:hsl(<span class="number">0</span>,<span class="number">50</span>%,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$saturate-color:saturate($color,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$desaturate-color:desaturate($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$saturate-color;</span><br><span class="line">	border-color:$desaturate-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #bf4040;</span><br><span class="line">  background: red;</span><br><span class="line">  border-color: #996666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用transparentize来让颜色更透明</p>
+<p>用opatify来让颜色更不透明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:rgba(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">$opacify-color:opacify($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">$transparentize-color:transparentize($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$opacify-color;</span><br><span class="line">	border-color:$transparentize-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  background: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>);</span><br><span class="line">  border-color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>在sass里，用空格或者逗号隔开的值就是列表类型<br>如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>px solid red</span><br><span class="line"></span><br><span class="line">Courier,microsoft yahei</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表函数"><a href="#列表函数" class="headerlink" title="列表函数"></a>列表函数</h3><p>sass里的列表类似与数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">获取列表的长度</span><br><span class="line">length(<span class="number">5</span>px <span class="number">10</span>x)  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">获取列表中的第几个元素</span><br><span class="line">nth(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">2</span>)  <span class="number">10</span>px</span><br><span class="line"></span><br><span class="line">获取一个元素在一个列表里的下标</span><br><span class="line">index(<span class="number">1</span>px solid red,solid) <span class="number">2</span></span><br><span class="line"></span><br><span class="line">给列表里加入新的元素</span><br><span class="line">append(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px)  <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px</span><br><span class="line"></span><br><span class="line">连接两个列表</span><br><span class="line">join(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px <span class="number">0</span>) <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map类型"><a href="#map类型" class="headerlink" title="map类型"></a>map类型</h3><p>sass里的map类型类似与js里的object</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$map:(key1:value1,<span class="attr">key2</span>:value2,<span class="attr">key3</span>:value3);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map-函数"><a href="#map-函数" class="headerlink" title="map 函数"></a>map 函数</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个map</span></span><br><span class="line">$color:(light:#ffffff,dark:#000000);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取map 的length</span></span><br><span class="line">length($color)    -&gt;<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到map里key对应的值</span></span><br><span class="line">map-get($color,dark)   -&gt;#000000</span><br><span class="line"></span><br><span class="line">获取map里的所有键的列表</span><br><span class="line">map-keys($color)   -&gt;(<span class="string">"light"</span>,<span class="string">"dark"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">获取map里的所有值的列表</span><br><span class="line">map-values($color)  -&gt; (<span class="string">"#ffffff"</span>,<span class="string">"#000000"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">判断map里是否含有这个key</span><br><span class="line">map-has-key($color,light)   -&gt;<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">给map里添加键值对</span><br><span class="line">map-merge($color,(light-gray:#cccccc))</span><br><span class="line"></span><br><span class="line">-&gt;(light:#ffffff,dark:#000000,light-gray:#cccccc)</span><br><span class="line"></span><br><span class="line">移除map里的某个键值对</span><br><span class="line">map-remove($colors,light)  -&gt;(dark:#000000,light-gray:#cccccc)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p>在sass里通过&gt; &lt; 比较得到的值就是布尔值 true 和false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px&gt;<span class="number">3</span>px -&gt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px&lt;<span class="number">2</span>px -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>在sass里也可以有或 且 非</p>
+<p>且：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>或：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) or (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br><span class="line">(<span class="number">5</span>px &lt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>非：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">not(<span class="number">5</span>px&gt;<span class="number">3</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="interpolation"><a href="#interpolation" class="headerlink" title="interpolation"></a>interpolation</h3><p>在sass里可以通过interpolation的方式来在变量名和属性名上拼接变量值，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$name:<span class="string">"info"</span>;</span><br><span class="line">$attr:<span class="string">"border"</span>;</span><br><span class="line"></span><br><span class="line">.alert-#&#123;$name&#125;&#123;</span><br><span class="line">	#&#123;$attr&#125;-color:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—-&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.alert-info &#123;</span><br><span class="line">  border-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/3.sass的数据类型与函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-4.sass的分支结构、循环结构、函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">sass的分支结构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/4.sass的分支结构、循环结构、函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>在sass里，可以使用@if让我们根据一些条件来应用特定的样式</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">if</span> 条件 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果条件为真的话，括号里的代码就会释放出来</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">true</span>;</span><br><span class="line">.rounded&#123;</span><br><span class="line">   @<span class="keyword">if</span> $use-refixes &#123;</span><br><span class="line">   	-webkit-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-moz-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-ms-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-o-border-radius:<span class="number">5</span>px;</span><br><span class="line">   &#125;</span><br><span class="line">   border-radius:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  -webkit-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -moz-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -ms-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -o-border-radius: <span class="number">5</span>px;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果是另外一种情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<p>—》<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>if else在sass里的写法是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	@<span class="keyword">if</span> $theme == dark &#123;</span><br><span class="line">		background:black;</span><br><span class="line">	&#125; @<span class="keyword">else</span> <span class="keyword">if</span> $theme == light &#123;</span><br><span class="line">		background:white;</span><br><span class="line">	&#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>在sass里的for循环是这样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; through &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一种是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; to &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，开始值和结束值的关系可以是升序也可以是倒序，但是每次只能+1或者-1</p>
+<p>这两种有什么区别呢？</p>
+<p>区别就是 from 1 to 4 的话是执行三次，i的变化是 1 2 3</p>
+<p>from 1 through 4 的话是执行四次，i的变化是 1 2 3 4</p>
+<p>如：</p>
+<p>from to</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> to $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>from through</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> through $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="each-遍历list类型"><a href="#each-遍历list类型" class="headerlink" title="each 遍历list类型"></a>each 遍历list类型</h3><p>在sass里可以利用each方法来遍历咱们的list类型的数据</p>
+<p>list类型在js里类似于数组，那么each类似于for in遍历，结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@each $item <span class="keyword">in</span> $list&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$colors:success error warning;</span><br><span class="line">$map:(success:green,<span class="attr">warning</span>:yellow,<span class="attr">error</span>:red);</span><br><span class="line">@each $color <span class="keyword">in</span> $colors&#123;</span><br><span class="line">	.bg-#&#123;$color&#125;&#123;</span><br><span class="line">		background:map-get($map,$color);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.bg-success &#123;</span><br><span class="line">  background: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-error &#123;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-warning &#123;</span><br><span class="line">  background: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="@while 循环"></a>@while 循环</h3><p>在sass里，拥有@while循环，比@for会更好用一些,@for循环只能从一个数到另一个数变化之间执行，每次变化都是1，while设置循环结构的话更为灵活；</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">while</span> 条件&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>eq：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$i:<span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">while</span> $i&gt;<span class="number">0</span>&#123;</span><br><span class="line">	.item-#&#123;$i&#125;&#123;</span><br><span class="line">		width:$i*<span class="number">5</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	$i:$i - <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：$i - 2 需要用空格隔开哟</p>
+<p>———》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.item<span class="number">-6</span> &#123;</span><br><span class="line">  width: <span class="number">30</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>在sass里也可以定义函数，并且也可以有返回值</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="function"><span class="keyword">function</span> 名称 (<span class="params">参数<span class="number">1</span>，参数<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">    @<span class="keyword">return</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如，我们做一个返回map里key对应的值的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$colors:(light:#ffffff,dark:#000000,gray:#555555);</span><br><span class="line"></span><br><span class="line">@<span class="function"><span class="keyword">function</span> <span class="title">color</span>(<span class="params">$key</span>)</span>&#123;</span><br><span class="line">	@<span class="keyword">return</span> map-get($colors,$key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">	background:color(light);</span><br><span class="line">	color:color(dark);</span><br><span class="line">	border-color:color(gray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: #ffffff;</span><br><span class="line">  color: #000000;</span><br><span class="line">  border-color: #555555;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mobile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -181,18 +768,11 @@
 <p>app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。</p>
 <p>移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app</p>
 <p>开发移动端应用我们需要学习的知识点可以分成如下几个：</p>
-<ol>
-<li><p>移动端布局适配</p>
-</li>
-<li><p>移动端事件</p>
-</li>
-<li><p>移动端交互效果</p>
-</li>
-<li><p>移动端前端框架</p>
-</li>
-<li><p>移动端调试</p>
-</li>
-</ol>
+<p>1.移动端布局适配</p>
+<p>2.移动端事件</p>
+<p>3.移动端交互效果</p>
+<p>4.移动端前端框架</p>
+<p>5.移动端调试</p>
 <h3 id="移动端布局适配"><a href="#移动端布局适配" class="headerlink" title="移动端布局适配"></a>移动端布局适配</h3><blockquote>
 <p>从屏幕尺寸、屏幕类型等方面来看的话，移动设备和PC设备大有不同，所以从布局、适配等方面都需要我们考虑到</p>
 </blockquote>
@@ -240,20 +820,13 @@
 </tbody>
 </table>
 <h4 id="移动端布局方式与设计图"><a href="#移动端布局方式与设计图" class="headerlink" title="移动端布局方式与设计图"></a>移动端布局方式与设计图</h4><p>现有的布局方式：</p>
-<ol>
-<li><p>固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
-<p> 内容区域的尺寸：980,1000,1100,1200</p>
-</li>
-</ol>
-<ol>
-<li><p>响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
-<p> 一般会有三张设计图，PC,平板,手机</p>
-</li>
-<li><p>自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
-<p> 设计图一般只有一张，640、750居多</p>
-</li>
-</ol>
-<h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
+<p>1.固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
+<pre><code>内容区域的尺寸：980,1000,1100,1200
+</code></pre><p>2.响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
+<pre><code>一般会有三张设计图，PC,平板,手机
+</code></pre><p>3.自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
+<pre><code>设计图一般只有一张，640、750居多
+</code></pre><h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
 <p>retina屏幕有一个属性叫DPR（设备像素缩放比） = 物理像素/逻辑像素</p>
 <p>例如，iphone 5s手机商宣传手机的尺寸是：640宽，这个值就是物理像素，而从开发者眼里我们所指的其实是320px（逻辑像素）</p>
 <p>在dpr为2的手机中，我们的一个逻辑像素会从横纵两个方向分别以2个像素点来渲染</p>
@@ -263,20 +836,20 @@
 <p>因为我们的移动设备有很多种，所以我们的布局不可能是固定布局，所以我们要使用自适应布局</p>
 </blockquote>
 <p>我们在开发中可以选用很多自适应布局单位，这些单位必须满足一个条件</p>
-<ol>
-<li><p>% </p>
-<p> 优点：简单，无需设置，兼容性好<br> 缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效</p>
-</li>
-<li><p>vwvh</p>
-<p> 一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一<br> vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个</p>
-<p> 优点：简单，无需设置<br> 缺点：兼容性不好</p>
-</li>
-<li><p>rem</p>
-<p> 一个rem等于根元素（html）的字体大小，兼容性很好</p>
-<p> 优点：兼容好，使用简单<br> 缺点：需要设置</p>
-</li>
-</ol>
-<h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
+<p>1.% </p>
+<pre><code>优点：简单，无需设置，兼容性好
+缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效
+</code></pre><p>2.vwvh</p>
+<pre><code>一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一
+vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
+
+优点：简单，无需设置
+缺点：兼容性不好
+</code></pre><p>3.rem</p>
+<pre><code>一个rem等于根元素（html）的字体大小，兼容性很好    
+优点：兼容好，使用简单
+缺点：需要设置
+</code></pre><h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
 <p>rem的兼容性好一点，它也确实是一个布局单位，不受父子元素的影响，设置了rem之后，也不会对px、em等单位造成影响，它是一个理想的单位</p>
 <p>rem也有一个致命的问题，就是它不是一个自适应的单位，不会跟着设备尺寸不同而不同，但是没有关系，我们有万能的js，可以去动态的设置它</p>
 <h6 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h6><p>我们可以将1rem设置成屏幕的某一个比例，比如将1rem设置成屏幕的十分之一</p>
@@ -938,350 +1511,9 @@
 
 
   
-    <article id="post-rem和em" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/rem和em/">rem与em</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="rem与em"><a href="#rem与em" class="headerlink" title="rem与em"></a>rem与em</h2><ol>
-<li><p>rem是相对于根元素<html>的”font-size”为基准。比如说我们给html设置font-size为100<br>那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem</html></p>
-</li>
-<li><p>em一般都是以<body>的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px”时，只需要将其值设置为”1.4em”</body></p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/rem和em/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-盒模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/盒模型/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="关于盒模型"><a href="#关于盒模型" class="headerlink" title="关于盒模型"></a>关于盒模型</h2><ol>
-<li><p>盒模型有两种：IE盒子模型、W3C盒子模型</p>
-</li>
-<li><p>盒模型：内容（content）、填充（padding）、边界（margin）、边框（border）</p>
-</li>
-<li><p>区别：IE的width部分把border和padding计算了进去</p>
-</li>
-</ol>
-<p>1、<br>标准：width是内容宽度，元素真正的宽度=margin+padding+border+width<br>怪异：width是元素实际宽度，内容宽度=width-（margin+padding+border）</p>
-<p>2、可以设置行内元素的宽高<br>    在标准模式下，给span等行内元素设置width和height都不会生效，而在怪异模式下，则会生效</p>
-<p>3、可设置百分比的高度<br>    在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置宽高，子元素设置一个百分比的高度是无效的</p>
-<p>4、用margin：0 auto设置水平居中在IE下会失效<br>    使用margin：0 auto在标准模式下可以使元素水平居中，但在怪异模式下却会失效，怪异模式下的解决方法，用text-align属性：body{text-align：center}；#content{text-align：left}</p>
-<p>5、怪异模式下设置图片的padding会失效</p>
-<p>6、怪异模式下table中的字体属性不能继承上层的设置</p>
-<p>7、怪异模式下white-space：pre会失效</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/盒模型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-响应式布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/响应式布局/">响应式布局</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/响应式布局/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h2><p>响应式：利用媒体查询等技术，通过检测浏览器的尺寸不同，来显示不同的布局结构，原理就是，媒体查询可以检测到屏幕的尺寸是否处于某一个范围，如果是的时候可以让某一段css代码起作用，来实现结构切换。</p>
-<p>特点：</p>
-<ol>
-<li>面对不同分辨路设备灵活性强</li>
-<li>能够快捷解决多设备显示适应问题</li>
-</ol>
-<p>设计步骤：</p>
-<ol>
-<li>设置meta标签</li>
-<li>根据媒体查询设置样式</li>
-<li>设置多种视图宽度</li>
-<li>注意点：宽度使用百分比；处理图片缩放问题</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>兼容各种设备工作量大，效率低下</li>
-<li>代码累赘，会出现隐藏无用的元素，加载时间加长</li>
-<li>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果，一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/响应式布局/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-web标准及W3C的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/web标准及W3C的理解/">web标准及W3C的理解</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/web标准及W3C的理解/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="web标准及W3C的理解"><a href="#web标准及W3C的理解" class="headerlink" title="web标准及W3C的理解"></a>web标准及W3C的理解</h2><p>web标准就是将页面的结构、表现、和行为各自独立实现，W3C对web标准提出了规范化的要求</p>
-<p>1、  对结构的要求：（标签规范可以提高搜索引擎对页面的抓取效率，对SEO很有帮助）</p>
-<pre><code>1. 标签字母要小写
-2. 标签要闭合
-3. 标签不允许随意嵌套
-</code></pre><p>2、  对css和js的要求：</p>
-<pre><code>1. 尽量使用外联css样式表和js脚本，是结构、表现和行为分成三块，符合规范，同时提高页面渲染速度，提高用户体验
-2. 样式尽量少用行间样式表，使结构与表现分离，标签的id和class命名要做到见文知义，标签越少，加载越快，用户体验更高，代码维护更简单
-3. 不需要变动页面内容，便可以提供打印版本而不需要复制内容，提高网站易用性
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/web标准及W3C的理解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1380,11 +1612,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1400,6 +1632,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
@@ -1408,7 +1644,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
+                <a href="javascript:void(0)" class="js-tag color5">sass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
               </li>
             
             <div class="clearfix"></div>
