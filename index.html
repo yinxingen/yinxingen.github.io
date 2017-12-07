@@ -157,6 +157,199 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mobile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/mobile/">mobile</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/mobile/" class="archive-article-date">
+  	<time datetime="2017-12-07T10:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="移动端开发"><a href="#移动端开发" class="headerlink" title="移动端开发"></a>移动端开发</h2><p>我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站</p>
+<p>app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。</p>
+<p>移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app</p>
+<p>开发移动端应用我们需要学习的知识点可以分成如下几个：</p>
+<ol>
+<li><p>移动端布局适配</p>
+</li>
+<li><p>移动端事件</p>
+</li>
+<li><p>移动端交互效果</p>
+</li>
+<li><p>移动端前端框架</p>
+</li>
+<li><p>移动端调试</p>
+</li>
+</ol>
+<h3 id="移动端布局适配"><a href="#移动端布局适配" class="headerlink" title="移动端布局适配"></a>移动端布局适配</h3><blockquote>
+<p>从屏幕尺寸、屏幕类型等方面来看的话，移动设备和PC设备大有不同，所以从布局、适配等方面都需要我们考虑到</p>
+</blockquote>
+<h4 id="Viewport视口的作用"><a href="#Viewport视口的作用" class="headerlink" title="Viewport视口的作用"></a>Viewport视口的作用</h4><p>在很久以前，我们的设备还不是智能设备的时候，设备访问智能访问到网页的左上角（当时都是pc网站），查看全部内容需要通过滚动条</p>
+<p>慢慢的我们发现，我们的一个页面放到移动端中访问的时候，没有滚动条了，但是内容都缩小了</p>
+<p>这是因为我们有了一个叫做viewport的一个东西</p>
+<p>网页不是直接放入浏览器中的，而是先放入到viewport中，然后viewport在等比缩放到浏览器的宽度，放入浏览器，viewport在缩放的过程中，网页内容也被缩小了</p>
+<p>这样的话我们需要做一些处理，其实问题的根源在于viewport的宽度和浏览器宽度不一样，如果我们能将其设置为一样的话，不会出现这样的问题了</p>
+<p>我们可以通过meta标签来设置viewport将其设置为浏览器的宽度，也就是设备的宽度，这样的话布局就会简单多了</p>
+<h5 id="viewport的宽度"><a href="#viewport的宽度" class="headerlink" title="viewport的宽度"></a>viewport的宽度</h5><p>当浏览器宽度小于980的时候，宽度就是980，当浏览器尺寸宽度大于980的时候，宽度和浏览器宽度一致</p>
+<h5 id="通过meta标签来设置viewport"><a href="#通过meta标签来设置viewport" class="headerlink" title="通过meta标签来设置viewport"></a>通过meta标签来设置viewport</h5><p><meta> 标签提供关于 HTML 文档的元数据。它不会显示在页面上，但是对于机器是可读的。可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 web 服务。</p>
+<p><a href="http://blog.csdn.net/yc123h/article/details/51356143" target="_blank" rel="noopener">meta标签大全</a></p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+
+
+<p>meta viewport 的6个属性：</p>
+<table>
+<thead>
+<tr>
+<th>width</th>
+<th style="text-align:right">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initial-scale</td>
+<td style="text-align:right">设置layout viewport 的宽度，为一个正整数，或字符串”width-device”</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td style="text-align:right">设置页面的初始缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td style="text-align:right">允许用户的最大缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>height</td>
+<td style="text-align:right">设置layout viewport 的高度，这个属性并不重要，很少使用</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td style="text-align:right">是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</td>
+</tr>
+</tbody>
+</table>
+<h4 id="移动端布局方式与设计图"><a href="#移动端布局方式与设计图" class="headerlink" title="移动端布局方式与设计图"></a>移动端布局方式与设计图</h4><p>现有的布局方式：</p>
+<ol>
+<li><p>固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
+<p> 内容区域的尺寸：980,1000,1100,1200</p>
+</li>
+</ol>
+<ol>
+<li><p>响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
+<p> 一般会有三张设计图，PC,平板,手机</p>
+</li>
+<li><p>自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
+<p> 设计图一般只有一张，640、750居多</p>
+</li>
+</ol>
+<h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
+<p>retina屏幕有一个属性叫DPR（设备像素缩放比） = 物理像素/逻辑像素</p>
+<p>例如，iphone 5s手机商宣传手机的尺寸是：640宽，这个值就是物理像素，而从开发者眼里我们所指的其实是320px（逻辑像素）</p>
+<p>在dpr为2的手机中，我们的一个逻辑像素会从横纵两个方向分别以2个像素点来渲染</p>
+<p>如果不管dpr的话，其实我们布局依然可以，因为我们设置一个像素宽高的东西的话，在手机上看见的基本也就是这么大，至于手机设备用多少个物理像素去渲染，大小还是不会变化的</p>
+<p>设计师出图都是2倍的，是因为，在页面中除了字体（矢量图）大部分都是位图，也就是如果一个像素宽高的盒子里准备放入图片，如果图片的尺寸也是一个像素宽高的话，因为其实在移动端渲染的时候是用四个像素来渲染，图片会失真，但是如果我们给一像素宽高的盒子放入2像素宽高的图片的话，不就失真</p>
+<h5 id="布局单位"><a href="#布局单位" class="headerlink" title="布局单位"></a>布局单位</h5><blockquote>
+<p>因为我们的移动设备有很多种，所以我们的布局不可能是固定布局，所以我们要使用自适应布局</p>
+</blockquote>
+<p>我们在开发中可以选用很多自适应布局单位，这些单位必须满足一个条件</p>
+<ol>
+<li><p>% </p>
+<p> 优点：简单，无需设置，兼容性好<br> 缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效</p>
+</li>
+<li><p>vwvh</p>
+<p> 一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一<br> vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个</p>
+<p> 优点：简单，无需设置<br> 缺点：兼容性不好</p>
+</li>
+<li><p>rem</p>
+<p> 一个rem等于根元素（html）的字体大小，兼容性很好</p>
+<p> 优点：兼容好，使用简单<br> 缺点：需要设置</p>
+</li>
+</ol>
+<h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
+<p>rem的兼容性好一点，它也确实是一个布局单位，不受父子元素的影响，设置了rem之后，也不会对px、em等单位造成影响，它是一个理想的单位</p>
+<p>rem也有一个致命的问题，就是它不是一个自适应的单位，不会跟着设备尺寸不同而不同，但是没有关系，我们有万能的js，可以去动态的设置它</p>
+<h6 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h6><p>我们可以将1rem设置成屏幕的某一个比例，比如将1rem设置成屏幕的十分之一</p>
+<p>假设我们的设计图是640宽的，我们拿到之后量了一下a的宽度为480px，得到比例a所占屏幕3/4，根据rem与屏幕的关系，最后设置成7.5rem</p>
+<p>就是说在设置元素的宽度是时候，会根据设定好的比例关系去进行换算<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    document.documentElement.style.fontSize = document.documentElement.clientWidth/</span><span class="number">10</span> + <span class="string">'px'</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h6><p>如果设计图是640的图，这个时候我们知道它是照着i5来的，我们现在假设世界上所有的手机都是320的，也就是每一个人用的都是i5，在这个理想的情况下，因为手机都一样，尺寸都一样，和pc端的固定布局也就一样了</p>
+<p>假设有一个在640的图上我们量得的宽度是320，因为是二倍图，所以我们知道，它的实际宽度是160px，这样的话，我们直接给这个设置设置width：160px就可以了，这个时候，我们玩个花子，不要单纯的使用px来设置，用rem来设置，例如，我可以将rem设置为100px，这样的，刚才的盒子设置为width：1.6rem，算法就是 量的宽度/(dpr*100) = 要设置的rem值</p>
+<p>这样我们就可以开心的开发，量一个尺寸，除个2，再小数点推两位，设置就性了，但是我们也知道，手机的尺寸并不可能都是320，这样的话，没有关系，我们可以根据一个比例来算rem到底设置为多少</p>
+<p>在手机宽度为320的时候，我们设置的1rem=100px，所以有一个比例 b = 100/320</p>
+<p>那么在W宽度的手机上，1rem应该是多少呢？设为x   那么x/w = b</p>
+<p>得到x = w/3.2</p>
+<p>那么就不要写死html的fontsize为100了。而是用js去设置：</p>
+<p>document.documentElement.style.fontSize = document.documentElement.clientWidth/3.2 + ‘px’ </p>
+<p>这样，我们就可以得到一个自适应的rem </p>
+<h5 id="方法3："><a href="#方法3：" class="headerlink" title="方法3："></a>方法3：</h5><p>设计图如果是640的，我们知道设计的依据屏幕依然是320，假设所有的手机都是320的</p>
+<p>有一个div量得320，我们知道它的实际宽度是160，所以我们在css里直接设置160px。布局就很简单了，因为量多少，除以2就可以直接设置了</p>
+<p>但是手机不能只有这一个尺寸，不过没关系，我们可以想办法，我们知道，页面是放在viewport里的，页面的宽度就是viewport的宽度，我们在前面的方法会会将viewport通过meta标签设置为手机屏幕的宽度，但是现在我们就将viewport的宽度强行设置为320px，那么我们页面就会认为它的屏幕宽度就是320px，如果是在屏幕宽度不等于320的手机里，viewport也会进行缩放，缩放到手机屏幕大小，但是这个时候，页面依然认为手机屏幕是320的，也就是说，布局使用固定布局，自适应由viewport去做了，让它将咱们320的页面缩放到不同尺寸的移动设计，达到表现一致<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=320"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>饿了么的做法：认为世界的手机都是二倍宽的，然后再调整viewport</p>
+<h6 id="兼容查阅网站"><a href="#兼容查阅网站" class="headerlink" title="兼容查阅网站"></a>兼容查阅网站</h6><p><a href="https://caniuse.com/" target="_blank" rel="noopener">can i use </a>,在这里可以查看很多属性、api的兼容性</p>
+<p>375/52.08 = X/100 x = 37500/52.08</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mobile</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/mobile/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JS的继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1086,158 +1279,6 @@
 
 
   
-    <article id="post-IE6bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/IE6bug/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="IE6bug"><a href="#IE6bug" class="headerlink" title="IE6bug"></a>IE6bug</h2><ol>
-<li>&lt;!DOCTYPE HTML&gt;文档类型的声明。</li>
-</ol>
-<p>产生条件：IE6浏览器，当我们没有书写这个文档声明的时候，会触发IE6浏览器的怪异解析现象；</p>
-<p>解决办法：书写文档声明。</p>
-<ol>
-<li>横向双倍外边距</li>
-</ol>
-<p>产生条件：在IE6中块元素浮动后，会出现横向双倍margin现象。</p>
-<p>解决办法： 在float标签的样式控制中加入display：inline或display：block</p>
-<ol>
-<li>默认行高</li>
-</ol>
-<p>产生条件：清除浮动的时候，有些人会采取一种清浮动的方法，使用一个空的div，然后为这个div设置{clear：both}。在大部分</p>
-<p>浏览器当中，这样做是没有任何问题的，但是在IE6浏览器当中，div即使是空的，也会存在默认行高。</p>
-<p>解决办法：设置其高度为0，并设置{height:0;overflow:hidden;clear:both;}</p>
-<p>IE6没有办法定义1px左右的宽度的容器 （默认行高造成的）</p>
-<p>解决方法：使用{overflow:hidden;zoom:0.08;line-height:1px}</p>
-<ol>
-<li>img外部的border</li>
-</ol>
-<p>产生条件：img外部有a标签，即img标签有链接时</p>
-<p>解决办法：设置img边框border:0;</p>
-<ol>
-<li>多显示一个字<br>产生条件：多个浮动元素中间夹杂HTML注释语句，浮动元素宽度设置为100%；则在下一行多显示一个上一行的最后一个字符；</li>
-</ol>
-<p>处理方法：果断删掉注释！</p>
-<ol>
-<li>CSS选择器区分<br>IE6不支持子选择器；先针对IE6使用常规申明CSS选择器，然后再用子选择器针对IE7+及其他浏览器。<br>处理方法：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IE6 专用 */</span></span><br><span class="line">.content &#123;<span class="attr">color</span>:red;&#125;</span><br><span class="line"><span class="comment">/* 其他浏览器 */</span></span><br><span class="line">div&gt;p .content</span><br><span class="line">&#123;<span class="attr">color</span>:blue;&#125; --&gt;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>最小高度<br>IE6 不支持min-height属性，但它却认为height就是最小高度。解决方法：使用ie6不支持但其余浏览器支持的属性!important。<br>处理方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    min-height:<span class="number">200</span>px;</span><br><span class="line">    height:auto !important; </span><br><span class="line">    height:<span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DIV浮动IE文本产生3象素的bug</p>
-</li>
-</ol>
-<p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#box&#123; float:left; width:800px;&#125;</span><br><span class="line">#left&#123; float:left; width:50%;&#125;</span><br><span class="line">#right&#123; width:50%;&#125;</span><br><span class="line">*html #left&#123; margin-right:-3px; //这句是关键</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"left"</span>&gt;＜/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"right"</span>&gt;＜/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>png24位的图片在IE6浏览器出现背景；解决方案：用png8的，也可以引用一段脚本处理</p>
-</li>
-<li><p>IE6下为什么图片下有空隙产生</p>
-</li>
-</ol>
-<p>解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top,bottom,middle,text-bottom 都可以解决.</p>
-<ol>
-<li>超链接hover点击后失效</li>
-</ol>
-<p>使用正确的书写顺序 link visited hover active</p>
-<ol>
-<li>z-index问题 </li>
-</ol>
-<p>给父级添加position:relative;</p>
-<ol>
-<li>li边距无故增加</li>
-</ol>
-<p>设置ul的显示形式为<em>display:inline-block;  </em>只针对IE6/7有效</p>
-<ol>
-<li>在IE6/7中，overflow无法正确的隐藏有相对定位position:relative;的子元素。</li>
-</ol>
-<p>给外包容器加上position:relative;</p>
-<ol>
-<li>border:none在IE6中不起作用</li>
-</ol>
-<p>改成border:0;就可以</p>
-<ol>
-<li><p>100%高度<br>在IE6下，如果要给元素定义100%高度，必须要明确定义它的父级元素的高度，如果你需要给元素定义满屏的高度，就得先给HTML和body定义height:100%;</p>
-</li>
-<li><p>躲猫猫bug：定义了:hover的链接，当鼠标移到那些连接上时，在IE6下就会触发躲猫猫。</p>
-</li>
-</ol>
-<p>1、在（那个未浮动的）内容之后添加一个<span style="clear:both;"></span></p>
-<p>2、触发包含了这些链接的容器的hasLayout，一个简单的方法就是给其定义height:1%</p>
-<ol>
-<li>IE6 绝对定位的元素 1px间距bug：当绝对定位的父元素或宽度为奇数时，bottom和right会多出1px</li>
-</ol>
-<p>针对IE6进行hack处理</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/IE6bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1364,6 +1405,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mobile</a>
               </li>
             
             <div class="clearfix"></div>
