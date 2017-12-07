@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>rem与em | yinxingen</title>
+  <title>关于ES6模块化 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="rem与em rem是相对于根元素的”font-size”为基准。比如说我们给html设置font-size为100那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem  em一般都是以的”font-size”为基准。比如说我们使用”1em”等于”10">
-<meta name="keywords" content="HTML+CSS">
+  <meta name="description" content="关于ES6模块化历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rem与em">
-<meta property="og:url" content="http://yoursite.com/2017/11/28/rem和em/index.html">
+<meta property="og:title" content="关于ES6模块化">
+<meta property="og:url" content="http://yoursite.com/2017/12/07/es6模块化/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="rem与em rem是相对于根元素的”font-size”为基准。比如说我们给html设置font-size为100那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem  em一般都是以的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px">
+<meta property="og:description" content="关于ES6模块化历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。 在nodeJS中，有模块化的方法，使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-28T15:04:50.988Z">
+<meta property="og:updated_time" content="2017-12-07T12:17:22.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rem与em">
-<meta name="twitter:description" content="rem与em rem是相对于根元素的”font-size”为基准。比如说我们给html设置font-size为100那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem  em一般都是以的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px">
+<meta name="twitter:title" content="关于ES6模块化">
+<meta name="twitter:description" content="关于ES6模块化历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。 在nodeJS中，有模块化的方法，使">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -157,33 +157,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-rem和em" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-es6模块化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      rem与em
+      关于ES6模块化
     </h1>
   
 
         
-        <a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/es6模块化/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="rem与em"><a href="#rem与em" class="headerlink" title="rem与em"></a>rem与em</h2><ol>
-<li><p>rem是相对于根元素<html>的”font-size”为基准。比如说我们给html设置font-size为100<br>那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem</html></p>
-</li>
-<li><p>em一般都是以<body>的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px”时，只需要将其值设置为”1.4em”</body></p>
+        <h3 id="关于ES6模块化"><a href="#关于ES6模块化" class="headerlink" title="关于ES6模块化"></a>关于ES6模块化</h3><p>历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。</p>
+<p>在nodeJS中，有模块化的方法，使用CommonJS规范可以做到模块化，也就是说，只有在用js进行后端node开发的时候，才能使用模块化，前端js依然不行</p>
+<p>在前端我们可以使用requireJS，seaJS来实现模块化，但是requireJS也是通过对script标签进行异步导入的方式来进行，并不是js里自带的语法</p>
+<p>我们也可以使用webpack工具来进行模块化打包，是因为webpack跑在nodeJS中，说到底还是nodeJS中的模块化</p>
+<p>但是在ES6中，我们第一次在js语法中加入了模块化的东西，目前很多浏览器都不支持，所以说还需要编译</p>
+<h5 id="ES6模块化的规范"><a href="#ES6模块化的规范" class="headerlink" title="ES6模块化的规范"></a>ES6模块化的规范</h5><p>模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+<ol>
+<li><p>暴露</p>
+<p>可以export直接暴露出某些对象，可以暴露多个：</p>
 </li>
 </ol>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴露多个接口 在定义的时候暴露</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> str = <span class="string">'abcd'</span></span><br><span class="line"><span class="keyword">export</span>  <span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fn'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> person = &#123;</span><br><span class="line">    name:<span class="string">'二狗'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暴露多个接口，在&#123;&#125;里放入要暴露的对象</span></span><br><span class="line"><span class="keyword">export</span> &#123;str,fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>因为直接暴露的对象在引入的时候名字不能改变，可能会导致在引入的模块中造成命名冲突
+可以在暴露的时候通过as来定义别名
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>在暴露对象的时候，如果只有一个，可以default暴露，在引入的时候叫啥都行，也不用加{}
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> fn</span><br></pre></td></tr></table></figure>
+<pre><code>default只能暴露一个东西，如果我们有一个是defualt暴露的，还有几个是具名暴露
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> str</span><br><span class="line"><span class="keyword">export</span> &#123;fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>引入：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc,&#123;fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a'</span><span class="comment">//abc就是上面的str</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>导入</p>
+<p> 如果被引入的模块没有暴露，只是一段逻辑代码需要在引入模块里运行的话</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modules/empty'</span></span><br></pre></td></tr></table></figure>
+<pre><code>如果要导入某一个模块中暴露的一些对象的话，注意，不一定非要把其暴露的模块全部引入，导出的对象的名字不能错
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> &#123;str,fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line">    <span class="built_in">console</span>.log(str,person)</span><br><span class="line">    fn()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">    在引入模块中暴露的接口的时候，很可能会产生命名冲突，依赖于在暴露的时候定义别名的话，也不是很安全，所以最好在引入的时候命名别名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">    如果要引入的模块暴露出来的对象有很多，我们在引入的时候可以放入到一个对象中去使用：</span></span><br><span class="line"><span class="string">    A对象不需要自己定义，引入的时候会自动创建</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> A <span class="keyword">from</span> <span class="string">'./modules/module_a'</span></span><br><span class="line">    <span class="built_in">console</span>.log(A)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -222,7 +244,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
         		</li>
       		
 		</ul>
@@ -278,7 +300,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/28/rem和em/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/07/es6模块化/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +314,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/28/元素的分类/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          元素的分类
+          利用gulp实现热更新，配置sass，合并css文件，css兼容处理
         
       </div>
     </a>
   
   
-    <a href="/2017/11/28/盒模型/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于盒模型</div>
+    <a href="/2017/12/07/跨域/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨域问题</div>
       <i class="icon-circle-right"></i>
     </a>
   

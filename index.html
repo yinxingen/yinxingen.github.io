@@ -157,6 +157,346 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-利用gulp实现热更新，配置sass，合并css文件，css兼容处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/">利用gulp实现热更新，配置sass，合并css文件，css兼容处理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/" class="archive-article-date">
+  	<time datetime="2017-12-07T13:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Gulp的使用方式"><a href="#Gulp的使用方式" class="headerlink" title="Gulp的使用方式"></a>Gulp的使用方式</h3><p>gulp是一款目前比较流行的基于流的自动化构建工具</p>
+<p><img src="http://img0.imgtn.bdimg.com/it/u=2360616365,391938133&amp;fm=27&amp;gp=0.jpg" alt="gulp logo"></p>
+<p>因为gulp是运行在nodejs中，所以说也遵循 CommonJS模块化规范，gulp的使用就是通过创建任务和执行任务来完成</p>
+<p>关键方法:</p>
+<ol>
+<li>gulp.task()创建任务</li>
+<li>gulp.src()查找资源文件</li>
+<li>gulp.dest()输出文件</li>
+<li>gulp.watch()监听文件内容变化</li>
+<li>.pipe()可以对文件进行处理</li>
+</ol>
+<p>gulp提供的只是查找文件，监听文件，处理后输出文件，但是如何处理都不属于gulp的功能范畴</p>
+<h3 id="工程化的实现"><a href="#工程化的实现" class="headerlink" title="工程化的实现"></a>工程化的实现</h3><p>在这里，我们将项目的工程化，与现实中的建筑项目开发来做一个对比；</p>
+<ol>
+<li><p>项目选址，找一块能使用的好地段的地皮准备进行项目的开发</p>
+<p>在电脑上某一个地方建立项目目录准备进行开发</p>
+</li>
+<li><p>进行信息备案：建筑名称，占地，用处，材料，规模等等…</p>
+<p> 在项目中执行npm init 创建package.json的文件，标注项目的相关信息</p>
+</li>
+<li><p>找建筑公司承包项目的开发</p>
+<p> 选择gulp + gulp-webpack + npm 进行项目的开发</p>
+</li>
+<li><p>建筑公司的工人入驻工地</p>
+<p> 全局安装gulp ：npm install gulp –global</p>
+<p> 在项目中安装gulp依赖：npm install gulp –save-dev ( -D )</p>
+</li>
+<li><p>建筑图纸，材料进入工地</p>
+<p> 建立开发目录以及依赖等等</p>
+</li>
+<li><p>对工人根据工种分队，建立完善的任务发布机制（微信群聊）</p>
+<p> 建立gulpfile.js文件，在这个文件里发布任务，通过命令行来执行这些任务</p>
+</li>
+</ol>
+<ol>
+<li>项目完成后……</li>
+</ol>
+<hr>
+<h3 id="工程化的详细实现"><a href="#工程化的详细实现" class="headerlink" title="工程化的详细实现"></a>工程化的详细实现</h3><ol>
+<li><p>想要一个热更新服务器</p>
+<p> npm i gulp-webserver -D</p>
+</li>
+<li><p>配置sass开发环境</p>
+<p> 因为sass并不能被浏览器直接识别，需要进行编译，编译成css后再引入</p>
+<p> sass的底层是ruby，在node中我们需要使用node-sass的工具来帮助编译</p>
+<p> 先安装node-sass@4.0.0 </p>
+<p> npm install -g node-sass@4.0.0</p>
+<p> npm install node-sass@4.0.0 -D</p>
+<p> 再安装gulp中的编译sass的工具</p>
+<p> npm install gulp-sass -D</p>
+<p> 注意，在编译sass的时候，一保存就报错，在编译就好了</p>
+<p> 原因是设备有的时候反应不过来，按下保存按钮的时候，这个时候gulp-sass编译sass的时候，其他的模块任务已经运行了</p>
+<p> 解决方法：在编译sass的位置报上一个setTimeout</p>
+<p> 注意，在sass里进行模块化开发才是王道</p>
+</li>
+<li><p>合并css文件</p>
+<p> 因为用sass开发后，本身可以模块后后在一个模块中引入另一个sass模块。最后编译出来的就是完整的css。</p>
+<p> 但是因为有的时候，一些模块是别人写的，我们不知道怎么引入，只好合并到一起</p>
+<p> npm install -D gulp-concat</p>
+</li>
+<li><p>css兼容处理</p>
+<p> 虽然在移动端中浏览器内核都是webkit，但是我们的css依然要加前缀，再说弹性盒，弹性盒的语法是有两个版本，两个版本的语法基本是完全不一样的</p>
+<p> <a href="codepen.io">codepen</a>是一个神奇的网站，我们可以在线写代码，还可以做css兼容，还可以找一些好看的效果来学习</p>
+</li>
+<li><p>js模块化编译打包</p>
+<p> npm install gulp-webpack -D</p>
+<p> 用babel编译es6 ，用gulp-rename改名字，用gulp-uglify压缩</p>
+</li>
+<li><p>demo:</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>)</span><br><span class="line"><span class="keyword">const</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>)<span class="comment">//合并</span></span><br><span class="line"><span class="keyword">const</span> cleanCSS = <span class="built_in">require</span>(<span class="string">'gulp-clean-css'</span>);<span class="comment">//压缩css</span></span><br><span class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);<span class="comment">//css兼容</span></span><br><span class="line"><span class="keyword">const</span> webserver = <span class="built_in">require</span>(<span class="string">"gulp-webserver"</span>)<span class="comment">//热更新模块</span></span><br><span class="line"><span class="comment">//热更新服务的任务</span></span><br><span class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./'</span>).</span><br><span class="line">        pipe(webserver(&#123;</span><br><span class="line">            host:<span class="string">"localhost"</span>,</span><br><span class="line">            port:<span class="number">9000</span>,</span><br><span class="line">            livereload :<span class="literal">true</span> , <span class="comment">//是否热更新</span></span><br><span class="line">            directoryListing :<span class="literal">true</span></span><br><span class="line">        &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>)<span class="comment">//处理sass的模块</span></span><br><span class="line">gulp.task(<span class="string">'sass'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//编译sass的任务</span></span><br><span class="line">    <span class="comment">// setTimeout(function()&#123;</span></span><br><span class="line">        gulp.src(<span class="string">'./src/sass/**/*.scss'</span>).</span><br><span class="line">        pipe(sass(&#123;<span class="attr">outputStyle</span>:<span class="string">'compressed'</span>&#125;).on(<span class="string">'error'</span>, sass.logError))</span><br><span class="line">        .pipe(concat(<span class="string">'index.css'</span>))</span><br><span class="line">        <span class="comment">// .pipe(cleanCSS(&#123;compatibility: 'ie8'&#125;))</span></span><br><span class="line">        .pipe(autoprefixer(&#123;</span><br><span class="line">            browsers: [<span class="string">'last 2 versions'</span>],</span><br><span class="line">            cascade: <span class="literal">false</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">"./build/css"</span>))</span><br><span class="line">    <span class="comment">// &#125;,200)</span></span><br><span class="line">   </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//js处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'gulp-webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">const</span> rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>)</span><br><span class="line">gulp.task(<span class="string">"packjs"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.src(<span class="string">"./src/js/index.js"</span>)</span><br><span class="line">        .pipe(webpack(&#123;</span><br><span class="line">            output:&#123;</span><br><span class="line">                filename:<span class="string">'index.js'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="built_in">module</span>:&#123;</span><br><span class="line">                loaders:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        test:<span class="regexp">/\.js$/</span>,</span><br><span class="line">                        loader:<span class="string">"babel-loader"</span>,</span><br><span class="line">                        query:&#123;</span><br><span class="line">                            presets:[<span class="string">'es2015'</span>]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(rename(&#123;</span><br><span class="line">            suffix: <span class="string">".min"</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./build/js'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听sass任务</span></span><br><span class="line">gulp.task(<span class="string">'watch:sass'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">'./src/sass/**/*.scss'</span>,[<span class="string">'sass'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//监听js任务</span></span><br><span class="line">gulp.task(<span class="string">'watch:js'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">'./src/js/**/*.js'</span>,[<span class="string">'packjs'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//默认任务</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'sass'</span>,<span class="string">'watch:sass'</span>,<span class="string">'packjs'</span>,<span class="string">'watch:js'</span>,<span class="string">'server'</span>])</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-es6模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/es6模块化/">关于ES6模块化</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/es6模块化/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="关于ES6模块化"><a href="#关于ES6模块化" class="headerlink" title="关于ES6模块化"></a>关于ES6模块化</h3><p>历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。</p>
+<p>在nodeJS中，有模块化的方法，使用CommonJS规范可以做到模块化，也就是说，只有在用js进行后端node开发的时候，才能使用模块化，前端js依然不行</p>
+<p>在前端我们可以使用requireJS，seaJS来实现模块化，但是requireJS也是通过对script标签进行异步导入的方式来进行，并不是js里自带的语法</p>
+<p>我们也可以使用webpack工具来进行模块化打包，是因为webpack跑在nodeJS中，说到底还是nodeJS中的模块化</p>
+<p>但是在ES6中，我们第一次在js语法中加入了模块化的东西，目前很多浏览器都不支持，所以说还需要编译</p>
+<h5 id="ES6模块化的规范"><a href="#ES6模块化的规范" class="headerlink" title="ES6模块化的规范"></a>ES6模块化的规范</h5><p>模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
+<ol>
+<li><p>暴露</p>
+<p>可以export直接暴露出某些对象，可以暴露多个：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴露多个接口 在定义的时候暴露</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> str = <span class="string">'abcd'</span></span><br><span class="line"><span class="keyword">export</span>  <span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fn'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> person = &#123;</span><br><span class="line">    name:<span class="string">'二狗'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暴露多个接口，在&#123;&#125;里放入要暴露的对象</span></span><br><span class="line"><span class="keyword">export</span> &#123;str,fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>因为直接暴露的对象在引入的时候名字不能改变，可能会导致在引入的模块中造成命名冲突
+可以在暴露的时候通过as来定义别名
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>在暴露对象的时候，如果只有一个，可以default暴露，在引入的时候叫啥都行，也不用加{}
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> fn</span><br></pre></td></tr></table></figure>
+<pre><code>default只能暴露一个东西，如果我们有一个是defualt暴露的，还有几个是具名暴露
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> str</span><br><span class="line"><span class="keyword">export</span> &#123;fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>引入：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc,&#123;fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a'</span><span class="comment">//abc就是上面的str</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>导入</p>
+<p> 如果被引入的模块没有暴露，只是一段逻辑代码需要在引入模块里运行的话</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modules/empty'</span></span><br></pre></td></tr></table></figure>
+<pre><code>如果要导入某一个模块中暴露的一些对象的话，注意，不一定非要把其暴露的模块全部引入，导出的对象的名字不能错
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> &#123;str,fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line">    <span class="built_in">console</span>.log(str,person)</span><br><span class="line">    fn()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">    在引入模块中暴露的接口的时候，很可能会产生命名冲突，依赖于在暴露的时候定义别名的话，也不是很安全，所以最好在引入的时候命名别名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">    如果要引入的模块暴露出来的对象有很多，我们在引入的时候可以放入到一个对象中去使用：</span></span><br><span class="line"><span class="string">    A对象不需要自己定义，引入的时候会自动创建</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> A <span class="keyword">from</span> <span class="string">'./modules/module_a'</span></span><br><span class="line">    <span class="built_in">console</span>.log(A)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/es6模块化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/跨域/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域问题对于WEB前端工程师来说是比较重要的一个问题，因为我们时常需要去解决这样的问题，在其他类型的前端开发来说，他们并没有跨域问题</p>
+<h5 id="跨域问题的产生"><a href="#跨域问题的产生" class="headerlink" title="跨域问题的产生"></a>跨域问题的产生</h5><p>因为浏览器有同源策略：只有在同域名，同端口，同协议的情况下才可以进行数据交互；</p>
+<p>有的时候，例如，在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司有，数据服务器不只有一个，所以跨域问题也必然存在</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><ol>
+<li><p>jsonp </p>
+<p> 是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，因为其不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说是前后端结合的方式。</p>
+<p> 注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间</p>
+<p> 缺点：只能get请求</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">nodejs：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line">    <span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">    <span class="comment">//前端回调函数的名字</span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>]</span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>)+<span class="string">''</span></span><br><span class="line">    <span class="comment">//返回给前端函数数据</span></span><br><span class="line">    res.send(fn+<span class="string">'('</span>+content+<span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">js：</span><br><span class="line"></span><br><span class="line">Jsonp(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123;url,success&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签</span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">"&lt;script&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//随机函数名字</span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span>+<span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">        <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name]</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    $script[<span class="number">0</span>].src = url+<span class="string">'?callback='</span>+random_name</span><br><span class="line">    $(<span class="string">"body"</span>).append($script)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>cors</p>
+<p> 纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">node:</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/data_cors"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">js:</span><br><span class="line">  </span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>服务端代理proxy</p>
+<p> 因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">目标服务器接口 <span class="number">3000</span>：</span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    res.send(<span class="string">'proxy'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">代理服务器<span class="number">1234</span>：</span><br><span class="line">app.get(<span class="string">"/to3000"</span>,(req,res)=&gt;&#123; </span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">    <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url,(res)=&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> result=<span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>,(chunk)=&gt;&#123;</span><br><span class="line">            result+=chunk</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">            <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result)</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">开发服务器<span class="number">9000</span>：</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        url:<span class="string">"http://localhost:3000/data_proxy"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-1.sass的安装,编译，风格" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -164,7 +504,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/1.sass的安装,编译，风格/">sass的安装，编译与风格</a>
+      <a class="article-title" href="/2017/12/07/1.sass的安装,编译，风格/">1.sass的安装，编译与风格</a>
     </h1>
   
 
@@ -269,7 +609,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -316,7 +656,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</a>
+      <a class="article-title" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">2.sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</a>
     </h1>
   
 
@@ -421,7 +761,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -468,7 +808,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/3.sass的数据类型与函数/">sass的数据类型</a>
+      <a class="article-title" href="/2017/12/07/3.sass的数据类型与函数/">3.sass的数据类型</a>
     </h1>
   
 
@@ -576,7 +916,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -623,7 +963,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">sass的分支结构</a>
+      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">4.sass的分支结构</a>
     </h1>
   
 
@@ -704,7 +1044,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sass详解</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -1174,343 +1514,6 @@ vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
 
 
   
-    <article id="post-网页性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/网页性能优化/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网页性能优化"><a href="#网页性能优化" class="headerlink" title="网页性能优化"></a>网页性能优化</h1><h2 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h2><blockquote>
-<p>页面优化可以提升页面的访问速度从而提高用户体验，优化的页面可以更好的提升 SEO 的效果同时也可以提高代码的可读性和维护性。</p>
-</blockquote>
-<p>网页的生成过程，大致可以分成五步。</p>
-<ol>
-<li>HTML代码转化成DOM</li>
-<li>CSS代码转化成CSSOM（CSS Object Model）</li>
-<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
-<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
-<li>将布局绘制（paint）在屏幕上</li>
-</ol>
-<p>这五步里面，第一步到第三步都非常快，耗时的是第四步和第五步。</p>
-<p>“生成布局”（flow）和”绘制”（paint）这两步，合称为”渲染”（render）。</p>
-<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><blockquote>
-<p>网页生成的时候，至少会渲染一次。用户访问的过程中，还会不断重新渲染。<br>以下三种情况，会导致网页重新渲染。</p>
-<ol>
-<li>修改DOM</li>
-<li>修改样式表<br>3.用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）</li>
-</ol>
-</blockquote>
-<p>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。</p>
-<p>需要注意的是，”重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。但是，”重排”必然导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了。</p>
-<h2 id="对于性能的影响"><a href="#对于性能的影响" class="headerlink" title="对于性能的影响"></a>对于性能的影响</h2><p>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。</p>
-<p>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。</p>
-<p>前面提到，DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染。</p>
-<p>一般的规则是：</p>
-<ol>
-<li>样式表越简单，重排和重绘就越快。</li>
-<li>重排和重绘的DOM元素层级越高，成本就越高。</li>
-<li>table元素的重排和重绘成本，要高于div元素</li>
-</ol>
-<h2 id="提高性能的九个技巧"><a href="#提高性能的九个技巧" class="headerlink" title="提高性能的九个技巧"></a>提高性能的九个技巧</h2><p>有一些技巧，可以降低浏览器重新渲染的频率和成本。</p>
-<p>第一条 DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。<br>第二条 如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。<br>第三条 不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。<br>第四条 尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。<br>第五条 先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染。<br>第六条 position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。<br>第七条 只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。<br>第八条 使用虚拟DOM的脚本库，比如React等。<br>第九条 使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染</p>
-<h5 id="一、-如何对网站的的资源和文件进行优化"><a href="#一、-如何对网站的的资源和文件进行优化" class="headerlink" title="一、 如何对网站的的资源和文件进行优化"></a>一、 如何对网站的的资源和文件进行优化</h5><ol>
-<li>文件的合并（减少http的请求）</li>
-<li>文件的压缩（减少文件的体积）</li>
-<li>使用cdn托管资源</li>
-<li>使用缓存</li>
-<li>gizp压缩js和css文件</li>
-<li>mete标签的优化。Heading标签的优化和alt优化</li>
-<li>反向链接，网站外链优化</li>
-</ol>
-<h5 id="二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"><a href="#二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）" class="headerlink" title="二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"></a>二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）</h5><ol>
-<li>CSS Sprites</li>
-<li>Js css源码的压缩。图片大小控制合适</li>
-<li>网页gizp</li>
-<li>cdn托管</li>
-<li>Data缓存</li>
-<li>图片服务器</li>
-</ol>
-<h4 id="三-、网页加载速度的优化"><a href="#三-、网页加载速度的优化" class="headerlink" title="三 、网页加载速度的优化"></a>三 、网页加载速度的优化</h4><ol>
-<li>减少请求</li>
-<li>整合资源</li>
-<li>使用浏览器缓存和本地缓存</li>
-<li>首次使用的时候在HTML中嵌入资源</li>
-<li>使用HTML5服务端发送事件</li>
-<li>消除重定向</li>
-<li>减少资源负载</li>
-<li>压缩文本和图像</li>
-<li>代码简化</li>
-<li>使用html5和css3来简化页面</li>
-<li>延迟读取和执行的脚本</li>
-<li>使用ajax来增强进程</li>
-<li>根据网络状况进行适配处理</li>
-<li>对于多线程来说尽量使用html5的web worker特性</li>
-<li>将click事件替换成touch事件</li>
-<li>支持spdy协议</li>
-</ol>
-<h4 id="四、为什么利用多个域名来提供网站资源会更有效？"><a href="#四、为什么利用多个域名来提供网站资源会更有效？" class="headerlink" title="四、为什么利用多个域名来提供网站资源会更有效？"></a>四、为什么利用多个域名来提供网站资源会更有效？</h4><ol>
-<li>突破浏览器的并发限制</li>
-<li>节约cookie带宽</li>
-<li>cdn缓存更方便</li>
-<li>防止不必要的安全问题（尤其是cookie隔离尤为重要）</li>
-<li>节约主机域名链接数，优化页面响应速度</li>
-</ol>
-<h4 id="五、前端性能如何调优"><a href="#五、前端性能如何调优" class="headerlink" title="五、前端性能如何调优"></a>五、前端性能如何调优</h4><ol>
-<li>减少http的请求数</li>
-<li>使用内容分布式网络（cdn）</li>
-<li>给头部添加一个失效期或者cache-control</li>
-<li>Gzip压缩组件</li>
-<li>把样式表放在前面</li>
-<li>把脚本放在最后</li>
-<li>不使用css表达式</li>
-<li>使用外部的Javascript和css</li>
-<li>减少dns的查询</li>
-<li>减小javaScript和css</li>
-</ol>
-<h4 id="六、怎样解决请求过多问题"><a href="#六、怎样解决请求过多问题" class="headerlink" title="六、怎样解决请求过多问题"></a>六、怎样解决请求过多问题</h4><ol>
-<li>合并js和css文件</li>
-<li>合并图片css sprite</li>
-<li>使用image maps</li>
-<li>Data嵌入图片</li>
-<li>使用cdn减少HTTP请求头</li>
-</ol>
-<h4 id="七、百度移动端首页秒开是怎样做到的？"><a href="#七、百度移动端首页秒开是怎样做到的？" class="headerlink" title="七、百度移动端首页秒开是怎样做到的？"></a>七、百度移动端首页秒开是怎样做到的？</h4><ol>
-<li>静态文件的放置</li>
-<li>缓存</li>
-<li>外链</li>
-<li>缓存dom</li>
-<li>使用iconfont</li>
-<li>卡片的异步加载与缓存</li>
-<li>不在首屏的就要 异步化</li>
-<li>少量静态文件的域名</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/网页性能优化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-前端页面的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/前端页面的构成/">前端页面的构成</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/前端页面的构成/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前端页面的构成"><a href="#前端页面的构成" class="headerlink" title="前端页面的构成"></a>前端页面的构成</h3><p>HTML（结构）：超文本标记语言，由HTML或XHTML之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。</p>
-<p>css（表现）：层叠样式表，由css负责创建。css对“如何显示有关内容”的问题做出了回答</p>
-<p>js（行为）：客户端脚本语言，内容应该如何对事件作出反应</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/前端页面的构成/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-元素的分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/元素的分类/">元素的分类</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/元素的分类/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="元素的分类"><a href="#元素的分类" class="headerlink" title="元素的分类"></a>元素的分类</h2><p>首先：css规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如：div的display默认值为”block”，则为”块级元素”;span默认display属性值为”inline”,是行内元素。</p>
-<ol>
-<li><p>行内元素：a b span select strong(强调的语气) img input</p>
-</li>
-<li><p>块级元素：div ul ol li dl dd h1 h2 h3 h4 h5 h6 p</p>
-</li>
-<li><p>常见的空元素：</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</span><br></pre></td></tr></table></figure>
-<p>鲜为人知的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wdr&gt;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/元素的分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1604,6 +1607,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">数组 字符串</a>
               </li>
              
@@ -1612,11 +1619,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1644,11 +1651,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
             
             <div class="clearfix"></div>

@@ -157,6 +157,343 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-网页性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/网页性能优化/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网页性能优化"><a href="#网页性能优化" class="headerlink" title="网页性能优化"></a>网页性能优化</h1><h2 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h2><blockquote>
+<p>页面优化可以提升页面的访问速度从而提高用户体验，优化的页面可以更好的提升 SEO 的效果同时也可以提高代码的可读性和维护性。</p>
+</blockquote>
+<p>网页的生成过程，大致可以分成五步。</p>
+<ol>
+<li>HTML代码转化成DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上</li>
+</ol>
+<p>这五步里面，第一步到第三步都非常快，耗时的是第四步和第五步。</p>
+<p>“生成布局”（flow）和”绘制”（paint）这两步，合称为”渲染”（render）。</p>
+<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><blockquote>
+<p>网页生成的时候，至少会渲染一次。用户访问的过程中，还会不断重新渲染。<br>以下三种情况，会导致网页重新渲染。</p>
+<ol>
+<li>修改DOM</li>
+<li>修改样式表<br>3.用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）</li>
+</ol>
+</blockquote>
+<p>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。</p>
+<p>需要注意的是，”重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。但是，”重排”必然导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了。</p>
+<h2 id="对于性能的影响"><a href="#对于性能的影响" class="headerlink" title="对于性能的影响"></a>对于性能的影响</h2><p>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。</p>
+<p>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。</p>
+<p>前面提到，DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染。</p>
+<p>一般的规则是：</p>
+<ol>
+<li>样式表越简单，重排和重绘就越快。</li>
+<li>重排和重绘的DOM元素层级越高，成本就越高。</li>
+<li>table元素的重排和重绘成本，要高于div元素</li>
+</ol>
+<h2 id="提高性能的九个技巧"><a href="#提高性能的九个技巧" class="headerlink" title="提高性能的九个技巧"></a>提高性能的九个技巧</h2><p>有一些技巧，可以降低浏览器重新渲染的频率和成本。</p>
+<p>第一条 DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。<br>第二条 如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。<br>第三条 不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。<br>第四条 尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。<br>第五条 先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染。<br>第六条 position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。<br>第七条 只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。<br>第八条 使用虚拟DOM的脚本库，比如React等。<br>第九条 使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染</p>
+<h5 id="一、-如何对网站的的资源和文件进行优化"><a href="#一、-如何对网站的的资源和文件进行优化" class="headerlink" title="一、 如何对网站的的资源和文件进行优化"></a>一、 如何对网站的的资源和文件进行优化</h5><ol>
+<li>文件的合并（减少http的请求）</li>
+<li>文件的压缩（减少文件的体积）</li>
+<li>使用cdn托管资源</li>
+<li>使用缓存</li>
+<li>gizp压缩js和css文件</li>
+<li>mete标签的优化。Heading标签的优化和alt优化</li>
+<li>反向链接，网站外链优化</li>
+</ol>
+<h5 id="二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"><a href="#二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）" class="headerlink" title="二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"></a>二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）</h5><ol>
+<li>CSS Sprites</li>
+<li>Js css源码的压缩。图片大小控制合适</li>
+<li>网页gizp</li>
+<li>cdn托管</li>
+<li>Data缓存</li>
+<li>图片服务器</li>
+</ol>
+<h4 id="三-、网页加载速度的优化"><a href="#三-、网页加载速度的优化" class="headerlink" title="三 、网页加载速度的优化"></a>三 、网页加载速度的优化</h4><ol>
+<li>减少请求</li>
+<li>整合资源</li>
+<li>使用浏览器缓存和本地缓存</li>
+<li>首次使用的时候在HTML中嵌入资源</li>
+<li>使用HTML5服务端发送事件</li>
+<li>消除重定向</li>
+<li>减少资源负载</li>
+<li>压缩文本和图像</li>
+<li>代码简化</li>
+<li>使用html5和css3来简化页面</li>
+<li>延迟读取和执行的脚本</li>
+<li>使用ajax来增强进程</li>
+<li>根据网络状况进行适配处理</li>
+<li>对于多线程来说尽量使用html5的web worker特性</li>
+<li>将click事件替换成touch事件</li>
+<li>支持spdy协议</li>
+</ol>
+<h4 id="四、为什么利用多个域名来提供网站资源会更有效？"><a href="#四、为什么利用多个域名来提供网站资源会更有效？" class="headerlink" title="四、为什么利用多个域名来提供网站资源会更有效？"></a>四、为什么利用多个域名来提供网站资源会更有效？</h4><ol>
+<li>突破浏览器的并发限制</li>
+<li>节约cookie带宽</li>
+<li>cdn缓存更方便</li>
+<li>防止不必要的安全问题（尤其是cookie隔离尤为重要）</li>
+<li>节约主机域名链接数，优化页面响应速度</li>
+</ol>
+<h4 id="五、前端性能如何调优"><a href="#五、前端性能如何调优" class="headerlink" title="五、前端性能如何调优"></a>五、前端性能如何调优</h4><ol>
+<li>减少http的请求数</li>
+<li>使用内容分布式网络（cdn）</li>
+<li>给头部添加一个失效期或者cache-control</li>
+<li>Gzip压缩组件</li>
+<li>把样式表放在前面</li>
+<li>把脚本放在最后</li>
+<li>不使用css表达式</li>
+<li>使用外部的Javascript和css</li>
+<li>减少dns的查询</li>
+<li>减小javaScript和css</li>
+</ol>
+<h4 id="六、怎样解决请求过多问题"><a href="#六、怎样解决请求过多问题" class="headerlink" title="六、怎样解决请求过多问题"></a>六、怎样解决请求过多问题</h4><ol>
+<li>合并js和css文件</li>
+<li>合并图片css sprite</li>
+<li>使用image maps</li>
+<li>Data嵌入图片</li>
+<li>使用cdn减少HTTP请求头</li>
+</ol>
+<h4 id="七、百度移动端首页秒开是怎样做到的？"><a href="#七、百度移动端首页秒开是怎样做到的？" class="headerlink" title="七、百度移动端首页秒开是怎样做到的？"></a>七、百度移动端首页秒开是怎样做到的？</h4><ol>
+<li>静态文件的放置</li>
+<li>缓存</li>
+<li>外链</li>
+<li>缓存dom</li>
+<li>使用iconfont</li>
+<li>卡片的异步加载与缓存</li>
+<li>不在首屏的就要 异步化</li>
+<li>少量静态文件的域名</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/网页性能优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端页面的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/前端页面的构成/">前端页面的构成</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/前端页面的构成/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前端页面的构成"><a href="#前端页面的构成" class="headerlink" title="前端页面的构成"></a>前端页面的构成</h3><p>HTML（结构）：超文本标记语言，由HTML或XHTML之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。</p>
+<p>css（表现）：层叠样式表，由css负责创建。css对“如何显示有关内容”的问题做出了回答</p>
+<p>js（行为）：客户端脚本语言，内容应该如何对事件作出反应</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/前端页面的构成/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-元素的分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/元素的分类/">元素的分类</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/元素的分类/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="元素的分类"><a href="#元素的分类" class="headerlink" title="元素的分类"></a>元素的分类</h2><p>首先：css规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如：div的display默认值为”block”，则为”块级元素”;span默认display属性值为”inline”,是行内元素。</p>
+<ol>
+<li><p>行内元素：a b span select strong(强调的语气) img input</p>
+</li>
+<li><p>块级元素：div ul ol li dl dd h1 h2 h3 h4 h5 h6 p</p>
+</li>
+<li><p>常见的空元素：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</span><br></pre></td></tr></table></figure>
+<p>鲜为人知的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wdr&gt;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/元素的分类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-rem和em" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -727,82 +1064,6 @@
 
 
   
-    <article id="post-HTML与xhtml的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/HTML与xhtml的区别/">html 与 xhtml 的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/HTML与xhtml的区别/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="html-与-xhtml-的区别"><a href="#html-与-xhtml-的区别" class="headerlink" title="html 与 xhtml 的区别"></a>html 与 xhtml 的区别</h3><p>HTML是一种基本的web网页设计语言，XHTML是一种基于XML的置标语言</p>
-<p>最主要的不同：</p>
-<p>XHTML元素必须正确的被嵌套，元素必须关闭，标签必须小写，必须有根元素</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/HTML与xhtml的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-css选择符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -862,199 +1123,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/28/css选择符/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS样式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/27/CSS样式/">关于CSS样式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/27/CSS样式/" class="archive-article-date">
-  	<time datetime="2017-11-27T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关于CSS样式"><a href="#关于CSS样式" class="headerlink" title="关于CSS样式"></a>关于CSS样式</h3><p>样式一般分为三种：内部样式，外部样式，内联样式</p>
-<blockquote>
-<p>内部样式：  在页面<head>区里。<style type="text/css"></style></head></p>
-<p>内联样式：在标签内写入style=””</p>
-<p>外部样式：</p>
-</blockquote>
-<pre><code>1. 链入外部样式表，在页面中&lt;head&gt;标签之间引入&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;*.css&quot;链接这个样式表
-
-2.  &lt;style type=&quot;text/css&quot;&gt;
-     @import url(&quot;*.css&quot;)
-    &lt;/style&gt;
-
-区别：1）link是XHTML标签，无兼容问题；@import是在css2.1提出的，低版本浏览器不支持 属于CSS范畴，只能加载CSS
-      2）link引用CSS时，在页面载入时同时加载：@import 需要页面网页完全载入以后加载
-      3）link支持使用Javascript控制DOM去改变样式；而@import不支持
-</code></pre><h4 id="优先级和作用域"><a href="#优先级和作用域" class="headerlink" title="优先级和作用域"></a>优先级和作用域</h4><p>内联样式的优先级最高；内部和外部的优先级取决于他们的位置，离结构近的优先级高</p>
-<p>内联样式作用域于他所在的标签，外部样式作用于关联的所有的HTML文件，内部样式作用于当前的文件</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/27/CSS样式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CSS中清除浮动的几种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/27/CSS中清除浮动的几种方式/">清除浮动</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/27/CSS中清除浮动的几种方式/" class="archive-article-date">
-  	<time datetime="2017-11-27T06:40:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="清除浮动的几种方式，各自的优缺点"><a href="#清除浮动的几种方式，各自的优缺点" class="headerlink" title="清除浮动的几种方式，各自的优缺点"></a>清除浮动的几种方式，各自的优缺点</h2><p>1、给父元素添加声明 overflow:hidden</p>
-<blockquote>
-<p>优点：简单，代码少，浏览器支持好；缺点：不能和position配合使用，因为会隐藏溢出部分</p>
-</blockquote>
-<p>2、在浮动元素下方添加空的div，并给该元素添加声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clear : both;</span><br><span class="line">height : 0;</span><br><span class="line">overflow : hidden;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>优点：简单，代码少，浏览器支持好，不容易出现怪问题；缺点：会增加一个空元素</p>
-</blockquote>
-<p>3、给父元素定义一个height</p>
-<blockquote>
-<p>优点：简单，代码少，容易掌握；缺点：只适合高度固定的布局</p>
-</blockquote>
-<p>4、给父元素添加声明：overflow:auto</p>
-<blockquote>
-<p>优点:简单，代码少，浏览器支持好；缺点：内部宽度超过父级元素时，会出现滚动条</p>
-</blockquote>
-<p>5、万能清除浮动法：</p>
-<pre><code>
-选择符:after{
-content:&quot;.&quot;;
-clear:both;
-display:block;
-height:0;
-visibility:hidden;
-}
-.clear{zoom:1;}
-</code></pre><blockquote>
-<p>优点：浏览器支持好，不容易出现怪问题；缺点：代码多</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/27/CSS中清除浮动的几种方式/">展开全文 >></a>
         </p>
       
 
@@ -1177,6 +1245,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">数组 字符串</a>
               </li>
              
@@ -1185,11 +1257,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1217,11 +1289,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">sass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">sass详解</a>
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
             
             <div class="clearfix"></div>
