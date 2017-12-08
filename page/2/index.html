@@ -157,6 +157,162 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-一些问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/一些问题/">一些问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/一些问题/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="eval是做什么的？"><a href="#eval是做什么的？" class="headerlink" title="eval是做什么的？"></a>eval是做什么的？</h4><ol>
+<li><p>eval()的作用是：把字符串参数解析成JS代码并运行，并返回执行的结果；</p>
+</li>
+<li><p>eval的作用域在它所有的范围内容有效，但是在IE8及IE8一下的版本就不支持</p>
+</li>
+</ol>
+<hr>
+<h4 id="IE和DOM事件流的区别"><a href="#IE和DOM事件流的区别" class="headerlink" title="IE和DOM事件流的区别"></a>IE和DOM事件流的区别</h4><blockquote>
+<p>IE采用冒泡型事件 Netscape（浏览器）使用捕获型事件 DOM使用先捕获后冒泡型事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt; </span><br><span class="line">    &lt;div&gt; </span><br><span class="line">        &lt;button&gt;点击这里&lt;/button&gt; </span><br><span class="line">    &lt;/div&gt; </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>冒泡型事件模型： button-&gt;div-&gt;body (IE事件流) </p>
+<p> 捕获型事件模型： body-&gt;div-&gt;button (Netscape事件流) </p>
+<p> DOM事件模型： body-&gt;div-&gt;button-&gt;button-&gt;div-&gt;body (先捕获后冒泡)</p>
+</blockquote>
+<hr>
+<h4 id="JavaScript原型，原型链-有什么特点？"><a href="#JavaScript原型，原型链-有什么特点？" class="headerlink" title="JavaScript原型，原型链 ? 有什么特点？"></a>JavaScript原型，原型链 ? 有什么特点？</h4><blockquote>
+<p>函数的原型对象constructor默认指向函数本身，原型对象除了有原型属性外，为了实现继承，还有一个原型链指针proto，该指针指向上一层的原型对象，而上一层的原型对象的结构依然类似，这样利用proto一直指向Object的原型对象上，而Object的原型对象用Object.prototype.proto = null表示原型链的最顶端，如此变形成了javascript的原型链继承，同时也解释了为什么所有的javascript对象都具有Object的基本方法。</p>
+</blockquote>
+<h4 id="foo-foo-bar-什么意思，为什么这样写？"><a href="#foo-foo-bar-什么意思，为什么这样写？" class="headerlink" title="foo=foo || bar,什么意思，为什么这样写？"></a>foo=foo || bar,什么意思，为什么这样写？</h4><pre><code>如果foo=foo,foo=foo,否则，foo=bar。一般用于兼容
+</code></pre><h4 id="写出样式的优先级。"><a href="#写出样式的优先级。" class="headerlink" title="写出样式的优先级。"></a>写出样式的优先级。</h4><p>样式一般分为三种：内部样式，外部样式，内联样式</p>
+<blockquote>
+<p>内部样式：  在页面<head>区里。<style type="text/css"></style></head></p>
+<p>内联样式：在标签内写入style=””</p>
+<p>外部样式：</p>
+</blockquote>
+<pre><code>1. 链入外部样式表，在页面中&lt;head&gt;标签之间引入&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;*.css&quot;链接这个样式表
+
+2.  &lt;style type=&quot;text/css&quot;&gt;
+     @import url(&quot;*.css&quot;)
+    &lt;/style&gt;
+
+区别：1）link是XHTML标签，无兼容问题；@import是在css2.1提出的，低版本浏览器不支持 属于CSS范畴，只能加载CSS
+      2）link引用CSS时，在页面载入时同时加载：@import 需要页面网页完全载入以后加载
+      3）link支持使用Javascript控制DOM去改变样式；而@import不支持
+</code></pre><hr>
+<h4 id="各个选择器之间的优先级。"><a href="#各个选择器之间的优先级。" class="headerlink" title="各个选择器之间的优先级。"></a>各个选择器之间的优先级。</h4><p>比较同一级别的个数，数量多的优先级高，如果相同即比较下一级别的个数 ，至于各级别的优先级，大家应该已经很清楚了，就是：</p>
+<blockquote>
+<p>important &gt; 内联 &gt; ID &gt; 类 &gt; 标签 | 伪类 | 属性选择 &gt; 伪对象 &gt; 继承 &gt; 通配符 通配符 &gt; 继承</p>
+</blockquote>
+<p>选择器种类:</p>
+<blockquote>
+<ol>
+<li>id选择器（#myid）</li>
+<li>类选择器（.myclassname）</li>
+<li>标签选择器（div,h1,p）</li>
+<li>相邻选择器（h1+p）</li>
+<li>子选择器（ul &lt; li）</li>
+<li>后代选择器（li a）</li>
+<li>通配符选择器（*）</li>
+<li>属性选择器（a[rel=”external”]）</li>
+<li>伪类选择器（a:hover,li:nth-child）</li>
+</ol>
+</blockquote>
+<hr>
+<h4 id="介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。"><a href="#介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。" class="headerlink" title="介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。"></a>介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。</h4><p>1、直接在元素上绑定回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot; onclick=&quot;clickBtn()&quot;&gt;click me&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、JS获取DOM元素对象后，对onclick属性赋值，绑定事件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;btn&apos;).onclick=clickBtn;</span><br></pre></td></tr></table></figure></p>
+<p>3、JS获取DOM对象后，调用对象的addEventListener函数绑定事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;btn&apos;).addEventListener(&apos;click&apos;,clickBtn);</span><br></pre></td></tr></table></figure>
+<h4 id="实现垂直水平居中5种方法。"><a href="#实现垂直水平居中5种方法。" class="headerlink" title="实现垂直水平居中5种方法。"></a>实现垂直水平居中5种方法。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">    position: absolute;</span><br><span class="line">    top:50%;</span><br><span class="line">    left:50%;</span><br><span class="line">    </span><br><span class="line">2.</span><br><span class="line">    position: absolute;</span><br><span class="line">    top:0;</span><br><span class="line">    left:0;</span><br><span class="line">    right:0;</span><br><span class="line">    bottom:0;</span><br><span class="line">    margin:auto;</span><br><span class="line">    </span><br><span class="line">3.</span><br><span class="line">     父盒：</span><br><span class="line">    display:box;</span><br><span class="line">    display:-webkit-box;</span><br><span class="line">    box-align:center;//垂直居中;</span><br><span class="line">    -webkit-box-align:center;</span><br><span class="line">    box-pack:center;//水平居中</span><br><span class="line">    -webkit-box-pack:center;</span><br><span class="line">    需要做兼容</span><br><span class="line"></span><br><span class="line">4.</span><br><span class="line"></span><br><span class="line">弹性盒</span><br><span class="line">父：</span><br><span class="line">    display:flex;</span><br><span class="line">    //justify-content:flex-start flex-end center space-between space-around;</span><br><span class="line">    </span><br><span class="line">    justify-content:center;//水平居中</span><br><span class="line">    align-items:center;//垂直居中</span><br><span class="line"></span><br><span class="line">5.</span><br><span class="line">父：</span><br><span class="line">    display:flex;</span><br><span class="line">    //justify-content:flex-start flex-end center space-between space-around;</span><br><span class="line">    </span><br><span class="line">    justify-content:center;//水平居中</span><br><span class="line">    子：</span><br><span class="line">    align-self:center;</span><br><span class="line"></span><br><span class="line">6. </span><br><span class="line">    父:</span><br><span class="line">    display:table-cell;</span><br><span class="line">    text-align:center;</span><br><span class="line">    vertical-align:middle;</span><br><span class="line">    子:</span><br><span class="line">    display:inline-block;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">7.</span><br><span class="line">    父:</span><br><span class="line">    text-align:center;</span><br><span class="line">    子：</span><br><span class="line">    display:inline-block;</span><br><span class="line">    vertical-align:middle;</span><br><span class="line">    参照：</span><br><span class="line">    width:0;</span><br><span class="line">    height:100%;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    vertical-align:middle;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="input的三个属性。"><a href="#input的三个属性。" class="headerlink" title="input的三个属性。"></a>input的三个属性。</h5><p>type name value</p>
+<hr>
+<h4 id="display-none与visibility-hidden的区别是什么？"><a href="#display-none与visibility-hidden的区别是什么？" class="headerlink" title="display:none与visibility:hidden的区别是什么？"></a>display:none与visibility:hidden的区别是什么？</h4><p>display:none和visible:hidden都能把网页上某个元素隐藏起来，但两者有区别:</p>
+<blockquote>
+<p>display:none —不为被隐藏的对象保留其物理空间，即该对象在页面上彻底消失，通俗来说就是看不见也摸不到。</p>
+<p>visible:hidden—使对象在网页上不可见，但该对象在网页上所占的空间没有改变，通俗来说就是看不见但摸得到。</p>
+</blockquote>
+<hr>
+<h4 id="split-join-的区别。"><a href="#split-join-的区别。" class="headerlink" title="split() join() 的区别。"></a>split() join() 的区别。</h4><blockquote>
+<p>split() :将字符串分割成数组</p>
+<p>join() :将数组转为字符串</p>
+</blockquote>
+<h4 id="事件绑定和普通事件有什么区别？"><a href="#事件绑定和普通事件有什么区别？" class="headerlink" title="事件绑定和普通事件有什么区别？"></a>事件绑定和普通事件有什么区别？</h4><blockquote>
+<p>区别：普通事件只支持单个事件，而事件绑定可以添加多个事件</p>
+</blockquote>
+<hr>
+<h4 id="IE和DOM事件流的区别？"><a href="#IE和DOM事件流的区别？" class="headerlink" title="IE和DOM事件流的区别？"></a>IE和DOM事件流的区别？</h4><blockquote>
+<p>IE采用冒泡型事件 Netscape使用捕获型事件 </p>
+<p>DOM使用先捕获后冒泡型事件 </p>
+</blockquote>
+<hr>
+<h4 id="看下列代码-输出什么？解释原因。"><a href="#看下列代码-输出什么？解释原因。" class="headerlink" title="看下列代码,输出什么？解释原因。"></a>看下列代码,输出什么？解释原因。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = null;</span><br><span class="line">   alert(typeof a); //object</span><br></pre></td></tr></table></figure>
+<p>特殊数据类型：Null表示初始化为空，但它的数据类型有属于object</p>
+<h4 id="列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个"><a href="#列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个" class="headerlink" title="列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个"></a>列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个</h4><p>对象：Window  document  location  screen  history  navigator<br>方法：Alert()  confirm()  prompt()  open()  close() </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/一些问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-为什么利用多个域名来存储网站资源会更有效" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1181,134 +1337,6 @@ npm install -D gulp-concat
 
 
   
-    <article id="post-4.sass的分支结构、循环结构、函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">4.sass的分支结构</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/4.sass的分支结构、循环结构、函数/" class="archive-article-date">
-  	<time datetime="2017-12-07T11:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>在sass里，可以使用@if让我们根据一些条件来应用特定的样式</p>
-<p>结构：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">if</span> 条件 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果条件为真的话，括号里的代码就会释放出来</p>
-<p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">true</span>;</span><br><span class="line">.rounded&#123;</span><br><span class="line">   @<span class="keyword">if</span> $use-refixes &#123;</span><br><span class="line">   	-webkit-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-moz-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-ms-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-o-border-radius:<span class="number">5</span>px;</span><br><span class="line">   &#125;</span><br><span class="line">   border-radius:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  -webkit-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -moz-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -ms-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -o-border-radius: <span class="number">5</span>px;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果是另外一种情况</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
-<p>—》<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>if else在sass里的写法是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	@<span class="keyword">if</span> $theme == dark &#123;</span><br><span class="line">		background:black;</span><br><span class="line">	&#125; @<span class="keyword">else</span> <span class="keyword">if</span> $theme == light &#123;</span><br><span class="line">		background:white;</span><br><span class="line">	&#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>在sass里的for循环是这样的</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; through &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还有一种是</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; to &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，开始值和结束值的关系可以是升序也可以是倒序，但是每次只能+1或者-1</p>
-<p>这两种有什么区别呢？</p>
-<p>区别就是 from 1 to 4 的话是执行三次，i的变化是 1 2 3</p>
-<p>from 1 through 4 的话是执行四次，i的变化是 1 2 3 4</p>
-<p>如：</p>
-<p>from to</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> to $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>—》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>from through</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> through $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>—&gt;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="each-遍历list类型"><a href="#each-遍历list类型" class="headerlink" title="each 遍历list类型"></a>each 遍历list类型</h3><p>在sass里可以利用each方法来遍历咱们的list类型的数据</p>
-<p>list类型在js里类似于数组，那么each类似于for in遍历，结构如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@each $item <span class="keyword">in</span> $list&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$colors:success error warning;</span><br><span class="line">$map:(success:green,<span class="attr">warning</span>:yellow,<span class="attr">error</span>:red);</span><br><span class="line">@each $color <span class="keyword">in</span> $colors&#123;</span><br><span class="line">	.bg-#&#123;$color&#125;&#123;</span><br><span class="line">		background:map-get($map,$color);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—&gt;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.bg-success &#123;</span><br><span class="line">  background: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-error &#123;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-warning &#123;</span><br><span class="line">  background: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="@while 循环"></a>@while 循环</h3><p>在sass里，拥有@while循环，比@for会更好用一些,@for循环只能从一个数到另一个数变化之间执行，每次变化都是1，while设置循环结构的话更为灵活；</p>
-<p>结构：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">while</span> 条件&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>eq：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$i:<span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">while</span> $i&gt;<span class="number">0</span>&#123;</span><br><span class="line">	.item-#&#123;$i&#125;&#123;</span><br><span class="line">		width:$i*<span class="number">5</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	$i:$i - <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：$i - 2 需要用空格隔开哟</p>
-<p>———》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.item<span class="number">-6</span> &#123;</span><br><span class="line">  width: <span class="number">30</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>在sass里也可以定义函数，并且也可以有返回值</p>
-<p>结构：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="function"><span class="keyword">function</span> 名称 (<span class="params">参数<span class="number">1</span>，参数<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">    @<span class="keyword">return</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例如，我们做一个返回map里key对应的值的函数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$colors:(light:#ffffff,dark:#000000,gray:#555555);</span><br><span class="line"></span><br><span class="line">@<span class="function"><span class="keyword">function</span> <span class="title">color</span>(<span class="params">$key</span>)</span>&#123;</span><br><span class="line">	@<span class="keyword">return</span> map-get($colors,$key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">	background:color(light);</span><br><span class="line">	color:color(dark);</span><br><span class="line">	border-color:color(gray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: #ffffff;</span><br><span class="line">  color: #000000;</span><br><span class="line">  border-color: #555555;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1426,15 +1454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1442,7 +1466,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1451,6 +1475,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>

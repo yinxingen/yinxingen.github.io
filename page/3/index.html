@@ -157,6 +157,134 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-4.sass的分支结构、循环结构、函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">4.sass的分支结构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/4.sass的分支结构、循环结构、函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>在sass里，可以使用@if让我们根据一些条件来应用特定的样式</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">if</span> 条件 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果条件为真的话，括号里的代码就会释放出来</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">true</span>;</span><br><span class="line">.rounded&#123;</span><br><span class="line">   @<span class="keyword">if</span> $use-refixes &#123;</span><br><span class="line">   	-webkit-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-moz-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-ms-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-o-border-radius:<span class="number">5</span>px;</span><br><span class="line">   &#125;</span><br><span class="line">   border-radius:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  -webkit-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -moz-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -ms-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -o-border-radius: <span class="number">5</span>px;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果是另外一种情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<p>—》<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>if else在sass里的写法是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	@<span class="keyword">if</span> $theme == dark &#123;</span><br><span class="line">		background:black;</span><br><span class="line">	&#125; @<span class="keyword">else</span> <span class="keyword">if</span> $theme == light &#123;</span><br><span class="line">		background:white;</span><br><span class="line">	&#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>在sass里的for循环是这样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; through &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一种是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; to &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，开始值和结束值的关系可以是升序也可以是倒序，但是每次只能+1或者-1</p>
+<p>这两种有什么区别呢？</p>
+<p>区别就是 from 1 to 4 的话是执行三次，i的变化是 1 2 3</p>
+<p>from 1 through 4 的话是执行四次，i的变化是 1 2 3 4</p>
+<p>如：</p>
+<p>from to</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> to $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>from through</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> through $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="each-遍历list类型"><a href="#each-遍历list类型" class="headerlink" title="each 遍历list类型"></a>each 遍历list类型</h3><p>在sass里可以利用each方法来遍历咱们的list类型的数据</p>
+<p>list类型在js里类似于数组，那么each类似于for in遍历，结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@each $item <span class="keyword">in</span> $list&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$colors:success error warning;</span><br><span class="line">$map:(success:green,<span class="attr">warning</span>:yellow,<span class="attr">error</span>:red);</span><br><span class="line">@each $color <span class="keyword">in</span> $colors&#123;</span><br><span class="line">	.bg-#&#123;$color&#125;&#123;</span><br><span class="line">		background:map-get($map,$color);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.bg-success &#123;</span><br><span class="line">  background: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-error &#123;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-warning &#123;</span><br><span class="line">  background: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="@while 循环"></a>@while 循环</h3><p>在sass里，拥有@while循环，比@for会更好用一些,@for循环只能从一个数到另一个数变化之间执行，每次变化都是1，while设置循环结构的话更为灵活；</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">while</span> 条件&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>eq：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$i:<span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">while</span> $i&gt;<span class="number">0</span>&#123;</span><br><span class="line">	.item-#&#123;$i&#125;&#123;</span><br><span class="line">		width:$i*<span class="number">5</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	$i:$i - <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：$i - 2 需要用空格隔开哟</p>
+<p>———》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.item<span class="number">-6</span> &#123;</span><br><span class="line">  width: <span class="number">30</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>在sass里也可以定义函数，并且也可以有返回值</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="function"><span class="keyword">function</span> 名称 (<span class="params">参数<span class="number">1</span>，参数<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">    @<span class="keyword">return</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如，我们做一个返回map里key对应的值的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$colors:(light:#ffffff,dark:#000000,gray:#555555);</span><br><span class="line"></span><br><span class="line">@<span class="function"><span class="keyword">function</span> <span class="title">color</span>(<span class="params">$key</span>)</span>&#123;</span><br><span class="line">	@<span class="keyword">return</span> map-get($colors,$key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">	background:color(light);</span><br><span class="line">	color:color(dark);</span><br><span class="line">	border-color:color(gray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: #ffffff;</span><br><span class="line">  color: #000000;</span><br><span class="line">  border-color: #555555;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mobile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1236,82 +1364,6 @@ vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
 
 
   
-    <article id="post-HTML与xhtml的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/HTML与xhtml的区别/">html 与 xhtml 的区别</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/HTML与xhtml的区别/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="html-与-xhtml-的区别"><a href="#html-与-xhtml-的区别" class="headerlink" title="html 与 xhtml 的区别"></a>html 与 xhtml 的区别</h3><p>HTML是一种基本的web网页设计语言，XHTML是一种基于XML的置标语言</p>
-<p>最主要的不同：</p>
-<p>XHTML元素必须正确的被嵌套，元素必须关闭，标签必须小写，必须有根元素</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/HTML与xhtml的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1429,15 +1481,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1445,7 +1493,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1454,6 +1502,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>
