@@ -689,6 +689,94 @@ npm install -D gulp-concat
 
 
   
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/跨域/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域问题对于WEB前端工程师来说是比较重要的一个问题，因为我们时常需要去解决这样的问题，在其他类型的前端开发来说，他们并没有跨域问题</p>
+<h5 id="跨域问题的产生"><a href="#跨域问题的产生" class="headerlink" title="跨域问题的产生"></a>跨域问题的产生</h5><p>因为浏览器有同源策略：只有在同域名，同端口，同协议的情况下才可以进行数据交互；</p>
+<p>有的时候，例如，在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司有，数据服务器不只有一个，所以跨域问题也必然存在</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>1.jsonp </p>
+<pre><code>是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，因为其不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说是前后端结合的方式。
+
+注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间
+
+缺点：只能get请求
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">nodejs：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line">    <span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">    <span class="comment">//前端回调函数的名字</span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>]</span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>)+<span class="string">''</span></span><br><span class="line">    <span class="comment">//返回给前端函数数据</span></span><br><span class="line">    res.send(fn+<span class="string">'('</span>+content+<span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">js：</span><br><span class="line"></span><br><span class="line">Jsonp(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123;url,success&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签</span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">"&lt;script&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//随机函数名字</span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span>+<span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">        <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name]</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    $script[<span class="number">0</span>].src = url+<span class="string">'?callback='</span>+random_name</span><br><span class="line">    $(<span class="string">"body"</span>).append($script)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.cors</p>
+<pre><code>纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">node:</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/data_cors"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">js:</span><br><span class="line">  </span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>3.服务端代理proxy</p>
+<pre><code>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">目标服务器接口 <span class="number">3000</span>：</span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    res.send(<span class="string">'proxy'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">代理服务器<span class="number">1234</span>：</span><br><span class="line">app.get(<span class="string">"/to3000"</span>,(req,res)=&gt;&#123; </span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">    <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url,(res)=&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> result=<span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>,(chunk)=&gt;&#123;</span><br><span class="line">            result+=chunk</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">            <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result)</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">开发服务器<span class="number">9000</span>：</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        url:<span class="string">"http://localhost:3000/data_proxy"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-es6模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -761,94 +849,6 @@ npm install -D gulp-concat
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/07/es6模块化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/跨域/" class="archive-article-date">
-  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域问题对于WEB前端工程师来说是比较重要的一个问题，因为我们时常需要去解决这样的问题，在其他类型的前端开发来说，他们并没有跨域问题</p>
-<h5 id="跨域问题的产生"><a href="#跨域问题的产生" class="headerlink" title="跨域问题的产生"></a>跨域问题的产生</h5><p>因为浏览器有同源策略：只有在同域名，同端口，同协议的情况下才可以进行数据交互；</p>
-<p>有的时候，例如，在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司有，数据服务器不只有一个，所以跨域问题也必然存在</p>
-<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>1.jsonp </p>
-<pre><code>是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，因为其不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说是前后端结合的方式。
-
-注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间
-
-缺点：只能get请求
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">nodejs：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line">    <span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">    <span class="comment">//前端回调函数的名字</span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>]</span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>)+<span class="string">''</span></span><br><span class="line">    <span class="comment">//返回给前端函数数据</span></span><br><span class="line">    res.send(fn+<span class="string">'('</span>+content+<span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">js：</span><br><span class="line"></span><br><span class="line">Jsonp(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123;url,success&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签</span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">"&lt;script&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//随机函数名字</span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span>+<span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">        <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name]</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    $script[<span class="number">0</span>].src = url+<span class="string">'?callback='</span>+random_name</span><br><span class="line">    $(<span class="string">"body"</span>).append($script)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.cors</p>
-<pre><code>纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">node:</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/data_cors"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">js:</span><br><span class="line">  </span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>3.服务端代理proxy</p>
-<pre><code>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">目标服务器接口 <span class="number">3000</span>：</span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    res.send(<span class="string">'proxy'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">代理服务器<span class="number">1234</span>：</span><br><span class="line">app.get(<span class="string">"/to3000"</span>,(req,res)=&gt;&#123; </span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">    <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url,(res)=&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> result=<span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>,(chunk)=&gt;&#123;</span><br><span class="line">            result+=chunk</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">            <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result)</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">开发服务器<span class="number">9000</span>：</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        url:<span class="string">"http://localhost:3000/data_proxy"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
         </p>
       
 
@@ -1454,11 +1454,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1466,7 +1470,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1475,10 +1479,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>
