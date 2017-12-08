@@ -157,6 +157,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css选择符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/css选择符/">css 选择符</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/css选择符/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="css-选择符"><a href="#css-选择符" class="headerlink" title="css 选择符"></a>css 选择符</h2><ol>
+<li>id选择器（#myid）</li>
+<li>类选择器（.myclassname）</li>
+<li>标签选择器（div,h1,p）</li>
+<li>相邻选择器（h1 + p）</li>
+<li>子选择器（ul&lt;li）</li>
+<li>后代选择器（li a）</li>
+<li>通配符选择器（*）</li>
+<li>属性选择器（a[rel=”external”]）</li>
+<li>伪类选择器（a:hover,li:nth-child）</li>
+</ol>
+<p>可继承：font-size，font-family，color</p>
+<p>不可继承：border padding margin width height</p>
+<p>优先级就近原则，样式定义最近者为准；载入样式以最后载入的定位为准；</p>
+<p>优先级为：!important &gt; 内联 &gt; id &gt; class &gt; tag</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/css选择符/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CSS样式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -321,94 +409,6 @@ visibility:hidden;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/27/CSS中清除浮动的几种方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-伪数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/27/伪数组/">伪数组</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/27/伪数组/" class="archive-article-date">
-  	<time datetime="2017-11-27T02:31:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关于伪数组"><a href="#关于伪数组" class="headerlink" title="关于伪数组"></a>关于伪数组</h3><ol>
-<li><p>常见的伪数组都有哪些？arguments、通过document.getElements..获取到的内容；</p>
-</li>
-<li><p>伪数组有什么特点？具有length属性，也是一个一个的元素组成的，但是构造器不是Array，不能使用数组的方法,按索引方式存储数据</p>
-</li>
-<li><p>转换为真正数组的方法：</p>
-<p> 通过遍历将伪数组里元素放入到一个新的数组里</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arg = <span class="built_in">arguments</span><span class="comment">//这就是一个典型的伪数组</span></span><br><span class="line"><span class="keyword">let</span> arr = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arg.length; i++) &#123;</span><br><span class="line">    arr.push(arg[i])</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></table></figure>
-<p>通过call改变数组slice方法里的this指向</p>
-<p>因为我想要让伪数组也能使用数组的方法，为什么伪数组就不能使用数组方法，为什么数组就能使用push方法了<br>一个数组都是由它的构造器实例化出来的，var a = []//这是js的语法；正规的用法：var a = new Array()</p>
-<p>因为Array是一个构造函数，每一个构造函数都有原型,且构造函数构造出来的实例可以使用原型上的方法，也就是说因为Array的原型上有一些方法，所以每一个数组都可以使用这些push等等的方法<br>因为伪数组的构造器不是Array，当然不能使用Array原型上的push方法<br>现在数组有一个方法slice，这个方法每次都会返回一个新数组，如果不传参数的话，返回的新数组的元素和原数组的元素是一模一样的</p>
-<p>如果伪数组也能执行这个slice方法的话，那么是不是就会返回一个新的真正的数组，并且元素一样，但是不能直接执行<br>所以我们使用偷梁换柱的方法，让一个真正的数据，或者直接从Array.prototype上执行slice方法，但是在执行的时候通过call来将里面的this换成咱们的伪数组，这样的话，就会返回一个元素和伪数组元素一样的真正数组了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [].slice.call(arg) <span class="comment">//Array.prototype.slice.call(arg)</span></span><br></pre></td></tr></table></figure></p>
-<p>最后总结：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeArray</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(c);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; c.length;i++)&#123;</span><br><span class="line">            ret[i] = c[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">数组 字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/27/伪数组/">展开全文 >></a>
         </p>
       
 
@@ -1392,15 +1392,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
             
             <div class="clearfix"></div>

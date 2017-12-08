@@ -157,6 +157,1085 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mobile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/mobile/">mobile</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/mobile/" class="archive-article-date">
+  	<time datetime="2017-12-07T10:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="移动端开发"><a href="#移动端开发" class="headerlink" title="移动端开发"></a>移动端开发</h2><p>我们现在关注的点还在移动M站上，或者我们可以叫做webapp，其实就是运行在移动端浏览器中的web网站</p>
+<p>app:application应用程序。手机软件:主要指安装在智能手机上的软件，完善原始系统的不足与个性化。</p>
+<p>移动端开发是与PC端肯定是有很大不同的，所以我们需要学习如何在移动设备上开发完美适配的app</p>
+<p>开发移动端应用我们需要学习的知识点可以分成如下几个：</p>
+<p>1.移动端布局适配</p>
+<p>2.移动端事件</p>
+<p>3.移动端交互效果</p>
+<p>4.移动端前端框架</p>
+<p>5.移动端调试</p>
+<h3 id="移动端布局适配"><a href="#移动端布局适配" class="headerlink" title="移动端布局适配"></a>移动端布局适配</h3><blockquote>
+<p>从屏幕尺寸、屏幕类型等方面来看的话，移动设备和PC设备大有不同，所以从布局、适配等方面都需要我们考虑到</p>
+</blockquote>
+<h4 id="Viewport视口的作用"><a href="#Viewport视口的作用" class="headerlink" title="Viewport视口的作用"></a>Viewport视口的作用</h4><p>在很久以前，我们的设备还不是智能设备的时候，设备访问智能访问到网页的左上角（当时都是pc网站），查看全部内容需要通过滚动条</p>
+<p>慢慢的我们发现，我们的一个页面放到移动端中访问的时候，没有滚动条了，但是内容都缩小了</p>
+<p>这是因为我们有了一个叫做viewport的一个东西</p>
+<p>网页不是直接放入浏览器中的，而是先放入到viewport中，然后viewport在等比缩放到浏览器的宽度，放入浏览器，viewport在缩放的过程中，网页内容也被缩小了</p>
+<p>这样的话我们需要做一些处理，其实问题的根源在于viewport的宽度和浏览器宽度不一样，如果我们能将其设置为一样的话，不会出现这样的问题了</p>
+<p>我们可以通过meta标签来设置viewport将其设置为浏览器的宽度，也就是设备的宽度，这样的话布局就会简单多了</p>
+<h5 id="viewport的宽度"><a href="#viewport的宽度" class="headerlink" title="viewport的宽度"></a>viewport的宽度</h5><p>当浏览器宽度小于980的时候，宽度就是980，当浏览器尺寸宽度大于980的时候，宽度和浏览器宽度一致</p>
+<h5 id="通过meta标签来设置viewport"><a href="#通过meta标签来设置viewport" class="headerlink" title="通过meta标签来设置viewport"></a>通过meta标签来设置viewport</h5><p><meta> 标签提供关于 HTML 文档的元数据。它不会显示在页面上，但是对于机器是可读的。可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或其他 web 服务。</p>
+<p><a href="http://blog.csdn.net/yc123h/article/details/51356143" target="_blank" rel="noopener">meta标签大全</a></p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
+
+
+<p>meta viewport 的6个属性：</p>
+<table>
+<thead>
+<tr>
+<th>width</th>
+<th style="text-align:right">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initial-scale</td>
+<td style="text-align:right">设置layout viewport 的宽度，为一个正整数，或字符串”width-device”</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td style="text-align:right">设置页面的初始缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td style="text-align:right">允许用户的最大缩放值，为一个数字，可以带小数</td>
+</tr>
+<tr>
+<td>height</td>
+<td style="text-align:right">设置layout viewport 的高度，这个属性并不重要，很少使用</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td style="text-align:right">是否允许用户进行缩放，值为”no”或”yes”, no 代表不允许，yes代表允许</td>
+</tr>
+</tbody>
+</table>
+<h4 id="移动端布局方式与设计图"><a href="#移动端布局方式与设计图" class="headerlink" title="移动端布局方式与设计图"></a>移动端布局方式与设计图</h4><p>现有的布局方式：</p>
+<p>1.固定布局，每一个元素都是固定的尺寸，内容区域居中在浏览器中间</p>
+<pre><code>内容区域的尺寸：980,1000,1100,1200
+</code></pre><p>2.响应式布局，利用媒体查询来实现不同尺寸的浏览器显示结构不一样</p>
+<pre><code>一般会有三张设计图，PC,平板,手机
+</code></pre><p>3.自适应布局，属于响应式里的一种，利用rem、百分比、vwvh等布局单位来实现</p>
+<pre><code>设计图一般只有一张，640、750居多
+</code></pre><h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>移动的屏幕和PC的屏幕有一个很大的区别，移动端是视网膜高清屏（Retina）</p>
+<p>retina屏幕有一个属性叫DPR（设备像素缩放比） = 物理像素/逻辑像素</p>
+<p>例如，iphone 5s手机商宣传手机的尺寸是：640宽，这个值就是物理像素，而从开发者眼里我们所指的其实是320px（逻辑像素）</p>
+<p>在dpr为2的手机中，我们的一个逻辑像素会从横纵两个方向分别以2个像素点来渲染</p>
+<p>如果不管dpr的话，其实我们布局依然可以，因为我们设置一个像素宽高的东西的话，在手机上看见的基本也就是这么大，至于手机设备用多少个物理像素去渲染，大小还是不会变化的</p>
+<p>设计师出图都是2倍的，是因为，在页面中除了字体（矢量图）大部分都是位图，也就是如果一个像素宽高的盒子里准备放入图片，如果图片的尺寸也是一个像素宽高的话，因为其实在移动端渲染的时候是用四个像素来渲染，图片会失真，但是如果我们给一像素宽高的盒子放入2像素宽高的图片的话，不就失真</p>
+<h5 id="布局单位"><a href="#布局单位" class="headerlink" title="布局单位"></a>布局单位</h5><blockquote>
+<p>因为我们的移动设备有很多种，所以我们的布局不可能是固定布局，所以我们要使用自适应布局</p>
+</blockquote>
+<p>我们在开发中可以选用很多自适应布局单位，这些单位必须满足一个条件</p>
+<p>1.% </p>
+<pre><code>优点：简单，无需设置，兼容性好
+缺点：基于父元素的属性来设置，如果父元素没有宽高，设置无效
+</code></pre><p>2.vwvh</p>
+<pre><code>一个vw等于viewport宽度的百分之一，一个vh等于viewport高度的百分之一
+vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
+
+优点：简单，无需设置
+缺点：兼容性不好
+</code></pre><p>3.rem</p>
+<pre><code>一个rem等于根元素（html）的字体大小，兼容性很好    
+优点：兼容好，使用简单
+缺点：需要设置
+</code></pre><h5 id="rem与适配"><a href="#rem与适配" class="headerlink" title="rem与适配"></a>rem与适配</h5><p>当我们想使用一个自适应单位的时候，发现%有缺陷，vwvh兼容性差，弹性盒所针对的是元素排列的问题，只适用于某种情况，所以我们就想，能给我一个没啥上面的缺陷的单位，想到了rem</p>
+<p>rem的兼容性好一点，它也确实是一个布局单位，不受父子元素的影响，设置了rem之后，也不会对px、em等单位造成影响，它是一个理想的单位</p>
+<p>rem也有一个致命的问题，就是它不是一个自适应的单位，不会跟着设备尺寸不同而不同，但是没有关系，我们有万能的js，可以去动态的设置它</p>
+<h6 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h6><p>我们可以将1rem设置成屏幕的某一个比例，比如将1rem设置成屏幕的十分之一</p>
+<p>假设我们的设计图是640宽的，我们拿到之后量了一下a的宽度为480px，得到比例a所占屏幕3/4，根据rem与屏幕的关系，最后设置成7.5rem</p>
+<p>就是说在设置元素的宽度是时候，会根据设定好的比例关系去进行换算<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    document.documentElement.style.fontSize = document.documentElement.clientWidth/</span><span class="number">10</span> + <span class="string">'px'</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h6><p>如果设计图是640的图，这个时候我们知道它是照着i5来的，我们现在假设世界上所有的手机都是320的，也就是每一个人用的都是i5，在这个理想的情况下，因为手机都一样，尺寸都一样，和pc端的固定布局也就一样了</p>
+<p>假设有一个在640的图上我们量得的宽度是320，因为是二倍图，所以我们知道，它的实际宽度是160px，这样的话，我们直接给这个设置设置width：160px就可以了，这个时候，我们玩个花子，不要单纯的使用px来设置，用rem来设置，例如，我可以将rem设置为100px，这样的，刚才的盒子设置为width：1.6rem，算法就是 量的宽度/(dpr*100) = 要设置的rem值</p>
+<p>这样我们就可以开心的开发，量一个尺寸，除个2，再小数点推两位，设置就性了，但是我们也知道，手机的尺寸并不可能都是320，这样的话，没有关系，我们可以根据一个比例来算rem到底设置为多少</p>
+<p>在手机宽度为320的时候，我们设置的1rem=100px，所以有一个比例 b = 100/320</p>
+<p>那么在W宽度的手机上，1rem应该是多少呢？设为x   那么x/w = b</p>
+<p>得到x = w/3.2</p>
+<p>那么就不要写死html的fontsize为100了。而是用js去设置：</p>
+<p>document.documentElement.style.fontSize = document.documentElement.clientWidth/3.2 + ‘px’ </p>
+<p>这样，我们就可以得到一个自适应的rem </p>
+<h5 id="方法3："><a href="#方法3：" class="headerlink" title="方法3："></a>方法3：</h5><p>设计图如果是640的，我们知道设计的依据屏幕依然是320，假设所有的手机都是320的</p>
+<p>有一个div量得320，我们知道它的实际宽度是160，所以我们在css里直接设置160px。布局就很简单了，因为量多少，除以2就可以直接设置了</p>
+<p>但是手机不能只有这一个尺寸，不过没关系，我们可以想办法，我们知道，页面是放在viewport里的，页面的宽度就是viewport的宽度，我们在前面的方法会会将viewport通过meta标签设置为手机屏幕的宽度，但是现在我们就将viewport的宽度强行设置为320px，那么我们页面就会认为它的屏幕宽度就是320px，如果是在屏幕宽度不等于320的手机里，viewport也会进行缩放，缩放到手机屏幕大小，但是这个时候，页面依然认为手机屏幕是320的，也就是说，布局使用固定布局，自适应由viewport去做了，让它将咱们320的页面缩放到不同尺寸的移动设计，达到表现一致<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=320"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>饿了么的做法：认为世界的手机都是二倍宽的，然后再调整viewport</p>
+<h6 id="兼容查阅网站"><a href="#兼容查阅网站" class="headerlink" title="兼容查阅网站"></a>兼容查阅网站</h6><p><a href="https://caniuse.com/" target="_blank" rel="noopener">can i use </a>,在这里可以查看很多属性、api的兼容性</p>
+<p>375/52.08 = X/100 x = 37500/52.08</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mobile</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/mobile/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-前端页面的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/前端页面的构成/">前端页面的构成</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/前端页面的构成/" class="archive-article-date">
+  	<time datetime="2017-12-07T07:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前端页面的构成"><a href="#前端页面的构成" class="headerlink" title="前端页面的构成"></a>前端页面的构成</h3><p>HTML（结构）：超文本标记语言，由HTML或XHTML之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。</p>
+<p>css（表现）：层叠样式表，由css负责创建。css对“如何显示有关内容”的问题做出了回答</p>
+<p>js（行为）：客户端脚本语言，内容应该如何对事件作出反应</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/前端页面的构成/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JS的继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/04/JS的继承/">JS的继承</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/04/JS的继承/" class="archive-article-date">
+  	<time datetime="2017-12-04T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS的继承"><a href="#JS的继承" class="headerlink" title="JS的继承"></a>JS的继承</h1><hr>
+<h3 id="JS里常用的两种继承："><a href="#JS里常用的两种继承：" class="headerlink" title="JS里常用的两种继承："></a>JS里常用的两种继承：</h3><ol>
+<li>原型链继承（对象间的继承）</li>
+<li>类式继承（构造函数间的继承）</li>
+</ol>
+<blockquote>
+<p>由于JS不像java那样是真正面向对象的语言，js是基于对象的，它没有类的概念。所以，要想实现继承，可以用js的原型prototype机制或者用apply和call方法去实现。</p>
+<p>我们可以简单的把prototype看作是一个模板，新创建的自定义对象都是这个模板（prototype）的一个拷贝（实际上不是拷贝而是链接，只不过这种链接是不可见，新实例化的对象内部有一个看不见的<em>proto</em>指针，指向原型对象）。</p>
+<p>js可以通过构造函数和原型的方式模拟实现类的功能。另外，js类式继承的实现也是依靠原型链来实现的。</p>
+</blockquote>
+<h3 id="原型式继承与类式继承"><a href="#原型式继承与类式继承" class="headerlink" title="原型式继承与类式继承"></a>原型式继承与类式继承</h3><h4 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h4><blockquote>
+<p>类式继承是在子类型构造函数的内部调用超类型的构造函数。<br>严格的类式继承并不是很常见，一般都是组合着用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">this</span>.colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">Super.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>原型式继承是借助已有的对象创建新的对象，将子类的原型指向父类，就相当于加入了父类这条原型链</p>
+<hr>
+<h4 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h4><blockquote>
+<p>为了让子类继承父类的属性（也包括方法），首先需要定义一个构造函数。然后，将父类的新实例赋值给个构造函数的原型：</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'mike'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent();<span class="comment">//Child继承Parent,通过原型，形成链条</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> text = <span class="keyword">new</span> Child();</span><br><span class="line">alert(text.age);</span><br><span class="line">alert(text.name);<span class="comment">//得到继承的属性</span></span><br><span class="line"><span class="comment">//继续原型链继承</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Brother</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">this</span>.weight = <span class="number">60</span>;</span><br><span class="line">&#125;</span><br><span class="line">Brother.prototype = <span class="keyword">new</span> Child();<span class="comment">//继续原型链继承</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> brother = <span class="keyword">new</span> Brother();</span><br><span class="line">alert(brother.name);<span class="comment">//继承了Parent和Child，弹出mike</span></span><br><span class="line">alert(brother.age);<span class="comment">//弹出12</span></span><br></pre></td></tr></table></figure>
+<p>以上原型链集成还缺少一环，那就是Object，所有的构造函数都继承Object。而继承Object是自动完成的，并不需要我们自己手动继承，那么他们的从属关系是怎样？</p>
+<hr>
+<h3 id="确定原型和实例的关系"><a href="#确定原型和实例的关系" class="headerlink" title="确定原型和实例的关系"></a>确定原型和实例的关系</h3><blockquote>
+<p>可以通过两种方式来确定原型和实例之间的关系。操作符instanceof和isPrototypeof()方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(brother <span class="keyword">instanceof</span> <span class="built_in">Object</span>)<span class="comment">//true</span></span><br><span class="line">alert(test <span class="keyword">instanceof</span> Brother);<span class="comment">//false,test是brother的超类 </span></span><br><span class="line">alert(brother <span class="keyword">instanceof</span> Child);<span class="comment">//true</span></span><br><span class="line">alert(brother <span class="keyword">instanceof</span> Parent);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>只要是原型链中出现过的原型，都可以说是该原型链派生的实例的原型，因此，isPrototypeof()方法也会返回true<br>在js中，被继承的函数称为超类型（父类，基类也行），继承的函数称为子类型（子类，派生类）。使用原型继承主要由两个问题：<br>一是字面量重写原型会中断关系，使用引用类型的原型，并且子类型还无法给超类型传递参数。</p>
+<p>借用构造函数（类式继承）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = [<span class="string">'mike'</span>,<span class="string">'jack'</span>,<span class="string">'smith'</span>];</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,age);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="number">21</span>);</span><br><span class="line">    alert(test.age);<span class="comment">//21</span></span><br><span class="line">    alert(test.name);<span class="comment">//mike,jack,smith</span></span><br><span class="line">    test.name.push(<span class="string">'bill'</span>);</span><br><span class="line">    alert(test.name);<span class="comment">//mike,jack,smith,bill&lt;/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>借用构造函数虽然解决了刚才两种问题，但没有原型，则复用无从谈起，所以我们需要原型链+借用构造函数的模式，这种模式称为组合继承.</p>
+<hr>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = [<span class="string">'mike'</span>,<span class="string">'jack'</span>,<span class="string">'smith'</span>];</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    Parent.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name  + <span class="string">' are both'</span> + <span class="keyword">this</span>.age;</span><br><span class="line">    &#125;;	</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,age);<span class="comment">//对象冒充，给超类型传参</span></span><br><span class="line">    &#125;</span><br><span class="line">    Child.prototype = <span class="keyword">new</span> Parent();<span class="comment">//原型链继承</span></span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="number">21</span>);<span class="comment">//写new Parent(21)也行</span></span><br><span class="line">    alert(test.run());<span class="comment">//mike,jack,smith are both21</span></span><br><span class="line">    &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>组合式继承是比较常用的一种继承方法，其背后的思路是:</p>
+<blockquote>
+<p>使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又保证每个实例都有它自己的属性。<br>call()的用法：调用一个对象的一个方法，以另一个对象替换当前对象。<br>call([thisObj[,arg1[, arg2[, [,.argN]]]]]) </p>
+</blockquote>
+<hr>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><blockquote>
+<p>这种继承借助原型并基于已有的对象创建新对象，同时还不用创建自定义类型的方式称为原型式继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="function"><span class="keyword">function</span> <span class="title">obj</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">         <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">         F.prototype = o;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="keyword">var</span> box = &#123;</span><br><span class="line">        name : <span class="string">'trigkit4'</span>,</span><br><span class="line">        arr : [<span class="string">'brother'</span>,<span class="string">'sister'</span>,<span class="string">'baba'</span>]</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> b1 = obj(box);</span><br><span class="line">    alert(b1.name);<span class="comment">//trigkit4</span></span><br><span class="line"></span><br><span class="line">    b1.name = <span class="string">'mike'</span>;</span><br><span class="line">    alert(b1.name);<span class="comment">//mike</span></span><br><span class="line"></span><br><span class="line">    alert(b1.arr);<span class="comment">//brother,sister,baba</span></span><br><span class="line">    b1.arr.push(<span class="string">'parents'</span>);</span><br><span class="line">    alert(b1.arr);<span class="comment">//brother,sister,baba,parents</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> b2 = obj(box);</span><br><span class="line">    alert(b2.name);<span class="comment">//trigkit4</span></span><br><span class="line">    alert(b2.arr);<span class="comment">//brother,sister,baba,parents</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>原型式继承首先在obj()函数内部创建一个临时性的构造函数 ，然后将传入的对象作为这个构造函数的原型，最后返回这个临时类型的一个新实例。</p>
+<h4 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h4><blockquote>
+<p>这种继承方式是把原型式+工厂模式结合起来，目的是为了封装创建的过程。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> f= obj(o);</span><br><span class="line">        f.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.arr;<span class="comment">//同样，会共享引用</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">```    </span></span><br><span class="line"><span class="regexp">---</span></span><br><span class="line"><span class="regexp">#### 组合式继承的小问题:</span></span><br><span class="line"><span class="regexp">&gt;组合式继承是js最常用的继承模式，但组合继承的超类型在使用过程中会被调用两次；一次是创建子类型的时候，另一次是在子类型构造函数的内部</span></span><br><span class="line"><span class="regexp">```javascript</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function Parent(name)&#123;</span></span><br><span class="line"><span class="regexp">        this.name = name;</span></span><br><span class="line"><span class="regexp">        this.arr = ['哥哥','妹妹','父母'];</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    Parent.prototype.run = function () &#123;</span></span><br><span class="line"><span class="regexp">        return this.name;</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    function Child(name,age)&#123;</span></span><br><span class="line"><span class="regexp">        Parent.call(this,age);/</span><span class="regexp">/第二次调用</span></span><br><span class="line"><span class="regexp">        this.age = age;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    Child.prototype = new Parent();/</span><span class="regexp">/第一次调用</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>以上代码是之前的组合继承，那么寄生组合继承，解决了两次调用的问题。</p>
+<hr>
+<p>寄生组合式继承<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">obj</span>(<span class="params">o</span>)</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">        F.prototype = o;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">parent,test</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> f = obj(parent.prototype);<span class="comment">//创建对象</span></span><br><span class="line">        f.constructor = test;<span class="comment">//增强对象</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.arr = [<span class="string">'brother'</span>,<span class="string">'sister'</span>,<span class="string">'parents'</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Parent.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">        Parent.call(<span class="keyword">this</span>,name);</span><br><span class="line">        <span class="keyword">this</span>.age =age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    inheritPrototype(Parent,Child);<span class="comment">//通过这里实现继承</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> test = <span class="keyword">new</span> Child(<span class="string">'trigkit4'</span>,<span class="number">21</span>);</span><br><span class="line">    test.arr.push(<span class="string">'nephew'</span>);</span><br><span class="line">    alert(test.arr);<span class="comment">//</span></span><br><span class="line">    alert(test.run());<span class="comment">//只共享了方法</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> test2 = <span class="keyword">new</span> Child(<span class="string">'jack'</span>,<span class="number">22</span>);</span><br><span class="line">    alert(test2.arr);<span class="comment">//引用问题解决</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="call和apply"><a href="#call和apply" class="headerlink" title="call和apply"></a>call和apply</h4><p>全局函数apply和call可以用来改变函数中this的指向，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个全局函数</span></span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>.fruit);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 定义一个全局变量</span></span><br><span class="line">   <span class="keyword">var</span> fruit = <span class="string">"apple"</span>;</span><br><span class="line">   <span class="comment">// 自定义一个对象</span></span><br><span class="line">   <span class="keyword">var</span> pack = &#123;</span><br><span class="line">       fruit: <span class="string">"orange"</span></span><br><span class="line">   &#125;;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 等价于window.foo();</span></span><br><span class="line">   foo.apply(<span class="built_in">window</span>);  <span class="comment">// "apple",此时this等于window</span></span><br><span class="line">   <span class="comment">// 此时foo中的this === pack</span></span><br><span class="line">   foo.apply(pack);    <span class="comment">// "orange"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="自己的总结"><a href="#自己的总结" class="headerlink" title="自己的总结"></a>自己的总结</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">//ES5</span><br><span class="line">function 构造函数名(形参)&#123;</span><br><span class="line">    //实例属性</span><br><span class="line">    this.属性名 = 值;</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br><span class="line">//原型方法</span><br><span class="line">构造函数名.prototype.方法名 = function()&#123; ……&#125;;</span><br><span class="line">……</span><br><span class="line">//或</span><br><span class="line">构造函数名.prototype = &#123;</span><br><span class="line">    方法名 : function()&#123;……&#125;,</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//继承</span><br><span class="line">function 子类(形参)&#123;</span><br><span class="line">    父类.call(this,父类所需的形参); //或父类.apply(this,arguments);</span><br><span class="line">    子类自己的属性</span><br><span class="line">&#125;</span><br><span class="line">for(var i in 父类.prototype)&#123;</span><br><span class="line">    子类.prototype[i] = 父类.prototype[i];</span><br><span class="line">&#125;</span><br><span class="line">子类.prototype = &#123;</span><br><span class="line">    子类自己的原型方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//ES6</span><br><span class="line">class 类名(原构造函数名) &#123;</span><br><span class="line">    constructor(形参)&#123;</span><br><span class="line">        //实例属性</span><br><span class="line">        this.属性名 = 值;</span><br><span class="line">    &#125;</span><br><span class="line">    //原型方法</span><br><span class="line">    方法名()&#123;</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//继承</span><br><span class="line">class 子类 extends 父类&#123;</span><br><span class="line">    constructor(形参)&#123;</span><br><span class="line">        super(父类所需的参数);</span><br><span class="line">        子类自己的属性 ……</span><br><span class="line">    &#125;</span><br><span class="line">    子类自己的原型方法……</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/04/JS的继承/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-缓存的一些问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/29/缓存的一些问题/">浏览器缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/29/缓存的一些问题/" class="archive-article-date">
+  	<time datetime="2017-11-29T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近恶补http基础，看到缓存章节，然后前段时间又正好读到一篇介绍浏览器缓存的文章，两者结合，受益匪浅。自己也半抄半总结的记录一下。</p>
+<h3 id="浏览器缓存概述"><a href="#浏览器缓存概述" class="headerlink" title="浏览器缓存概述"></a>浏览器缓存概述</h3><p>浏览器缓存分为强缓存和协商缓存。当客户端请求某个资源时，获取缓存的流程如下：</p>
+<blockquote>
+<p>1、先根据这个资源的一些http header判断它是否命中强缓存（后文再解释什么是强缓存），如果命中(cache hit)，则直接从本地获取缓存资源，不会发请求到服务器；</p>
+<p>2、当强缓存没有命中时，客户端会发送请求到服务器，服务器通过另一些request header验证这个资源是否命中协商缓存（后文再解释什么是协商缓存），称为http再验证(revalidation)，如果命中(revalidate hit再验证命中)，服务器将请求返回，但不返回资源，而是告诉客户端直接从缓存中获取，客户端收到返回后就会从缓存中获取资源；</p>
+<p>3、强缓存和协商缓存共同之处在于，如果命中缓存，服务器都不会返回资源；区别是，强缓存不对发送请求到服务器，但协商缓存会。</p>
+<p>4、当协商缓存也没命中时，服务器就会将资源发送回客户端。</p>
+</blockquote>
+<h3 id="浏览器缓存分类"><a href="#浏览器缓存分类" class="headerlink" title="浏览器缓存分类"></a>浏览器缓存分类</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存:"></a>强缓存:</h4><blockquote>
+<p>直白点的方式描述下：客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，告诉客户端将这个资源保存在本地，并且在未来的某个时点之前如果还需要这个资源，直接从本地获取就行了，不用向服务器请求。这种方式缓存下来的资源称为强缓存。<br>强缓存利用http的返回头部的中Expires（实体首部字段）或者Cache-Control（通用首部字段）两个字段来控制的，用来表示资源的缓存时间。服务器通过这两个首部字段告知客户端资源的缓存过期时间和缓存最大生命周期。客户端得知资源的缓存过期时间和最大生命周期后，即可自行判断是否可不建立与服务器的链接，直接从浏览器缓存中获取资源。</p>
+</blockquote>
+<p>命中强缓存时，浏览器同样会受到status=200的response，chrome中可通过size区分从服务器返回的资源还是强缓存获得的资源。</p>
+<h5 id="Expires"><a href="#Expires" class="headerlink" title="Expires:"></a>Expires:</h5><blockquote>
+<p>该字段是http1.0时的规范，值为一个绝对时间的GMT格式的时间字符串，代表缓存资源的过期时间，在这个时点之前，即命中缓存。其过程如下：</p>
+</blockquote>
+<ol>
+<li>浏览器第一次跟服务器请求一个资源时，服务器在返回这个资源时，在相应头部会加上Expires，如图：<br> <img src="img/expires.png" alt=""></li>
+<li>浏览器接收到该资源后，会把这个资源连同response header一起缓存下来；</li>
+<li>浏览器再次请求这个资源时，会先从缓存中找到这个资源，然后获取Expires时间与当前的请求时间比较，如果Expires时间比当前浏览器的请求时间晚，说明缓存未过期，即命中缓存；</li>
+<li>如果当前请求时间比Expires晚，说明缓存过期，即未命中缓存，浏览器就会发送请求到服务器申请获取资源。</li>
+</ol>
+<p>缺点：服务器返回的Expires时点是服务器上的时间，可能与客户端有时间差，时间差太大时可能造成缓存混乱。</p>
+<h5 id="Cache-Control-max-age"><a href="#Cache-Control-max-age" class="headerlink" title="Cache-Control:max-age:"></a>Cache-Control:max-age:</h5><blockquote>
+<p>该字段是http1.1的规范，强缓存利用其max-age值来判断缓存资源的最大生命周期，它的值单位为秒，Cache-Control : max-age=3600代表缓存资源有效时间为1小时，即从第一次获取该资源起一小时内的请求都被认为可命中强缓存。其过程如下：</p>
+</blockquote>
+<ol>
+<li>浏览器第一次跟服务器请求一个资源时，服务器在返回这个资源时，在相应头部会加上Cache-Control:max-age=XXXXXXXX，如图：<br> <img src="img/cache.png" alt=""></li>
+<li>浏览器接收到资源后，连同response header一起缓存下来；</li>
+<li>浏览器再次跟服务器请求同一个资源时，会先从缓存中找到这个资源，获取date(第一次资源返回的响应时间)和max-age并计算出一个有效期(date + max-age)，然后再和浏览器请求时间比较最后判断是否命中缓存（逻辑同Expires）；</li>
+<li>如果没有命中缓存，浏览器直接从服务器请求资源，Cache-Control会在重新获取到服务器返回资源时更新。</li>
+</ol>
+<p>Cache-Control描述的是相对时间，采用本地时间来计算资源的有效期，所以相比Expires更可靠。<br>这两个Header可以只用其一，也可以一起使用。一起使用时以Cache-Control为准。</p>
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><blockquote>
+<p>直白点的方式描述下：客户端第一次问服务器要某个资源时，服务器丢还给客户端所请求的这个资源同时，将该资源的一些信息（文件摘要、或者最后修改时间）也返回给客户端，告诉客户端将这个资源缓存在本地。当客户端下一次需要这个资源时，将请求以及相关信息（文件摘要、或者最后修改时间）一并发送给服务器，由服务器来判断客户端缓存的资源是否需要更新：如不需要更新，就直接告诉客户端获取本地缓存资源；如需要更新，则将最新的资源连同相应的信息一并返回给客户端。</p>
+<p>当强缓存未命中时，浏览器就会发送请求到服务器，服务器会验证协商缓存是否命中，如果协商缓存命中，请求返回的http状态为304，并会显示说明Not Modified，浏览器收到该返回后，就会从缓存中加载了。</p>
+</blockquote>
+<p>协商缓存利用[Last-Modified , If-Modified-Since] 和 [ETag , If-None-Match]这两对Header来管理。</p>
+<h5 id="ETag-amp-If-None-Match"><a href="#ETag-amp-If-None-Match" class="headerlink" title="ETag &amp; If-None-Match"></a>ETag &amp; If-None-Match</h5><p>有些情况下仅判断最后修改日期来验证资源是否有改动是不够的：</p>
+<blockquote>
+<ol>
+<li>存在周期性重写某些资源，但资源实际包含的内容并无变化；</li>
+<li>被修改的信息并不重要，如注释等；</li>
+<li>Last-Modified无法精确到毫秒，但有些资源更新频率有时会小于一秒。</li>
+</ol>
+</blockquote>
+<p>为解决这些问题，http允许用户对资源打上标签(ETag)来区分两个相同路径获取的资源内容是否一致。通常会采用MD5等密码散列函数对资源编码得到标签(强验证器)；或者通过版本号等方式，如W/”v1.0”(W/表示弱验证器)。</p>
+<p>ETag为相应头部字段，表示资源内容的唯一标识，随服务器response返回；</p>
+<p>If-None-Match为请求头部字段，服务器通过比较请求头部的If-None-Match与当前资源的ETag是否一致来判断资源是否在两次请求之间有过修改，如果没有修改，则命中协商缓存，浏览器从缓存中获取资源；如果有过修改，则服务器返回资源，同时返回新的ETag。其过程如下：</p>
+<blockquote>
+<ol>
+<li>服务器第一次收到浏览器发出的资源请求时，会在response headers中加上ETag，这个ETag是根据该资源生成的唯一标识，这个唯一标识是个字符串，只要服务器认为资源有变化且应该提供新的资源，则ETag就必须有变化。浏览器将资源连同ETag一并缓存。</li>
+<li>当浏览器再一次向服务器发送该资源的请求时，会在request headers中加上If-None-Match，该值即为第一次服务器返回的ETag值；</li>
+<li>服务器收到资源请求后，会根据要请求的资源重新计算生成相应的ETag，然后与If-None-Match比较。对比结果一致即命中缓存，不一致则未命中缓存，返回资源同时将新的ETag发送至浏览器。</li>
+</ol>
+</blockquote>
+<h5 id="协商缓存管理"><a href="#协商缓存管理" class="headerlink" title="协商缓存管理"></a>协商缓存管理</h5><p>[Last-Modified , If-Modified-Since]和[ETag , If-None-Match]一般同时启用，这是为了处理Last-Modified不可靠的情况。</p>
+<h4 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h4><blockquote>
+<p>1.分布式系统里多台服务器间的文件的Last-Modified必须保持一致，以免负载均衡到不同服务器导致对比结果不一致；</p>
+<p>2.分布式系统尽量关闭掉ETag（每台机器生成的ETag都会不一样，淘宝页面中的静态资源response headers中都没有ETag）。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/29/缓存的一些问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-网页性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/网页性能优化/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网页性能优化"><a href="#网页性能优化" class="headerlink" title="网页性能优化"></a>网页性能优化</h1><h2 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h2><blockquote>
+<p>页面优化可以提升页面的访问速度从而提高用户体验，优化的页面可以更好的提升 SEO 的效果同时也可以提高代码的可读性和维护性。</p>
+</blockquote>
+<p>网页的生成过程，大致可以分成五步。</p>
+<ol>
+<li>HTML代码转化成DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上</li>
+</ol>
+<p>这五步里面，第一步到第三步都非常快，耗时的是第四步和第五步。</p>
+<p>“生成布局”（flow）和”绘制”（paint）这两步，合称为”渲染”（render）。</p>
+<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><blockquote>
+<p>网页生成的时候，至少会渲染一次。用户访问的过程中，还会不断重新渲染。<br>以下三种情况，会导致网页重新渲染。</p>
+<ol>
+<li>修改DOM</li>
+<li>修改样式表<br>3.用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）</li>
+</ol>
+</blockquote>
+<p>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。</p>
+<p>需要注意的是，”重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。但是，”重排”必然导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了。</p>
+<h2 id="对于性能的影响"><a href="#对于性能的影响" class="headerlink" title="对于性能的影响"></a>对于性能的影响</h2><p>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。</p>
+<p>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。</p>
+<p>前面提到，DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染。</p>
+<p>一般的规则是：</p>
+<ol>
+<li>样式表越简单，重排和重绘就越快。</li>
+<li>重排和重绘的DOM元素层级越高，成本就越高。</li>
+<li>table元素的重排和重绘成本，要高于div元素</li>
+</ol>
+<h2 id="提高性能的九个技巧"><a href="#提高性能的九个技巧" class="headerlink" title="提高性能的九个技巧"></a>提高性能的九个技巧</h2><p>有一些技巧，可以降低浏览器重新渲染的频率和成本。</p>
+<p>第一条 DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。<br>第二条 如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。<br>第三条 不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。<br>第四条 尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。<br>第五条 先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染。<br>第六条 position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。<br>第七条 只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。<br>第八条 使用虚拟DOM的脚本库，比如React等。<br>第九条 使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染</p>
+<h5 id="一、-如何对网站的的资源和文件进行优化"><a href="#一、-如何对网站的的资源和文件进行优化" class="headerlink" title="一、 如何对网站的的资源和文件进行优化"></a>一、 如何对网站的的资源和文件进行优化</h5><ol>
+<li>文件的合并（减少http的请求）</li>
+<li>文件的压缩（减少文件的体积）</li>
+<li>使用cdn托管资源</li>
+<li>使用缓存</li>
+<li>gizp压缩js和css文件</li>
+<li>mete标签的优化。Heading标签的优化和alt优化</li>
+<li>反向链接，网站外链优化</li>
+</ol>
+<h5 id="二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"><a href="#二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）" class="headerlink" title="二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"></a>二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）</h5><ol>
+<li>CSS Sprites</li>
+<li>Js css源码的压缩。图片大小控制合适</li>
+<li>网页gizp</li>
+<li>cdn托管</li>
+<li>Data缓存</li>
+<li>图片服务器</li>
+</ol>
+<h4 id="三-、网页加载速度的优化"><a href="#三-、网页加载速度的优化" class="headerlink" title="三 、网页加载速度的优化"></a>三 、网页加载速度的优化</h4><ol>
+<li>减少请求</li>
+<li>整合资源</li>
+<li>使用浏览器缓存和本地缓存</li>
+<li>首次使用的时候在HTML中嵌入资源</li>
+<li>使用HTML5服务端发送事件</li>
+<li>消除重定向</li>
+<li>减少资源负载</li>
+<li>压缩文本和图像</li>
+<li>代码简化</li>
+<li>使用html5和css3来简化页面</li>
+<li>延迟读取和执行的脚本</li>
+<li>使用ajax来增强进程</li>
+<li>根据网络状况进行适配处理</li>
+<li>对于多线程来说尽量使用html5的web worker特性</li>
+<li>将click事件替换成touch事件</li>
+<li>支持spdy协议</li>
+</ol>
+<h4 id="四、为什么利用多个域名来提供网站资源会更有效？"><a href="#四、为什么利用多个域名来提供网站资源会更有效？" class="headerlink" title="四、为什么利用多个域名来提供网站资源会更有效？"></a>四、为什么利用多个域名来提供网站资源会更有效？</h4><ol>
+<li>突破浏览器的并发限制</li>
+<li>节约cookie带宽</li>
+<li>cdn缓存更方便</li>
+<li>防止不必要的安全问题（尤其是cookie隔离尤为重要）</li>
+<li>节约主机域名链接数，优化页面响应速度</li>
+</ol>
+<h4 id="五、前端性能如何调优"><a href="#五、前端性能如何调优" class="headerlink" title="五、前端性能如何调优"></a>五、前端性能如何调优</h4><ol>
+<li>减少http的请求数</li>
+<li>使用内容分布式网络（cdn）</li>
+<li>给头部添加一个失效期或者cache-control</li>
+<li>Gzip压缩组件</li>
+<li>把样式表放在前面</li>
+<li>把脚本放在最后</li>
+<li>不使用css表达式</li>
+<li>使用外部的Javascript和css</li>
+<li>减少dns的查询</li>
+<li>减小javaScript和css</li>
+</ol>
+<h4 id="六、怎样解决请求过多问题"><a href="#六、怎样解决请求过多问题" class="headerlink" title="六、怎样解决请求过多问题"></a>六、怎样解决请求过多问题</h4><ol>
+<li>合并js和css文件</li>
+<li>合并图片css sprite</li>
+<li>使用image maps</li>
+<li>Data嵌入图片</li>
+<li>使用cdn减少HTTP请求头</li>
+</ol>
+<h4 id="七、百度移动端首页秒开是怎样做到的？"><a href="#七、百度移动端首页秒开是怎样做到的？" class="headerlink" title="七、百度移动端首页秒开是怎样做到的？"></a>七、百度移动端首页秒开是怎样做到的？</h4><ol>
+<li>静态文件的放置</li>
+<li>缓存</li>
+<li>外链</li>
+<li>缓存dom</li>
+<li>使用iconfont</li>
+<li>卡片的异步加载与缓存</li>
+<li>不在首屏的就要 异步化</li>
+<li>少量静态文件的域名</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/网页性能优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rem和em" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/rem和em/">rem与em</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/rem和em/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rem与em"><a href="#rem与em" class="headerlink" title="rem与em"></a>rem与em</h2><ol>
+<li><p>rem是相对于根元素<html>的”font-size”为基准。比如说我们给html设置font-size为100<br>那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem</html></p>
+</li>
+<li><p>em一般都是以<body>的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px”时，只需要将其值设置为”1.4em”</body></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/rem和em/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-盒模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/盒模型/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于盒模型"><a href="#关于盒模型" class="headerlink" title="关于盒模型"></a>关于盒模型</h2><ol>
+<li><p>盒模型有两种：IE盒子模型、W3C盒子模型</p>
+</li>
+<li><p>盒模型：内容（content）、填充（padding）、边界（margin）、边框（border）</p>
+</li>
+<li><p>区别：IE的width部分把border和padding计算了进去</p>
+</li>
+</ol>
+<p>1、<br>标准：width是内容宽度，元素真正的宽度=margin+padding+border+width<br>怪异：width是元素实际宽度，内容宽度=width-（margin+padding+border）</p>
+<p>2、可以设置行内元素的宽高<br>    在标准模式下，给span等行内元素设置width和height都不会生效，而在怪异模式下，则会生效</p>
+<p>3、可设置百分比的高度<br>    在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置宽高，子元素设置一个百分比的高度是无效的</p>
+<p>4、用margin：0 auto设置水平居中在IE下会失效<br>    使用margin：0 auto在标准模式下可以使元素水平居中，但在怪异模式下却会失效，怪异模式下的解决方法，用text-align属性：body{text-align：center}；#content{text-align：left}</p>
+<p>5、怪异模式下设置图片的padding会失效</p>
+<p>6、怪异模式下table中的字体属性不能继承上层的设置</p>
+<p>7、怪异模式下white-space：pre会失效</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/盒模型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IE6bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/IE6bug/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="IE6bug"><a href="#IE6bug" class="headerlink" title="IE6bug"></a>IE6bug</h2><ol>
+<li>&lt;!DOCTYPE HTML&gt;文档类型的声明。</li>
+</ol>
+<p>产生条件：IE6浏览器，当我们没有书写这个文档声明的时候，会触发IE6浏览器的怪异解析现象；</p>
+<p>解决办法：书写文档声明。</p>
+<ol>
+<li>横向双倍外边距</li>
+</ol>
+<p>产生条件：在IE6中块元素浮动后，会出现横向双倍margin现象。</p>
+<p>解决办法： 在float标签的样式控制中加入display：inline或display：block</p>
+<ol>
+<li>默认行高</li>
+</ol>
+<p>产生条件：清除浮动的时候，有些人会采取一种清浮动的方法，使用一个空的div，然后为这个div设置{clear：both}。在大部分</p>
+<p>浏览器当中，这样做是没有任何问题的，但是在IE6浏览器当中，div即使是空的，也会存在默认行高。</p>
+<p>解决办法：设置其高度为0，并设置{height:0;overflow:hidden;clear:both;}</p>
+<p>IE6没有办法定义1px左右的宽度的容器 （默认行高造成的）</p>
+<p>解决方法：使用{overflow:hidden;zoom:0.08;line-height:1px}</p>
+<ol>
+<li>img外部的border</li>
+</ol>
+<p>产生条件：img外部有a标签，即img标签有链接时</p>
+<p>解决办法：设置img边框border:0;</p>
+<ol>
+<li>多显示一个字<br>产生条件：多个浮动元素中间夹杂HTML注释语句，浮动元素宽度设置为100%；则在下一行多显示一个上一行的最后一个字符；</li>
+</ol>
+<p>处理方法：果断删掉注释！</p>
+<ol>
+<li>CSS选择器区分<br>IE6不支持子选择器；先针对IE6使用常规申明CSS选择器，然后再用子选择器针对IE7+及其他浏览器。<br>处理方法：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IE6 专用 */</span></span><br><span class="line">.content &#123;<span class="attr">color</span>:red;&#125;</span><br><span class="line"><span class="comment">/* 其他浏览器 */</span></span><br><span class="line">div&gt;p .content</span><br><span class="line">&#123;<span class="attr">color</span>:blue;&#125; --&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>最小高度<br>IE6 不支持min-height属性，但它却认为height就是最小高度。解决方法：使用ie6不支持但其余浏览器支持的属性!important。<br>处理方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    min-height:<span class="number">200</span>px;</span><br><span class="line">    height:auto !important; </span><br><span class="line">    height:<span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DIV浮动IE文本产生3象素的bug</p>
+</li>
+</ol>
+<p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#box&#123; float:left; width:800px;&#125;</span><br><span class="line">#left&#123; float:left; width:50%;&#125;</span><br><span class="line">#right&#123; width:50%;&#125;</span><br><span class="line">*html #left&#123; margin-right:-3px; //这句是关键</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"left"</span>&gt;＜/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"right"</span>&gt;＜/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>png24位的图片在IE6浏览器出现背景；解决方案：用png8的，也可以引用一段脚本处理</p>
+</li>
+<li><p>IE6下为什么图片下有空隙产生</p>
+</li>
+</ol>
+<p>解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top,bottom,middle,text-bottom 都可以解决.</p>
+<ol>
+<li>超链接hover点击后失效</li>
+</ol>
+<p>使用正确的书写顺序 link visited hover active</p>
+<ol>
+<li>z-index问题 </li>
+</ol>
+<p>给父级添加position:relative;</p>
+<ol>
+<li>li边距无故增加</li>
+</ol>
+<p>设置ul的显示形式为<em>display:inline-block;  </em>只针对IE6/7有效</p>
+<ol>
+<li>在IE6/7中，overflow无法正确的隐藏有相对定位position:relative;的子元素。</li>
+</ol>
+<p>给外包容器加上position:relative;</p>
+<ol>
+<li>border:none在IE6中不起作用</li>
+</ol>
+<p>改成border:0;就可以</p>
+<ol>
+<li><p>100%高度<br>在IE6下，如果要给元素定义100%高度，必须要明确定义它的父级元素的高度，如果你需要给元素定义满屏的高度，就得先给HTML和body定义height:100%;</p>
+</li>
+<li><p>躲猫猫bug：定义了:hover的链接，当鼠标移到那些连接上时，在IE6下就会触发躲猫猫。</p>
+</li>
+</ol>
+<p>1、在（那个未浮动的）内容之后添加一个<span style="clear:both;"></span></p>
+<p>2、触发包含了这些链接的容器的hasLayout，一个简单的方法就是给其定义height:1%</p>
+<ol>
+<li>IE6 绝对定位的元素 1px间距bug：当绝对定位的父元素或宽度为奇数时，bottom和right会多出1px</li>
+</ol>
+<p>针对IE6进行hack处理</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/IE6bug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Doctype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/Doctype/">Doctype的作用</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/Doctype/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:01:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Doctype的作用"><a href="#Doctype的作用" class="headerlink" title="Doctype的作用"></a>Doctype的作用</h3><p>&lt;!Doctype&gt;声明位于文档中的 最前端，处于<html>标签之前。告知浏览器的解析器，用声明文档类型规范来解析这个文档。<br>Doctype不存在或格式不正确会导致文档以混杂模式呈现</html></p>
+<p>严格模式就是浏览器根据web标准去解析页面，是一种要求严格的DTD，不允许只用任何表现层的语法</p>
+<p>混杂模式是一种向后兼容的解析方法</p>
+<p>出发标准模式或者说严格模式很简单，就是HTML前申明正确的DTD，触发混杂模式可以在HTML文档开始不声明DTD，或者在Doctype前加入XML声明</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/Doctype/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HTML与xhtml的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -204,836 +1283,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/11/28/HTML与xhtml的区别/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-iframe的优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/iframe的优缺点/">iframe的优缺点</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/iframe的优缺点/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="iframe的优缺点？"><a href="#iframe的优缺点？" class="headerlink" title="iframe的优缺点？"></a>iframe的优缺点？</h2><p>优点</p>
-<ol>
-<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
-<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
-<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
-<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
-<li>重载页面时不需要重载整个页面，只需要重载页面中的一个框架页(减少了数据的传输，增加了网页下载速度)</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>页面样式调试麻烦，出现多个滚动条；</li>
-<li>浏览器的后退按钮失效；</li>
-<li>过多会增加服务器的HTTP请求；</li>
-<li>小型的移动设备无法完全显示框架；</li>
-<li>产生多个页面，不易管理；</li>
-<li>不容易打印；</li>
-<li>代码复杂，无法被一些搜索引擎解读。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/iframe的优缺点/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BFC是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/BFC是什么/">BFC是什么</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/BFC是什么/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="BFC是什么"><a href="#BFC是什么" class="headerlink" title="BFC是什么?"></a>BFC是什么?</h2><blockquote>
-<p>Block Formatting Contexts,即块级格式化上下文，它是一个独立的渲染区域。BFC就是一个独立的盒子，并且与这个独立盒子里的布局不受外部影响，当然它也不会影响到外面的元素。</p>
-</blockquote>
-<p>触发BFC</p>
-<blockquote>
-<p>1.根元素</p>
-<p>2.float属性不为none（如：left | right）</p>
-<p>3.overflow的值不为visible（如：hidden | auto | scroll）</p>
-<p>4.display属性值为inline-block | flex | inline-flex | table-cell | table-caption</p>
-<p>4.position为absolute或fixed</p>
-</blockquote>
-<p>应用BFC</p>
-<blockquote>
-<ol>
-<li>自适应两栏布局</li>
-<li>解决margin叠加问题</li>
-<li>清除内部浮动</li>
-</ol>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/BFC是什么/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-div+css的布局较table布局有什么优点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/div+css的布局较table布局有什么优点/">css的布局较table布局有什么优点</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/div+css的布局较table布局有什么优点/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="div-css的布局较table布局有什么优点？"><a href="#div-css的布局较table布局有什么优点？" class="headerlink" title="div+css的布局较table布局有什么优点？"></a>div+css的布局较table布局有什么优点？</h2><ol>
-<li>符合W3C标准，代码结构清晰明了，结构、样式和行为分离，带来足够好的可维护性。</li>
-<li>布局精准，网站版面布局修改简单。</li>
-<li>加快了页面的加载速度（最重要的）（在IE中要将整个table加载完了才显示内容）。</li>
-<li>节约站点所占的空间和站点的流量。</li>
-<li>用只包含结构化内容的HTML代替嵌套的标签，提高另外搜索引擎对网页的搜索效率。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/div+css的布局较table布局有什么优点/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript this指针、闭包、作用域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/JavaScript this指针、闭包、作用域/">JavaScript this指针、闭包、作用域</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/JavaScript this指针、闭包、作用域/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript-this指针、闭包、作用域？"><a href="#JavaScript-this指针、闭包、作用域？" class="headerlink" title="JavaScript this指针、闭包、作用域？"></a>JavaScript this指针、闭包、作用域？</h2><p>作用域：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for(var i =0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(i) //10</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在ES5中，只有全局作用域和函数作用域，并没有块作用域，但是我们可以实现块作用域的功能。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line">for(var i =0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;)()</span><br><span class="line">console.log(i)</span><br><span class="line"></span><br><span class="line">//i is not defined,报错</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这其实就创建了一个局部作用域，该作用域声明的变量只有在该块内有效，外部访问不了。这种写法的好处就是可以做到不污染全局变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=10;</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在ES5中，变量的声明问题，在ES5中并不是严格，你可以直接采用a=10,来声明一个全局变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=10;</span><br><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line">    console.log(a)//undefined</span><br><span class="line">    var a=1;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>变量提升。（ES5中的概念，ES6中新的用法不会出现变量提升）,变量的声明提升到函数的最上面。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let i=0;i&lt;10;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">// a is not defined 报错</span><br></pre></td></tr></table></figure>
-<p>let为js添加了新的作用域就是块作用域</p>
-<blockquote>
-<p>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。</p>
-<p>闭包：闭包就是能够读取其他函数内部变量的函数。</p>
-<p>this总是指向调用该函数的对象.要判断this的指向，其实就是判断this所在的函数属于谁:</p>
-<p>1)有对象就指向调用对象<br>2)没调用对象就指向全局对象(全局也没有就是window)        </p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/JavaScript this指针、闭包、作用域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS继承与原型问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/JS继承与原型问题/">JS继承与原型问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/JS继承与原型问题/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:39:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JS继承与原型问题"><a href="#JS继承与原型问题" class="headerlink" title="JS继承与原型问题"></a>JS继承与原型问题</h2><blockquote>
-<p>Js所有的函数都有一个prototype属性，这个属性引用了一个对象，即原型对象，也简称原型。每一个对象都有原型，在浏览器中它体现在一个隐藏的 proto 属性上。</p>
-<p>当一个对象需要调用某个方法时，它回去最近的原型上查找该方法，如果没有找到，它会再次往下继续查找。这样逐级查找，一直找到了要找的方法。 这些查找的原型构成了该对象的原型链条。原型最后指向的是null。我们说的原型继承，就是将父对像的方法给子类的原型。子类的构造函数中不拥有这些方法和属性。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/JS继承与原型问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一些问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/一些问题/">一些问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/一些问题/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="eval是做什么的？"><a href="#eval是做什么的？" class="headerlink" title="eval是做什么的？"></a>eval是做什么的？</h4><ol>
-<li><p>eval()的作用是：把字符串参数解析成JS代码并运行，并返回执行的结果；</p>
-</li>
-<li><p>eval的作用域在它所有的范围内容有效，但是在IE8及IE8一下的版本就不支持</p>
-</li>
-</ol>
-<hr>
-<h4 id="IE和DOM事件流的区别"><a href="#IE和DOM事件流的区别" class="headerlink" title="IE和DOM事件流的区别"></a>IE和DOM事件流的区别</h4><blockquote>
-<p>IE采用冒泡型事件 Netscape（浏览器）使用捕获型事件 DOM使用先捕获后冒泡型事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt; </span><br><span class="line">    &lt;div&gt; </span><br><span class="line">        &lt;button&gt;点击这里&lt;/button&gt; </span><br><span class="line">    &lt;/div&gt; </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
-<p>冒泡型事件模型： button-&gt;div-&gt;body (IE事件流) </p>
-<p> 捕获型事件模型： body-&gt;div-&gt;button (Netscape事件流) </p>
-<p> DOM事件模型： body-&gt;div-&gt;button-&gt;button-&gt;div-&gt;body (先捕获后冒泡)</p>
-</blockquote>
-<hr>
-<h4 id="JavaScript原型，原型链-有什么特点？"><a href="#JavaScript原型，原型链-有什么特点？" class="headerlink" title="JavaScript原型，原型链 ? 有什么特点？"></a>JavaScript原型，原型链 ? 有什么特点？</h4><blockquote>
-<p>函数的原型对象constructor默认指向函数本身，原型对象除了有原型属性外，为了实现继承，还有一个原型链指针proto，该指针指向上一层的原型对象，而上一层的原型对象的结构依然类似，这样利用proto一直指向Object的原型对象上，而Object的原型对象用Object.prototype.proto = null表示原型链的最顶端，如此变形成了javascript的原型链继承，同时也解释了为什么所有的javascript对象都具有Object的基本方法。</p>
-</blockquote>
-<h4 id="foo-foo-bar-什么意思，为什么这样写？"><a href="#foo-foo-bar-什么意思，为什么这样写？" class="headerlink" title="foo=foo || bar,什么意思，为什么这样写？"></a>foo=foo || bar,什么意思，为什么这样写？</h4><pre><code>如果foo=foo,foo=foo,否则，foo=bar。一般用于兼容
-</code></pre><h4 id="写出样式的优先级。"><a href="#写出样式的优先级。" class="headerlink" title="写出样式的优先级。"></a>写出样式的优先级。</h4><p>样式一般分为三种：内部样式，外部样式，内联样式</p>
-<blockquote>
-<p>内部样式：  在页面<head>区里。<style type="text/css"></style></head></p>
-<p>内联样式：在标签内写入style=””</p>
-<p>外部样式：</p>
-</blockquote>
-<pre><code>1. 链入外部样式表，在页面中&lt;head&gt;标签之间引入&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;*.css&quot;链接这个样式表
-
-2.  &lt;style type=&quot;text/css&quot;&gt;
-     @import url(&quot;*.css&quot;)
-    &lt;/style&gt;
-
-区别：1）link是XHTML标签，无兼容问题；@import是在css2.1提出的，低版本浏览器不支持 属于CSS范畴，只能加载CSS
-      2）link引用CSS时，在页面载入时同时加载：@import 需要页面网页完全载入以后加载
-      3）link支持使用Javascript控制DOM去改变样式；而@import不支持
-</code></pre><hr>
-<h4 id="各个选择器之间的优先级。"><a href="#各个选择器之间的优先级。" class="headerlink" title="各个选择器之间的优先级。"></a>各个选择器之间的优先级。</h4><p>比较同一级别的个数，数量多的优先级高，如果相同即比较下一级别的个数 ，至于各级别的优先级，大家应该已经很清楚了，就是：</p>
-<blockquote>
-<p>important &gt; 内联 &gt; ID &gt; 类 &gt; 标签 | 伪类 | 属性选择 &gt; 伪对象 &gt; 继承 &gt; 通配符 通配符 &gt; 继承</p>
-</blockquote>
-<p>选择器种类:</p>
-<blockquote>
-<ol>
-<li>id选择器（#myid）</li>
-<li>类选择器（.myclassname）</li>
-<li>标签选择器（div,h1,p）</li>
-<li>相邻选择器（h1+p）</li>
-<li>子选择器（ul &lt; li）</li>
-<li>后代选择器（li a）</li>
-<li>通配符选择器（*）</li>
-<li>属性选择器（a[rel=”external”]）</li>
-<li>伪类选择器（a:hover,li:nth-child）</li>
-</ol>
-</blockquote>
-<hr>
-<h4 id="介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。"><a href="#介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。" class="headerlink" title="介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。"></a>介绍一下原生js绑定事件的几种方法，以及相应的dom事件流。</h4><p>1、直接在元素上绑定回调函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot; onclick=&quot;clickBtn()&quot;&gt;click me&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
-<p>2、JS获取DOM元素对象后，对onclick属性赋值，绑定事件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;btn&apos;).onclick=clickBtn;</span><br></pre></td></tr></table></figure></p>
-<p>3、JS获取DOM对象后，调用对象的addEventListener函数绑定事件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&apos;btn&apos;).addEventListener(&apos;click&apos;,clickBtn);</span><br></pre></td></tr></table></figure>
-<h4 id="实现垂直水平居中5种方法。"><a href="#实现垂直水平居中5种方法。" class="headerlink" title="实现垂直水平居中5种方法。"></a>实现垂直水平居中5种方法。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">    position: absolute;</span><br><span class="line">    top:50%;</span><br><span class="line">    left:50%;</span><br><span class="line">    </span><br><span class="line">2.</span><br><span class="line">    position: absolute;</span><br><span class="line">    top:0;</span><br><span class="line">    left:0;</span><br><span class="line">    right:0;</span><br><span class="line">    bottom:0;</span><br><span class="line">    margin:auto;</span><br><span class="line">    </span><br><span class="line">3.</span><br><span class="line">     父盒：</span><br><span class="line">    display:box;</span><br><span class="line">    display:-webkit-box;</span><br><span class="line">    box-align:center;//垂直居中;</span><br><span class="line">    -webkit-box-align:center;</span><br><span class="line">    box-pack:center;//水平居中</span><br><span class="line">    -webkit-box-pack:center;</span><br><span class="line">    需要做兼容</span><br><span class="line"></span><br><span class="line">4.</span><br><span class="line"></span><br><span class="line">弹性盒</span><br><span class="line">父：</span><br><span class="line">    display:flex;</span><br><span class="line">    //justify-content:flex-start flex-end center space-between space-around;</span><br><span class="line">    </span><br><span class="line">    justify-content:center;//水平居中</span><br><span class="line">    align-items:center;//垂直居中</span><br><span class="line"></span><br><span class="line">5.</span><br><span class="line">父：</span><br><span class="line">    display:flex;</span><br><span class="line">    //justify-content:flex-start flex-end center space-between space-around;</span><br><span class="line">    </span><br><span class="line">    justify-content:center;//水平居中</span><br><span class="line">    子：</span><br><span class="line">    align-self:center;</span><br><span class="line"></span><br><span class="line">6. </span><br><span class="line">    父:</span><br><span class="line">    display:table-cell;</span><br><span class="line">    text-align:center;</span><br><span class="line">    vertical-align:middle;</span><br><span class="line">    子:</span><br><span class="line">    display:inline-block;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">7.</span><br><span class="line">    父:</span><br><span class="line">    text-align:center;</span><br><span class="line">    子：</span><br><span class="line">    display:inline-block;</span><br><span class="line">    vertical-align:middle;</span><br><span class="line">    参照：</span><br><span class="line">    width:0;</span><br><span class="line">    height:100%;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    vertical-align:middle;</span><br></pre></td></tr></table></figure>
-<hr>
-<h5 id="input的三个属性。"><a href="#input的三个属性。" class="headerlink" title="input的三个属性。"></a>input的三个属性。</h5><p>type name value</p>
-<hr>
-<h4 id="display-none与visibility-hidden的区别是什么？"><a href="#display-none与visibility-hidden的区别是什么？" class="headerlink" title="display:none与visibility:hidden的区别是什么？"></a>display:none与visibility:hidden的区别是什么？</h4><p>display:none和visible:hidden都能把网页上某个元素隐藏起来，但两者有区别:</p>
-<blockquote>
-<p>display:none —不为被隐藏的对象保留其物理空间，即该对象在页面上彻底消失，通俗来说就是看不见也摸不到。</p>
-<p>visible:hidden—使对象在网页上不可见，但该对象在网页上所占的空间没有改变，通俗来说就是看不见但摸得到。</p>
-</blockquote>
-<hr>
-<h4 id="split-join-的区别。"><a href="#split-join-的区别。" class="headerlink" title="split() join() 的区别。"></a>split() join() 的区别。</h4><blockquote>
-<p>split() :将字符串分割成数组</p>
-<p>join() :将数组转为字符串</p>
-</blockquote>
-<h4 id="事件绑定和普通事件有什么区别？"><a href="#事件绑定和普通事件有什么区别？" class="headerlink" title="事件绑定和普通事件有什么区别？"></a>事件绑定和普通事件有什么区别？</h4><blockquote>
-<p>区别：普通事件只支持单个事件，而事件绑定可以添加多个事件</p>
-</blockquote>
-<hr>
-<h4 id="IE和DOM事件流的区别？"><a href="#IE和DOM事件流的区别？" class="headerlink" title="IE和DOM事件流的区别？"></a>IE和DOM事件流的区别？</h4><blockquote>
-<p>IE采用冒泡型事件 Netscape使用捕获型事件 </p>
-<p>DOM使用先捕获后冒泡型事件 </p>
-</blockquote>
-<hr>
-<h4 id="看下列代码-输出什么？解释原因。"><a href="#看下列代码-输出什么？解释原因。" class="headerlink" title="看下列代码,输出什么？解释原因。"></a>看下列代码,输出什么？解释原因。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = null;</span><br><span class="line">   alert(typeof a); //object</span><br></pre></td></tr></table></figure>
-<p>特殊数据类型：Null表示初始化为空，但它的数据类型有属于object</p>
-<h4 id="列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个"><a href="#列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个" class="headerlink" title="列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个"></a>列举浏览器对象模型BOM里常用的至少4个对象，并列举window对象的常用方法至少5个</h4><p>对象：Window  document  location  screen  history  navigator<br>方法：Alert()  confirm()  prompt()  open()  close() </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/一些问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-为什么利用多个域名来存储网站资源会更有效" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/为什么利用多个域名来存储网站资源会更有效/">为什么利用多个域名来存储网站资源会更有效</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/为什么利用多个域名来存储网站资源会更有效/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="为什么利用多个域名来存储网站资源会更有效？"><a href="#为什么利用多个域名来存储网站资源会更有效？" class="headerlink" title="为什么利用多个域名来存储网站资源会更有效？"></a>为什么利用多个域名来存储网站资源会更有效？</h2><p>1、CDN缓存更方便</p>
-<p>2、突破浏览器并发限制</p>
-<p>3、节约cookie带宽</p>
-<p>4、节约主域名的连接数，优化页面响应速度</p>
-<p>5、防止不必要的安全问题</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/为什么利用多个域名来存储网站资源会更有效/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-事件委托是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/事件委托是什么/">事件委托</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/事件委托是什么/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:34:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="事件委托是什么"><a href="#事件委托是什么" class="headerlink" title="事件委托是什么?"></a>事件委托是什么?</h2><blockquote>
-<p>通俗的讲，事件就是onclick，onmouseover，onmouseout，等就是事件，委托呢，就是让别人来做，这个事件本来是加在某些元素上的，然而你却加到别人身上来做，完成这个事件。</p>
-<p>适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。</p>
-<p>不适合：mouseover和mouseout虽然也有事件冒泡，但是处理他们要特别注意，因为需要经常计算他们的位置，处理起来不太容易（项目中不适用）</p>
-<p>给父元素添加事件监听器。当有事件触发监听器时，检查事件的来源，所以会出现兼容</p>
-<p>当网页中需要触发事件的对象比较多的时候，为了避免内存泄漏，我们利用冒泡的原理，把事件加到父级上，触发执行效果。这样页面就只有一个事件触发，避免直接把事件添加到多个对象上。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/事件委托是什么/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-哪些操作会造成内存泄漏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/哪些操作会造成内存泄漏/">哪些操作会造成内存泄漏？</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/哪些操作会造成内存泄漏/" class="archive-article-date">
-  	<time datetime="2017-11-28T01:33:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="哪些操作会造成内存泄漏？"><a href="#哪些操作会造成内存泄漏？" class="headerlink" title="哪些操作会造成内存泄漏？"></a>哪些操作会造成内存泄漏？</h2><blockquote>
-<p>内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。</p>
-<p>setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。</p>
-<p>闭包、cookie、控制台日志、循环(在两个对象彼此引用且彼此保留时，就会产生一个循环)。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/哪些操作会造成内存泄漏/">展开全文 >></a>
         </p>
       
 
@@ -1196,15 +1445,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
             
             <div class="clearfix"></div>

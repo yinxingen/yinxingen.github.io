@@ -157,130 +157,189 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-网页性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-为什么利用多个域名来存储网站资源会更有效" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
+      <a class="article-title" href="/2017/12/08/为什么利用多个域名来存储网站资源会更有效/">为什么利用多个域名来存储网站资源会更有效</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/网页性能优化/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/08/为什么利用多个域名来存储网站资源会更有效/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="网页性能优化"><a href="#网页性能优化" class="headerlink" title="网页性能优化"></a>网页性能优化</h1><h2 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h2><blockquote>
-<p>页面优化可以提升页面的访问速度从而提高用户体验，优化的页面可以更好的提升 SEO 的效果同时也可以提高代码的可读性和维护性。</p>
+        <h2 id="为什么利用多个域名来存储网站资源会更有效？"><a href="#为什么利用多个域名来存储网站资源会更有效？" class="headerlink" title="为什么利用多个域名来存储网站资源会更有效？"></a>为什么利用多个域名来存储网站资源会更有效？</h2><p>1、CDN缓存更方便</p>
+<p>2、突破浏览器并发限制</p>
+<p>3、节约cookie带宽</p>
+<p>4、节约主域名的连接数，优化页面响应速度</p>
+<p>5、防止不必要的安全问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/为什么利用多个域名来存储网站资源会更有效/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-事件委托是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/事件委托是什么/">事件委托</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/事件委托是什么/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:34:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="事件委托是什么"><a href="#事件委托是什么" class="headerlink" title="事件委托是什么?"></a>事件委托是什么?</h2><blockquote>
+<p>通俗的讲，事件就是onclick，onmouseover，onmouseout，等就是事件，委托呢，就是让别人来做，这个事件本来是加在某些元素上的，然而你却加到别人身上来做，完成这个事件。</p>
+<p>适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。</p>
+<p>不适合：mouseover和mouseout虽然也有事件冒泡，但是处理他们要特别注意，因为需要经常计算他们的位置，处理起来不太容易（项目中不适用）</p>
+<p>给父元素添加事件监听器。当有事件触发监听器时，检查事件的来源，所以会出现兼容</p>
+<p>当网页中需要触发事件的对象比较多的时候，为了避免内存泄漏，我们利用冒泡的原理，把事件加到父级上，触发执行效果。这样页面就只有一个事件触发，避免直接把事件添加到多个对象上。</p>
 </blockquote>
-<p>网页的生成过程，大致可以分成五步。</p>
-<ol>
-<li>HTML代码转化成DOM</li>
-<li>CSS代码转化成CSSOM（CSS Object Model）</li>
-<li>结合DOM和CSSOM，生成一棵渲染树（包含每个节点的视觉信息）</li>
-<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
-<li>将布局绘制（paint）在屏幕上</li>
-</ol>
-<p>这五步里面，第一步到第三步都非常快，耗时的是第四步和第五步。</p>
-<p>“生成布局”（flow）和”绘制”（paint）这两步，合称为”渲染”（render）。</p>
-<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><blockquote>
-<p>网页生成的时候，至少会渲染一次。用户访问的过程中，还会不断重新渲染。<br>以下三种情况，会导致网页重新渲染。</p>
-<ol>
-<li>修改DOM</li>
-<li>修改样式表<br>3.用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）</li>
-</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/事件委托是什么/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-哪些操作会造成内存泄漏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/哪些操作会造成内存泄漏/">哪些操作会造成内存泄漏？</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/哪些操作会造成内存泄漏/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:33:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="哪些操作会造成内存泄漏？"><a href="#哪些操作会造成内存泄漏？" class="headerlink" title="哪些操作会造成内存泄漏？"></a>哪些操作会造成内存泄漏？</h2><blockquote>
+<p>内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。</p>
+<p>setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。</p>
+<p>闭包、cookie、控制台日志、循环(在两个对象彼此引用且彼此保留时，就会产生一个循环)。</p>
 </blockquote>
-<p>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。</p>
-<p>需要注意的是，”重绘”不一定需要”重排”，比如改变某个网页元素的颜色，就只会触发”重绘”，不会触发”重排”，因为布局没有改变。但是，”重排”必然导致”重绘”，比如改变一个网页元素的位置，就会同时触发”重排”和”重绘”，因为布局改变了。</p>
-<h2 id="对于性能的影响"><a href="#对于性能的影响" class="headerlink" title="对于性能的影响"></a>对于性能的影响</h2><p>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。</p>
-<p>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。</p>
-<p>前面提到，DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染。</p>
-<p>一般的规则是：</p>
-<ol>
-<li>样式表越简单，重排和重绘就越快。</li>
-<li>重排和重绘的DOM元素层级越高，成本就越高。</li>
-<li>table元素的重排和重绘成本，要高于div元素</li>
-</ol>
-<h2 id="提高性能的九个技巧"><a href="#提高性能的九个技巧" class="headerlink" title="提高性能的九个技巧"></a>提高性能的九个技巧</h2><p>有一些技巧，可以降低浏览器重新渲染的频率和成本。</p>
-<p>第一条 DOM 的多个读操作（或多个写操作），应该放在一起。不要两个读操作之间，加入一个写操作。<br>第二条 如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。<br>第三条 不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。<br>第四条 尽量使用离线DOM，而不是真实的网面DOM，来改变元素样式。比如，操作Document Fragment对象，完成后再把这个对象加入DOM。再比如，使用 cloneNode() 方法，在克隆的节点上进行操作，然后再用克隆的节点替换原始节点。<br>第五条 先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染。<br>第六条 position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。<br>第七条 只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。<br>第八条 使用虚拟DOM的脚本库，比如React等。<br>第九条 使用 window.requestAnimationFrame()、window.requestIdleCallback() 这两个方法调节重新渲染</p>
-<h5 id="一、-如何对网站的的资源和文件进行优化"><a href="#一、-如何对网站的的资源和文件进行优化" class="headerlink" title="一、 如何对网站的的资源和文件进行优化"></a>一、 如何对网站的的资源和文件进行优化</h5><ol>
-<li>文件的合并（减少http的请求）</li>
-<li>文件的压缩（减少文件的体积）</li>
-<li>使用cdn托管资源</li>
-<li>使用缓存</li>
-<li>gizp压缩js和css文件</li>
-<li>mete标签的优化。Heading标签的优化和alt优化</li>
-<li>反向链接，网站外链优化</li>
-</ol>
-<h5 id="二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"><a href="#二-、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）" class="headerlink" title="二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）"></a>二 、说出三种减少页面加载的方法（加载时间感知的时间或实际加载时间）</h5><ol>
-<li>CSS Sprites</li>
-<li>Js css源码的压缩。图片大小控制合适</li>
-<li>网页gizp</li>
-<li>cdn托管</li>
-<li>Data缓存</li>
-<li>图片服务器</li>
-</ol>
-<h4 id="三-、网页加载速度的优化"><a href="#三-、网页加载速度的优化" class="headerlink" title="三 、网页加载速度的优化"></a>三 、网页加载速度的优化</h4><ol>
-<li>减少请求</li>
-<li>整合资源</li>
-<li>使用浏览器缓存和本地缓存</li>
-<li>首次使用的时候在HTML中嵌入资源</li>
-<li>使用HTML5服务端发送事件</li>
-<li>消除重定向</li>
-<li>减少资源负载</li>
-<li>压缩文本和图像</li>
-<li>代码简化</li>
-<li>使用html5和css3来简化页面</li>
-<li>延迟读取和执行的脚本</li>
-<li>使用ajax来增强进程</li>
-<li>根据网络状况进行适配处理</li>
-<li>对于多线程来说尽量使用html5的web worker特性</li>
-<li>将click事件替换成touch事件</li>
-<li>支持spdy协议</li>
-</ol>
-<h4 id="四、为什么利用多个域名来提供网站资源会更有效？"><a href="#四、为什么利用多个域名来提供网站资源会更有效？" class="headerlink" title="四、为什么利用多个域名来提供网站资源会更有效？"></a>四、为什么利用多个域名来提供网站资源会更有效？</h4><ol>
-<li>突破浏览器的并发限制</li>
-<li>节约cookie带宽</li>
-<li>cdn缓存更方便</li>
-<li>防止不必要的安全问题（尤其是cookie隔离尤为重要）</li>
-<li>节约主机域名链接数，优化页面响应速度</li>
-</ol>
-<h4 id="五、前端性能如何调优"><a href="#五、前端性能如何调优" class="headerlink" title="五、前端性能如何调优"></a>五、前端性能如何调优</h4><ol>
-<li>减少http的请求数</li>
-<li>使用内容分布式网络（cdn）</li>
-<li>给头部添加一个失效期或者cache-control</li>
-<li>Gzip压缩组件</li>
-<li>把样式表放在前面</li>
-<li>把脚本放在最后</li>
-<li>不使用css表达式</li>
-<li>使用外部的Javascript和css</li>
-<li>减少dns的查询</li>
-<li>减小javaScript和css</li>
-</ol>
-<h4 id="六、怎样解决请求过多问题"><a href="#六、怎样解决请求过多问题" class="headerlink" title="六、怎样解决请求过多问题"></a>六、怎样解决请求过多问题</h4><ol>
-<li>合并js和css文件</li>
-<li>合并图片css sprite</li>
-<li>使用image maps</li>
-<li>Data嵌入图片</li>
-<li>使用cdn减少HTTP请求头</li>
-</ol>
-<h4 id="七、百度移动端首页秒开是怎样做到的？"><a href="#七、百度移动端首页秒开是怎样做到的？" class="headerlink" title="七、百度移动端首页秒开是怎样做到的？"></a>七、百度移动端首页秒开是怎样做到的？</h4><ol>
-<li>静态文件的放置</li>
-<li>缓存</li>
-<li>外链</li>
-<li>缓存dom</li>
-<li>使用iconfont</li>
-<li>卡片的异步加载与缓存</li>
-<li>不在首屏的就要 异步化</li>
-<li>少量静态文件的域名</li>
-</ol>
 
       
 
@@ -294,7 +353,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
         		</li>
       		
 		</ul>
@@ -304,7 +363,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/网页性能优化/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/08/哪些操作会造成内存泄漏/">展开全文 >></a>
         </p>
       
 
@@ -334,30 +393,94 @@
 
 
   
-    <article id="post-前端页面的构成" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-利用gulp实现热更新，配置sass，合并css文件，css兼容处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/前端页面的构成/">前端页面的构成</a>
+      <a class="article-title" href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/">利用gulp实现热更新，配置sass，合并css文件，css兼容处理</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/前端页面的构成/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/" class="archive-article-date">
+  	<time datetime="2017-12-07T13:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前端页面的构成"><a href="#前端页面的构成" class="headerlink" title="前端页面的构成"></a>前端页面的构成</h3><p>HTML（结构）：超文本标记语言，由HTML或XHTML之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。</p>
-<p>css（表现）：层叠样式表，由css负责创建。css对“如何显示有关内容”的问题做出了回答</p>
-<p>js（行为）：客户端脚本语言，内容应该如何对事件作出反应</p>
+        <h3 id="Gulp的使用方式"><a href="#Gulp的使用方式" class="headerlink" title="Gulp的使用方式"></a>Gulp的使用方式</h3><p>gulp是一款目前比较流行的基于流的自动化构建工具</p>
+<p>因为gulp是运行在nodejs中，所以说也遵循 CommonJS模块化规范，gulp的使用就是通过创建任务和执行任务来完成</p>
+<p>关键方法:</p>
+<ol>
+<li>gulp.task()创建任务</li>
+<li>gulp.src()查找资源文件</li>
+<li>gulp.dest()输出文件</li>
+<li>gulp.watch()监听文件内容变化</li>
+<li>.pipe()可以对文件进行处理</li>
+</ol>
+<p>gulp提供的只是查找文件，监听文件，处理后输出文件，但是如何处理都不属于gulp的功能范畴</p>
+<h3 id="工程化的实现"><a href="#工程化的实现" class="headerlink" title="工程化的实现"></a>工程化的实现</h3><p>在这里，我们将项目的工程化，与现实中的建筑项目开发来做一个对比；</p>
+<p>1.项目选址，找一块能使用的好地段的地皮准备进行项目的开发</p>
+<pre><code>在电脑上某一个地方建立项目目录准备进行开发
+</code></pre><p>2.进行信息备案：建筑名称，占地，用处，材料，规模等等…</p>
+<pre><code>在项目中执行npm init 创建package.json的文件，标注项目的相关信息
+</code></pre><p>3.找建筑公司承包项目的开发</p>
+<pre><code>选择gulp + gulp-webpack + npm 进行项目的开发
+</code></pre><p>4.建筑公司的工人入驻工地</p>
+<pre><code>全局安装gulp ：npm install gulp --global
 
+在项目中安装gulp依赖：npm install gulp --save-dev ( -D )
+</code></pre><p>5.建筑图纸，材料进入工地</p>
+<pre><code>建立开发目录以及依赖等等
+</code></pre><p>6.对工人根据工种分队，建立完善的任务发布机制（微信群聊）</p>
+<pre><code>建立gulpfile.js文件，在这个文件里发布任务，通过命令行来执行这些任务
+</code></pre><p>7.项目完成后……</p>
+<hr>
+<h3 id="工程化的详细实现"><a href="#工程化的详细实现" class="headerlink" title="工程化的详细实现"></a>工程化的详细实现</h3><p>1.想要一个热更新服务器</p>
+<pre><code>npm i gulp-webserver -D
+</code></pre><p>2.配置sass开发环境</p>
+<pre><code>因为sass并不能被浏览器直接识别，需要进行编译，编译成css后再引入
+
+sass的底层是ruby，在node中我们需要使用node-sass的工具来帮助编译
+
+先安装node-sass@4.0.0 
+
+npm install -g node-sass@4.0.0
+
+npm install node-sass@4.0.0 -D
+
+再安装gulp中的编译sass的工具
+
+npm install gulp-sass -D
+
+注意，在编译sass的时候，一保存就报错，在编译就好了
+
+原因是设备有的时候反应不过来，按下保存按钮的时候，这个时候gulp-sass编译sass的时候，其他的模块任务已经运行了
+
+解决方法：在编译sass的位置报上一个setTimeout
+
+注意，在sass里进行模块化开发才是王道
+</code></pre><p>3.合并css文件</p>
+<pre><code>因为用sass开发后，本身可以模块后后在一个模块中引入另一个sass模块。最后编译出来的就是完整的css。
+
+但是因为有的时候，一些模块是别人写的，我们不知道怎么引入，只好合并到一起
+
+npm install -D gulp-concat
+</code></pre><p>4.css兼容处理</p>
+<pre><code>虽然在移动端中浏览器内核都是webkit，但是我们的css依然要加前缀，再说弹性盒，弹性盒的语法是有两个版本，两个版本的语法基本是完全不一样的
+
+[codepen](codepen.io)是一个神奇的网站，我们可以在线写代码，还可以做css兼容，还可以找一些好看的效果来学习
+</code></pre><p>5.js模块化编译打包</p>
+<pre><code>npm install gulp-webpack -D
+
+用babel编译es6 ，用gulp-rename改名字，用gulp-uglify压缩
+</code></pre><p>6.demo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>)</span><br><span class="line"><span class="keyword">const</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>)<span class="comment">//合并</span></span><br><span class="line"><span class="keyword">const</span> cleanCSS = <span class="built_in">require</span>(<span class="string">'gulp-clean-css'</span>);<span class="comment">//压缩css</span></span><br><span class="line"><span class="keyword">const</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>);<span class="comment">//css兼容</span></span><br><span class="line"><span class="keyword">const</span> webserver = <span class="built_in">require</span>(<span class="string">"gulp-webserver"</span>)<span class="comment">//热更新模块</span></span><br><span class="line"><span class="comment">//热更新服务的任务</span></span><br><span class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./'</span>).</span><br><span class="line">        pipe(webserver(&#123;</span><br><span class="line">            host:<span class="string">"localhost"</span>,</span><br><span class="line">            port:<span class="number">9000</span>,</span><br><span class="line">            livereload :<span class="literal">true</span> , <span class="comment">//是否热更新</span></span><br><span class="line">            directoryListing :<span class="literal">true</span></span><br><span class="line">        &#125;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>)<span class="comment">//处理sass的模块</span></span><br><span class="line">gulp.task(<span class="string">'sass'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//编译sass的任务</span></span><br><span class="line">    <span class="comment">// setTimeout(function()&#123;</span></span><br><span class="line">        gulp.src(<span class="string">'./src/sass/**/*.scss'</span>).</span><br><span class="line">        pipe(sass(&#123;<span class="attr">outputStyle</span>:<span class="string">'compressed'</span>&#125;).on(<span class="string">'error'</span>, sass.logError))</span><br><span class="line">        .pipe(concat(<span class="string">'index.css'</span>))</span><br><span class="line">        <span class="comment">// .pipe(cleanCSS(&#123;compatibility: 'ie8'&#125;))</span></span><br><span class="line">        .pipe(autoprefixer(&#123;</span><br><span class="line">            browsers: [<span class="string">'last 2 versions'</span>],</span><br><span class="line">            cascade: <span class="literal">false</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">"./build/css"</span>))</span><br><span class="line">    <span class="comment">// &#125;,200)</span></span><br><span class="line">   </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//js处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'gulp-webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</span><br><span class="line"><span class="keyword">const</span> rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>)</span><br><span class="line">gulp.task(<span class="string">"packjs"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.src(<span class="string">"./src/js/index.js"</span>)</span><br><span class="line">        .pipe(webpack(&#123;</span><br><span class="line">            output:&#123;</span><br><span class="line">                filename:<span class="string">'index.js'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="built_in">module</span>:&#123;</span><br><span class="line">                loaders:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        test:<span class="regexp">/\.js$/</span>,</span><br><span class="line">                        loader:<span class="string">"babel-loader"</span>,</span><br><span class="line">                        query:&#123;</span><br><span class="line">                            presets:[<span class="string">'es2015'</span>]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(rename(&#123;</span><br><span class="line">            suffix: <span class="string">".min"</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./build/js'</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听sass任务</span></span><br><span class="line">gulp.task(<span class="string">'watch:sass'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">'./src/sass/**/*.scss'</span>,[<span class="string">'sass'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//监听js任务</span></span><br><span class="line">gulp.task(<span class="string">'watch:js'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.watch(<span class="string">'./src/js/**/*.js'</span>,[<span class="string">'packjs'</span>])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//默认任务</span></span><br><span class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'sass'</span>,<span class="string">'watch:sass'</span>,<span class="string">'packjs'</span>,<span class="string">'watch:js'</span>,<span class="string">'server'</span>])</span><br></pre></td></tr></table></figure>
       
 
       
@@ -370,7 +493,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -380,7 +503,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/前端页面的构成/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/">展开全文 >></a>
         </p>
       
 
@@ -410,38 +533,55 @@
 
 
   
-    <article id="post-元素的分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-es6模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/元素的分类/">元素的分类</a>
+      <a class="article-title" href="/2017/12/07/es6模块化/">关于ES6模块化</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/元素的分类/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/es6模块化/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="元素的分类"><a href="#元素的分类" class="headerlink" title="元素的分类"></a>元素的分类</h2><p>首先：css规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如：div的display默认值为”block”，则为”块级元素”;span默认display属性值为”inline”,是行内元素。</p>
+        <h3 id="关于ES6模块化"><a href="#关于ES6模块化" class="headerlink" title="关于ES6模块化"></a>关于ES6模块化</h3><p>历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。</p>
+<p>在nodeJS中，有模块化的方法，使用CommonJS规范可以做到模块化，也就是说，只有在用js进行后端node开发的时候，才能使用模块化，前端js依然不行</p>
+<p>在前端我们可以使用requireJS，seaJS来实现模块化，但是requireJS也是通过对script标签进行异步导入的方式来进行，并不是js里自带的语法</p>
+<p>我们也可以使用webpack工具来进行模块化打包，是因为webpack跑在nodeJS中，说到底还是nodeJS中的模块化</p>
+<p>但是在ES6中，我们第一次在js语法中加入了模块化的东西，目前很多浏览器都不支持，所以说还需要编译</p>
+<h5 id="ES6模块化的规范"><a href="#ES6模块化的规范" class="headerlink" title="ES6模块化的规范"></a>ES6模块化的规范</h5><p>模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
 <ol>
-<li><p>行内元素：a b span select strong(强调的语气) img input</p>
-</li>
-<li><p>块级元素：div ul ol li dl dd h1 h2 h3 h4 h5 h6 p</p>
-</li>
-<li><p>常见的空元素：</p>
+<li><p>暴露</p>
+<p>可以export直接暴露出某些对象，可以暴露多个：</p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</span><br></pre></td></tr></table></figure>
-<p>鲜为人知的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;area&gt; &lt;base&gt; &lt;col&gt; &lt;command&gt; &lt;embed&gt; &lt;keygen&gt; &lt;param&gt; &lt;source&gt; &lt;track&gt; &lt;wdr&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴露多个接口 在定义的时候暴露</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> str = <span class="string">'abcd'</span></span><br><span class="line"><span class="keyword">export</span>  <span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fn'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> person = &#123;</span><br><span class="line">    name:<span class="string">'二狗'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暴露多个接口，在&#123;&#125;里放入要暴露的对象</span></span><br><span class="line"><span class="keyword">export</span> &#123;str,fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>因为直接暴露的对象在引入的时候名字不能改变，可能会导致在引入的模块中造成命名冲突
+可以在暴露的时候通过as来定义别名
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>在暴露对象的时候，如果只有一个，可以default暴露，在引入的时候叫啥都行，也不用加{}
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> fn</span><br></pre></td></tr></table></figure>
+<pre><code>default只能暴露一个东西，如果我们有一个是defualt暴露的，还有几个是具名暴露
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> str</span><br><span class="line"><span class="keyword">export</span> &#123;fn,person&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>引入：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc,&#123;fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a'</span><span class="comment">//abc就是上面的str</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>导入</p>
+<p> 如果被引入的模块没有暴露，只是一段逻辑代码需要在引入模块里运行的话</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modules/empty'</span></span><br></pre></td></tr></table></figure>
+<pre><code>如果要导入某一个模块中暴露的一些对象的话，注意，不一定非要把其暴露的模块全部引入，导出的对象的名字不能错
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> &#123;str,fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line">    <span class="built_in">console</span>.log(str,person)</span><br><span class="line">    fn()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">    在引入模块中暴露的接口的时候，很可能会产生命名冲突，依赖于在暴露的时候定义别名的话，也不是很安全，所以最好在引入的时候命名别名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">    如果要引入的模块暴露出来的对象有很多，我们在引入的时候可以放入到一个对象中去使用：</span></span><br><span class="line"><span class="string">    A对象不需要自己定义，引入的时候会自动创建</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> A <span class="keyword">from</span> <span class="string">'./modules/module_a'</span></span><br><span class="line">    <span class="built_in">console</span>.log(A)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -454,7 +594,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ES6</a>
         		</li>
       		
 		</ul>
@@ -464,7 +604,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/元素的分类/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/es6模块化/">展开全文 >></a>
         </p>
       
 
@@ -494,33 +634,42 @@
 
 
   
-    <article id="post-rem和em" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/rem和em/">rem与em</a>
+      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/跨域/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="rem与em"><a href="#rem与em" class="headerlink" title="rem与em"></a>rem与em</h2><ol>
-<li><p>rem是相对于根元素<html>的”font-size”为基准。比如说我们给html设置font-size为100<br>那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem</html></p>
-</li>
-<li><p>em一般都是以<body>的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px”时，只需要将其值设置为”1.4em”</body></p>
-</li>
-</ol>
+        <h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域问题对于WEB前端工程师来说是比较重要的一个问题，因为我们时常需要去解决这样的问题，在其他类型的前端开发来说，他们并没有跨域问题</p>
+<h5 id="跨域问题的产生"><a href="#跨域问题的产生" class="headerlink" title="跨域问题的产生"></a>跨域问题的产生</h5><p>因为浏览器有同源策略：只有在同域名，同端口，同协议的情况下才可以进行数据交互；</p>
+<p>有的时候，例如，在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司有，数据服务器不只有一个，所以跨域问题也必然存在</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>1.jsonp </p>
+<pre><code>是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，因为其不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说是前后端结合的方式。
 
+注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间
+
+缺点：只能get请求
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">nodejs：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line">    <span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">    <span class="comment">//前端回调函数的名字</span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>]</span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>)+<span class="string">''</span></span><br><span class="line">    <span class="comment">//返回给前端函数数据</span></span><br><span class="line">    res.send(fn+<span class="string">'('</span>+content+<span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">js：</span><br><span class="line"></span><br><span class="line">Jsonp(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123;url,success&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签</span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">"&lt;script&gt;"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//随机函数名字</span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span>+<span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">        <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name]</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    $script[<span class="number">0</span>].src = url+<span class="string">'?callback='</span>+random_name</span><br><span class="line">    $(<span class="string">"body"</span>).append($script)   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.cors</p>
+<pre><code>纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">node:</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/data_cors"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">js:</span><br><span class="line">  </span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>3.服务端代理proxy</p>
+<pre><code>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">目标服务器接口 <span class="number">3000</span>：</span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    res.send(<span class="string">'proxy'</span>)</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">代理服务器<span class="number">1234</span>：</span><br><span class="line">app.get(<span class="string">"/to3000"</span>,(req,res)=&gt;&#123; </span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);   </span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span>(reqOrigin !=<span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>)&#123;  </span><br><span class="line">    <span class="comment">//设置允许 http://localhost:3000 这个域响应  </span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);  <span class="comment">//允许这个域访问</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);  <span class="comment">//允许的请求方法</span></span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);  </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">    <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url,(res)=&gt;&#123;</span><br><span class="line">        <span class="keyword">let</span> result=<span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>,(chunk)=&gt;&#123;</span><br><span class="line">            result+=chunk</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>,()=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">            <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result)</span><br><span class="line">        &#125;)</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">开发服务器<span class="number">9000</span>：</span><br><span class="line"></span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url:<span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        url:<span class="string">"http://localhost:3000/data_proxy"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    success(results)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -533,7 +682,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
         		</li>
       		
 		</ul>
@@ -543,7 +692,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/rem和em/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
         </p>
       
 
@@ -573,42 +722,106 @@
 
 
   
-    <article id="post-盒模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1.sass的安装,编译，风格" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
+      <a class="article-title" href="/2017/12/07/1.sass的安装,编译，风格/">1.sass的安装，编译与风格</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/盒模型/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/1.sass的安装,编译，风格/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:11:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="关于盒模型"><a href="#关于盒模型" class="headerlink" title="关于盒模型"></a>关于盒模型</h2><ol>
-<li><p>盒模型有两种：IE盒子模型、W3C盒子模型</p>
-</li>
-<li><p>盒模型：内容（content）、填充（padding）、边界（margin）、边框（border）</p>
-</li>
-<li><p>区别：IE的width部分把border和padding计算了进去</p>
-</li>
-</ol>
-<p>1、<br>标准：width是内容宽度，元素真正的宽度=margin+padding+border+width<br>怪异：width是元素实际宽度，内容宽度=width-（margin+padding+border）</p>
-<p>2、可以设置行内元素的宽高<br>    在标准模式下，给span等行内元素设置width和height都不会生效，而在怪异模式下，则会生效</p>
-<p>3、可设置百分比的高度<br>    在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置宽高，子元素设置一个百分比的高度是无效的</p>
-<p>4、用margin：0 auto设置水平居中在IE下会失效<br>    使用margin：0 auto在标准模式下可以使元素水平居中，但在怪异模式下却会失效，怪异模式下的解决方法，用text-align属性：body{text-align：center}；#content{text-align：left}</p>
-<p>5、怪异模式下设置图片的padding会失效</p>
-<p>6、怪异模式下table中的字体属性不能继承上层的设置</p>
-<p>7、怪异模式下white-space：pre会失效</p>
-
+        <h2 id="1-安装sass"><a href="#1-安装sass" class="headerlink" title="1.安装sass"></a>1.安装sass</h2><h3 id="1-安装ruby"><a href="#1-安装ruby" class="headerlink" title="1.安装ruby"></a>1.安装ruby</h3><blockquote>
+<p>因为sass是用ruby语言写的，所以需要安装ruby环境</p>
+</blockquote>
+<p>打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Add Ruby executables to your PATH</li>
+</ul>
+<p>安装完成之后继续下一步操作</p>
+<hr>
+<h3 id="2-安装sass"><a href="#2-安装sass" class="headerlink" title="2.安装sass"></a>2.安装sass</h3><p>在cmd里通过gem安装sass</p>
+<blockquote>
+<p>gem是ruby的包管理工具，类似于nodejs 的npm</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure>
+<p>这个时候如果不翻墙的话是会出问题的，因为：</p>
+<p>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。这时候我们可以通过gem sources命令来配置源，先移除默认的<a href="https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem" target="_blank" rel="noopener">https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem</a> install sass了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove https:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -a https:<span class="comment">//ruby.taobao.org/ 【如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org】</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//ruby.taobao.org</span></span><br><span class="line"># 请确保只有 ruby.taobao.org</span><br><span class="line">$ gem install sass</span><br></pre></td></tr></table></figure>
+<p>安装好之后执行sass -v就可以看到sass的版本了</p>
+<p>实在实在不行，就安装离线文件吧,但是失败率也很高</p>
+<p>gem install  ./…/sass-3.4.22.gem</p>
+<h2 id="2-编译sass文件的方式"><a href="#2-编译sass文件的方式" class="headerlink" title="2.编译sass文件的方式"></a>2.编译sass文件的方式</h2><h3 id="1-命令行编译"><a href="#1-命令行编译" class="headerlink" title="1.命令行编译"></a>1.命令行编译</h3><blockquote>
+<p>可以通过cmd命令行执行sass方法来编译</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass scss/a.scss:css/a.css</span><br></pre></td></tr></table></figure>
+<p>sass 后面写要编译的sass文件的路径，‘：’后面写的是<br>要输出的目录及名字</p>
+<blockquote>
+<ul>
+<li>需要注意的是：必须有这个文件夹才能在里面生成css</li>
+</ul>
+</blockquote>
+<p>这样的话写一句执行一次编译一次有些太麻烦</p>
+<p>可以开启一个watch来监听文件变化来进行编译</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css</span><br></pre></td></tr></table></figure>
+<p>–watch表示要监听 ：前后的两个都是文件夹，表示scss文件夹的文件改变就编译到css文件夹</p>
+<hr>
+<h3 id="2-其他方式编译"><a href="#2-其他方式编译" class="headerlink" title="2.其他方式编译"></a>2.其他方式编译</h3><p>除了命令行工具其实还可以用考拉、gulp等工具进行编译，但是ruby和sass是必须要安装的</p>
+<p>考拉的方式就不多做介绍了，大家i自己去看一下</p>
+<p>gulp的话呢是需要gulp-sass的模块来编译，使用方式类似于gulp-less</p>
+<p>这里是网址，<a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener">点击查看</a></p>
+<h2 id="3-sass四种风格"><a href="#3-sass四种风格" class="headerlink" title="3.sass四种风格"></a>3.sass四种风格</h2><h3 id="sass编译的格式"><a href="#sass编译的格式" class="headerlink" title="sass编译的格式"></a>sass编译的格式</h3><p>sass编译输出的css有四种格式</p>
+<ul>
+<li>nested 嵌套</li>
+<li>compact 紧凑</li>
+<li>expanded 扩展</li>
+<li>compressed 压缩</li>
+</ul>
+<blockquote>
+<p>这些样式会影响输出的css的格式</p>
+</blockquote>
+<p>简单介绍一下：</p>
+<p>css默认输出的嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">  ul li &#123;</span><br><span class="line">    list-style: none; &#125;</span><br></pre></td></tr></table></figure>
+<p>紧凑compact<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compact</span><br></pre></td></tr></table></figure>
+<p>这个时候输出的代码就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ul &#123; font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">ul li &#123; list-style: none; padding: <span class="number">5</span>px; &#125;</span><br></pre></td></tr></table></figure>
+<p>compressed 压缩<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;font-size:<span class="number">15</span>px&#125;ul li&#123;list-style:none;animation:all <span class="number">0.4</span>s&#125;</span><br></pre></td></tr></table></figure>
+<p>expanded 扩展<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style expanded</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line">ul li &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">  animation: all <span class="number">0.3</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>compressed 压缩<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.a&#123;<span class="attr">width</span>:<span class="number">100</span>px;height:<span class="number">100</span>px;border:<span class="number">1</span>px solid red&#125;.a .b&#123;<span class="attr">background</span>:red&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-sass与scss"><a href="#4-sass与scss" class="headerlink" title="4.sass与scss"></a>4.sass与scss</h2><h3 id="sass的两个语法版本"><a href="#sass的两个语法版本" class="headerlink" title="sass的两个语法版本"></a>sass的两个语法版本</h3><p>sass一开始用的是一种缩进式的语法格式</p>
+<p>采用这种格式文件的后缀名是.sass</p>
+<p>在sass3.0版本后我们常用的是sassy css语法，扩展名是.scss，更接近与css语法</p>
+<h3 id="两个版本的区别"><a href="#两个版本的区别" class="headerlink" title="两个版本的区别"></a>两个版本的区别</h3><ul>
+<li>后缀名不同 .sass和.scss</li>
+<li>语法不同，请看下面</li>
+</ul>
+<p>新版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">//单行文本注释</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span>;</span><br><span class="line"></span><br><span class="line">@mixin alert&#123;</span><br><span class="line">	color:red;</span><br><span class="line">	background:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">  单行文本注释*/</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span></span><br><span class="line"></span><br><span class="line">=alert</span><br><span class="line">	color:red</span><br><span class="line">	background:blue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.alert-warning</span><br><span class="line">	+alert</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ul</span><br><span class="line">	font-size:<span class="number">15</span>px</span><br><span class="line">	li</span><br><span class="line">		list-style:none</span><br></pre></td></tr></table></figure>
       
 
       
@@ -621,7 +834,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -631,7 +844,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/盒模型/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/1.sass的安装,编译，风格/">展开全文 >></a>
         </p>
       
 
@@ -661,45 +874,105 @@
 
 
   
-    <article id="post-响应式布局" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/响应式布局/">响应式布局</a>
+      <a class="article-title" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">2.sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/响应式布局/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h2><p>响应式：利用媒体查询等技术，通过检测浏览器的尺寸不同，来显示不同的布局结构，原理就是，媒体查询可以检测到屏幕的尺寸是否处于某一个范围，如果是的时候可以让某一段css代码起作用，来实现结构切换。</p>
-<p>特点：</p>
-<ol>
-<li>面对不同分辨路设备灵活性强</li>
-<li>能够快捷解决多设备显示适应问题</li>
-</ol>
-<p>设计步骤：</p>
-<ol>
-<li>设置meta标签</li>
-<li>根据媒体查询设置样式</li>
-<li>设置多种视图宽度</li>
-<li>注意点：宽度使用百分比；处理图片缩放问题</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>兼容各种设备工作量大，效率低下</li>
-<li>代码累赘，会出现隐藏无用的元素，加载时间加长</li>
-<li>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果，一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</li>
-</ol>
+        <h2 id="变量、嵌套、混合（mixin）、继承拓展、-import、comment"><a href="#变量、嵌套、混合（mixin）、继承拓展、-import、comment" class="headerlink" title="变量、嵌套、混合（mixin）、继承拓展、@import、comment"></a>变量、嵌套、混合（mixin）、继承拓展、@import、comment</h2><h3 id="变量的意义"><a href="#变量的意义" class="headerlink" title="变量的意义"></a>变量的意义</h3><p>在sass里我们可以定义多个变量来存放颜色、边框等等的样式，这样就可以在下面想要使用样式的时候使用变量了</p>
+<p>这样的优点就是便于维护，更改方便</p>
+<hr>
+<h3 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h3><p>可以通过$来定义变量，在变量名字中可以使用-和<em>来作为连接，并且-和</em>是可以互通的，就是用起来一模一样。</p>
+<p>变量的值可以是字符串、数字、颜色等等，在变量里还可以使用其他变量，使用的时候直接写变量名就好了</p>
+<p>例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$primary-color:#ff6600;</span><br><span class="line">$primary-border:<span class="number">1</span>px solid $primary_color;</span><br><span class="line"></span><br><span class="line">div.box&#123;</span><br><span class="line">	background:$primary-color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header&#123;</span><br><span class="line">	border:$primary-border;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">div.box &#123;</span><br><span class="line">  background: #ff6600;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header &#123;</span><br><span class="line">  border: 1px solid #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="嵌套的使用"><a href="#嵌套的使用" class="headerlink" title="嵌套的使用"></a>嵌套的使用</h3><p>合理的使用嵌套语法，可以使我们编写代码更为快捷</p>
+<p>假设我们想写这样的css：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在sass里我们可以这样写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">	height:<span class="number">100</span>px;</span><br><span class="line">	ul&#123;</span><br><span class="line">		margin:<span class="number">0</span>;</span><br><span class="line">		li &#123;</span><br><span class="line">			float:left;</span><br><span class="line">			list-style:none;</span><br><span class="line">			padding:<span class="number">5</span>px;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家会发现，写出来的代码父和子之间都有空格隔开，如果我们需要给a加上伪类的话我们这样写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        :hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在里面就会出现这样的情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.nav a :hover &#123;</span><br><span class="line">  color: #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们发现在a和:hover之间有了空格，这样是不好的，所以我们需要在写的时候在：hover之前把a加上，这样就需要用到在之类里引用父类选择器的方式，我们可以用&amp;符号代替父类</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        &amp;:hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就好了，下面来个完整的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    ul&#123;</span><br><span class="line">    	margin:<span class="number">0</span>;</span><br><span class="line">    	li&#123;</span><br><span class="line">    		float:left;</span><br><span class="line">    		list-style:none;</span><br><span class="line">    		padding:<span class="number">5</span>px;</span><br><span class="line">    	&#125;</span><br><span class="line">    	a&#123;</span><br><span class="line">    		display:block;</span><br><span class="line">    		color:#000;</span><br><span class="line">    		&amp;:hover&#123;</span><br><span class="line">    			color:#f60;</span><br><span class="line">    			background:red;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp; &amp;-text&#123;</span><br><span class="line">    	font-size:<span class="number">15</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a:hover &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line">.nav .nav-text &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="嵌套属性"><a href="#嵌套属性" class="headerlink" title="嵌套属性"></a>嵌套属性</h3><p>我们可以把一些个复合属性的子属性来嵌套编写，加快编写速度，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		family:Helvitica;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">		weight:bold;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">.nav&#123;</span><br><span class="line">	border:<span class="number">1</span>px solid red&#123;</span><br><span class="line">		left:none;</span><br><span class="line">		right:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next&#123;</span><br><span class="line">	transition:&#123;</span><br><span class="line">		property:all;</span><br><span class="line">		delay:<span class="number">2</span>s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  font-family: Helvitica;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.nav &#123;</span><br><span class="line">  border: <span class="number">1</span>px solid red;</span><br><span class="line">  border-left: none;</span><br><span class="line">  border-right: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next &#123;</span><br><span class="line">  transition-property: all;</span><br><span class="line">  transition-delay: <span class="number">2</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="mixin-混合"><a href="#mixin-混合" class="headerlink" title="mixin 混合"></a>mixin 混合</h3><blockquote>
+<p>你可以把它想象成一个有名字的定义好的样式</p>
+</blockquote>
+<p>每一个mixin都有自己的名字，类似于js里的函数定义方法如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@mixin 名字(参数<span class="number">1</span>，参数<span class="number">2.</span>..)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方法是在其他选择器css样式里通过@include引入，其实就相当于将mixin里的代码写入到这个选择器的css里，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert &#123;</span><br><span class="line">	color:#f60;</span><br><span class="line">	background-color:#f60;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:pink;</span><br><span class="line">	&#125;</span><br><span class="line">	&amp;-a&#123;</span><br><span class="line">		color:red;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background-color: #f60;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: pink;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning-a &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>刚才是没有参数的mixin，mixin也可以拥有参数，需要注意的是：</p>
+<ul>
+<li>形参的名字前要加$</li>
+<li>传参的时候只写值的话要按顺序传</li>
+<li>传参的时候不想按顺序的话需要加上形参名字</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert($color,$background) &#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background-color:$background;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:darken($color,<span class="number">10</span>%);<span class="comment">//把颜色加深百分之十</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert(red,blue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info&#123;</span><br><span class="line">	@include alert($background:red,<span class="attr">$color</span>:blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>——》</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  background-color: blue;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: #cc0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  color: blue;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">.alert-info a &#123;</span><br><span class="line">  color: #0000cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="继承拓展-extend"><a href="#继承拓展-extend" class="headerlink" title="继承拓展 extend"></a>继承拓展 extend</h3><p>如果我们有一个选择器想要拥有另一个选择所有的东西，不管是样式还是子元素等等，可以使用@extend来继承</p>
+<p>大家需要注意的是，++b继承a的时候，a的子元素设置了样式，也会给b的子元素设置样式++，达到完全一样的情况，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert &#123;</span><br><span class="line">	padding:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—-》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="partials"><a href="#partials" class="headerlink" title="partials"></a>partials</h3><p>在以前咱们编写css的时候，一个css引入另一个css需要使用@import，其实这是不好的，会多发一次http请求，影响咱们站点的响应速度。</p>
+<p>在sass里，咱们可以把小的sass文件分出去，叫做partials，在某个sass里通过@import ‘partials名’去引入，注意路径哟，这样的话就可以把partials里的代码引到咱们大的sass里一起编译</p>
+<ul>
+<li>需要注意的是 partials的文件名前要加_</li>
+</ul>
+<h6 id="base-sass"><a href="#base-sass" class="headerlink" title="_base.sass  :"></a>_base.sass  :</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	margin:<span class="number">0</span>;</span><br><span class="line">	padding:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="style-sass"><a href="#style-sass" class="headerlink" title="style.sass :"></a>style.sass :</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;base&quot;;</span><br><span class="line"></span><br><span class="line">.alert &#123;</span><br><span class="line">	padding:5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:15px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>———–&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">  padding: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的话我们就可以把模块化的思想引入到sass里了</p>
+<hr>
+<h3 id="comment注释"><a href="#comment注释" class="headerlink" title="comment注释"></a>comment注释</h3><p>sass里的注释有三种</p>
+<ul>
+<li>多行注释</li>
+<li>单行注释</li>
+<li>强制注释</li>
+</ul>
+<p>多行注释：压缩后不会出现在css里 /<em>  </em>/</p>
+<p>单行注释: 不会出现在css里 //</p>
+<p>强制注释：压缩后也会出现在css里 /<em>!  </em>/</p>
 
       
 
@@ -713,7 +986,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -723,7 +996,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/响应式布局/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">展开全文 >></a>
         </p>
       
 
@@ -753,36 +1026,109 @@
 
 
   
-    <article id="post-web标准及W3C的理解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-3.sass的数据类型与函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/web标准及W3C的理解/">web标准及W3C的理解</a>
+      <a class="article-title" href="/2017/12/07/3.sass的数据类型与函数/">3.sass的数据类型</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/web标准及W3C的理解/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/3.sass的数据类型与函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="web标准及W3C的理解"><a href="#web标准及W3C的理解" class="headerlink" title="web标准及W3C的理解"></a>web标准及W3C的理解</h2><p>web标准就是将页面的结构、表现、和行为各自独立实现，W3C对web标准提出了规范化的要求</p>
-<p>1、  对结构的要求：（标签规范可以提高搜索引擎对页面的抓取效率，对SEO很有帮助）</p>
-<pre><code>1. 标签字母要小写
-2. 标签要闭合
-3. 标签不允许随意嵌套
-</code></pre><p>2、  对css和js的要求：</p>
-<pre><code>1. 尽量使用外联css样式表和js脚本，是结构、表现和行为分成三块，符合规范，同时提高页面渲染速度，提高用户体验
-2. 样式尽量少用行间样式表，使结构与表现分离，标签的id和class命名要做到见文知义，标签越少，加载越快，用户体验更高，代码维护更简单
-3. 不需要变动页面内容，便可以提供打印版本而不需要复制内容，提高网站易用性
-</code></pre>
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在sass里有数字、字符串、列表、颜色等类型</p>
+<p>在cmd里 输入 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass -i</span><br></pre></td></tr></table></figure>
+<p>就会进入到交互模式，输入的计算可以马上得到结果</p>
+<p>type-of()可以用来得到数据类型，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>注意数字类型的可以包含单位，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>字符串类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(hello) -&gt; string</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="string">'hello'</span>) -&gt; string</span><br></pre></td></tr></table></figure>
+<p>list类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">1</span>px solid red) -&gt; list</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px <span class="number">10</span>px) -&gt; list</span><br></pre></td></tr></table></figure>
+<p>颜色：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(red)  -&gt; color</span><br><span class="line">type-<span class="keyword">of</span>(rgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)  -&gt; color</span><br><span class="line">type-of(#333)  -&gt; color</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="number-计算"><a href="#number-计算" class="headerlink" title="number 计算"></a>number 计算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>+<span class="number">9</span> -》<span class="number">10</span></span><br><span class="line"><span class="number">2</span>*<span class="number">8</span> -》<span class="number">16</span></span><br><span class="line">(<span class="number">8</span>/<span class="number">2</span>) -&gt;<span class="number">4</span> <span class="comment">//除法要写括号</span></span><br></pre></td></tr></table></figure>
+<p>也可以包含单位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px + <span class="number">5</span>px -&gt; <span class="number">10</span>px</span><br><span class="line"><span class="number">5</span>px <span class="number">-2</span> -&gt;<span class="number">3</span>px</span><br><span class="line"><span class="number">5</span>px *<span class="number">2</span> -&gt;<span class="number">10</span>px</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px * <span class="number">2</span>px -&gt;<span class="number">10</span>px*px <span class="comment">//这样就不对了哟</span></span><br><span class="line"></span><br><span class="line">（<span class="number">10</span>px/<span class="number">2</span>px） -&gt; <span class="number">5</span><span class="comment">//除法单位取消</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>+<span class="number">2</span>*<span class="number">5</span>px-&gt;<span class="number">13</span>px</span><br></pre></td></tr></table></figure>
+<h2 id="好吧，都是一些小学的数学题，很简单对吧"><a href="#好吧，都是一些小学的数学题，很简单对吧" class="headerlink" title="好吧，都是一些小学的数学题，很简单对吧"></a>好吧，都是一些小学的数学题，很简单对吧</h2><h3 id="处理数字的函数"><a href="#处理数字的函数" class="headerlink" title="处理数字的函数"></a>处理数字的函数</h3><p>绝对值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abs(<span class="number">10</span>) -&gt; <span class="number">10</span>;</span><br><span class="line">abs(<span class="number">10</span>px) -&gt; <span class="number">10</span>px;</span><br><span class="line">abs(<span class="number">-10</span>px) -&gt; <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
+<p>四舍五入相关</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">round(<span class="number">3.4</span>)-&gt;<span class="number">3</span>  <span class="comment">//四舍五入</span></span><br><span class="line">round(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">ceil(<span class="number">3.2</span>)-&gt;<span class="number">4</span>  <span class="comment">//向上取整</span></span><br><span class="line">ceil(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">floor(<span class="number">3.2</span>)-&gt;<span class="number">3</span>  <span class="comment">//向下取整</span></span><br><span class="line">floor(<span class="number">3.9</span>)-&gt;<span class="number">3</span></span><br><span class="line"></span><br><span class="line">percentage(<span class="number">600</span>px/<span class="number">1000</span>px) -&gt;<span class="number">65</span>%  <span class="comment">//百分之</span></span><br><span class="line"></span><br><span class="line">min(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) -&gt; <span class="number">1</span>   <span class="comment">//最小值</span></span><br><span class="line"></span><br><span class="line">max(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) -&gt; <span class="number">5</span>  <span class="comment">//最大值</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串相关"><a href="#字符串相关" class="headerlink" title="字符串相关"></a>字符串相关</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//带引号和不带引号的字符串想加为带引号的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="string">"a"</span> + b -&gt;<span class="string">"ab"</span></span><br><span class="line">a + <span class="string">"b"</span> -&gt;<span class="string">"ab"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串+数字</span></span><br><span class="line"><span class="string">"ab"</span> + <span class="number">1</span> -&gt;<span class="string">"ab1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串 - 和 / 字符串</span></span><br><span class="line"><span class="string">"a"</span> - b -&gt;<span class="string">"a-b"</span></span><br><span class="line"><span class="string">"a"</span> / b -&gt;<span class="string">"a/b"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意字符串不能相乘</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>大写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"hello"</span>;</span><br><span class="line">to-upper-<span class="keyword">case</span>($word) -&gt; <span class="string">"HELLO"</span></span><br></pre></td></tr></table></figure>
+<p>小写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">to-lower-<span class="keyword">case</span>($word) -&gt; <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>得到length：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-length($word) -&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>得到字符串在字符串里的位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-index($word,<span class="string">"el"</span>) -&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>字符串中插入字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-insert($word,<span class="string">"aa"</span>,<span class="number">2</span>) -&gt; <span class="string">"Haaello"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="颜色相关"><a href="#颜色相关" class="headerlink" title="颜色相关"></a>颜色相关</h3><p>在sass里除了关键字、十六进制、rgb和rgba之外还有一种颜色是HSL</p>
+<p>分别表示的是 色相 0-360（deg） 饱和度 0-100% 明度 0-100%</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">0</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以有透明哟<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%，<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><p>lighten函数和darken函数可以把颜色加深或减淡，即调整明度，第一个参数为颜色，第二个参数为百分比，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:#ff0000;</span><br><span class="line"></span><br><span class="line">$light-color:lighten($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">$dark-color:darken($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$light-color;</span><br><span class="line">	border-color:$dark-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #ff0000;</span><br><span class="line">  background: #ff9999;</span><br><span class="line">  border-color: #660000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>saturate和desaturate函数可以调整颜色的纯度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:hsl(<span class="number">0</span>,<span class="number">50</span>%,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$saturate-color:saturate($color,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$desaturate-color:desaturate($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$saturate-color;</span><br><span class="line">	border-color:$desaturate-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #bf4040;</span><br><span class="line">  background: red;</span><br><span class="line">  border-color: #996666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用transparentize来让颜色更透明</p>
+<p>用opatify来让颜色更不透明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:rgba(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">$opacify-color:opacify($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">$transparentize-color:transparentize($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$opacify-color;</span><br><span class="line">	border-color:$transparentize-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  background: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>);</span><br><span class="line">  border-color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>在sass里，用空格或者逗号隔开的值就是列表类型<br>如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>px solid red</span><br><span class="line"></span><br><span class="line">Courier,microsoft yahei</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表函数"><a href="#列表函数" class="headerlink" title="列表函数"></a>列表函数</h3><p>sass里的列表类似与数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">获取列表的长度</span><br><span class="line">length(<span class="number">5</span>px <span class="number">10</span>x)  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">获取列表中的第几个元素</span><br><span class="line">nth(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">2</span>)  <span class="number">10</span>px</span><br><span class="line"></span><br><span class="line">获取一个元素在一个列表里的下标</span><br><span class="line">index(<span class="number">1</span>px solid red,solid) <span class="number">2</span></span><br><span class="line"></span><br><span class="line">给列表里加入新的元素</span><br><span class="line">append(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px)  <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px</span><br><span class="line"></span><br><span class="line">连接两个列表</span><br><span class="line">join(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px <span class="number">0</span>) <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map类型"><a href="#map类型" class="headerlink" title="map类型"></a>map类型</h3><p>sass里的map类型类似与js里的object</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$map:(key1:value1,<span class="attr">key2</span>:value2,<span class="attr">key3</span>:value3);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map-函数"><a href="#map-函数" class="headerlink" title="map 函数"></a>map 函数</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个map</span></span><br><span class="line">$color:(light:#ffffff,dark:#000000);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取map 的length</span></span><br><span class="line">length($color)    -&gt;<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到map里key对应的值</span></span><br><span class="line">map-get($color,dark)   -&gt;#000000</span><br><span class="line"></span><br><span class="line">获取map里的所有键的列表</span><br><span class="line">map-keys($color)   -&gt;(<span class="string">"light"</span>,<span class="string">"dark"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">获取map里的所有值的列表</span><br><span class="line">map-values($color)  -&gt; (<span class="string">"#ffffff"</span>,<span class="string">"#000000"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">判断map里是否含有这个key</span><br><span class="line">map-has-key($color,light)   -&gt;<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">给map里添加键值对</span><br><span class="line">map-merge($color,(light-gray:#cccccc))</span><br><span class="line"></span><br><span class="line">-&gt;(light:#ffffff,dark:#000000,light-gray:#cccccc)</span><br><span class="line"></span><br><span class="line">移除map里的某个键值对</span><br><span class="line">map-remove($colors,light)  -&gt;(dark:#000000,light-gray:#cccccc)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p>在sass里通过&gt; &lt; 比较得到的值就是布尔值 true 和false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px&gt;<span class="number">3</span>px -&gt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px&lt;<span class="number">2</span>px -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>在sass里也可以有或 且 非</p>
+<p>且：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>或：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) or (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br><span class="line">(<span class="number">5</span>px &lt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>非：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">not(<span class="number">5</span>px&gt;<span class="number">3</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="interpolation"><a href="#interpolation" class="headerlink" title="interpolation"></a>interpolation</h3><p>在sass里可以通过interpolation的方式来在变量名和属性名上拼接变量值，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$name:<span class="string">"info"</span>;</span><br><span class="line">$attr:<span class="string">"border"</span>;</span><br><span class="line"></span><br><span class="line">.alert-#&#123;$name&#125;&#123;</span><br><span class="line">	#&#123;$attr&#125;-color:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—-&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.alert-info &#123;</span><br><span class="line">  border-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -795,7 +1141,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -805,7 +1151,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/web标准及W3C的理解/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/3.sass的数据类型与函数/">展开全文 >></a>
         </p>
       
 
@@ -835,105 +1181,81 @@
 
 
   
-    <article id="post-IE6bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-4.sass的分支结构、循环结构、函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
+      <a class="article-title" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">4.sass的分支结构</a>
     </h1>
   
 
         
-        <a href="/2017/11/28/IE6bug/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+        <a href="/2017/12/07/4.sass的分支结构、循环结构、函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="IE6bug"><a href="#IE6bug" class="headerlink" title="IE6bug"></a>IE6bug</h2><ol>
-<li>&lt;!DOCTYPE HTML&gt;文档类型的声明。</li>
-</ol>
-<p>产生条件：IE6浏览器，当我们没有书写这个文档声明的时候，会触发IE6浏览器的怪异解析现象；</p>
-<p>解决办法：书写文档声明。</p>
-<ol>
-<li>横向双倍外边距</li>
-</ol>
-<p>产生条件：在IE6中块元素浮动后，会出现横向双倍margin现象。</p>
-<p>解决办法： 在float标签的样式控制中加入display：inline或display：block</p>
-<ol>
-<li>默认行高</li>
-</ol>
-<p>产生条件：清除浮动的时候，有些人会采取一种清浮动的方法，使用一个空的div，然后为这个div设置{clear：both}。在大部分</p>
-<p>浏览器当中，这样做是没有任何问题的，但是在IE6浏览器当中，div即使是空的，也会存在默认行高。</p>
-<p>解决办法：设置其高度为0，并设置{height:0;overflow:hidden;clear:both;}</p>
-<p>IE6没有办法定义1px左右的宽度的容器 （默认行高造成的）</p>
-<p>解决方法：使用{overflow:hidden;zoom:0.08;line-height:1px}</p>
-<ol>
-<li>img外部的border</li>
-</ol>
-<p>产生条件：img外部有a标签，即img标签有链接时</p>
-<p>解决办法：设置img边框border:0;</p>
-<ol>
-<li>多显示一个字<br>产生条件：多个浮动元素中间夹杂HTML注释语句，浮动元素宽度设置为100%；则在下一行多显示一个上一行的最后一个字符；</li>
-</ol>
-<p>处理方法：果断删掉注释！</p>
-<ol>
-<li>CSS选择器区分<br>IE6不支持子选择器；先针对IE6使用常规申明CSS选择器，然后再用子选择器针对IE7+及其他浏览器。<br>处理方法：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IE6 专用 */</span></span><br><span class="line">.content &#123;<span class="attr">color</span>:red;&#125;</span><br><span class="line"><span class="comment">/* 其他浏览器 */</span></span><br><span class="line">div&gt;p .content</span><br><span class="line">&#123;<span class="attr">color</span>:blue;&#125; --&gt;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>最小高度<br>IE6 不支持min-height属性，但它却认为height就是最小高度。解决方法：使用ie6不支持但其余浏览器支持的属性!important。<br>处理方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    min-height:<span class="number">200</span>px;</span><br><span class="line">    height:auto !important; </span><br><span class="line">    height:<span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DIV浮动IE文本产生3象素的bug</p>
-</li>
-</ol>
-<p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#box&#123; float:left; width:800px;&#125;</span><br><span class="line">#left&#123; float:left; width:50%;&#125;</span><br><span class="line">#right&#123; width:50%;&#125;</span><br><span class="line">*html #left&#123; margin-right:-3px; //这句是关键</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"left"</span>&gt;＜/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"right"</span>&gt;＜/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>png24位的图片在IE6浏览器出现背景；解决方案：用png8的，也可以引用一段脚本处理</p>
-</li>
-<li><p>IE6下为什么图片下有空隙产生</p>
-</li>
-</ol>
-<p>解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top,bottom,middle,text-bottom 都可以解决.</p>
-<ol>
-<li>超链接hover点击后失效</li>
-</ol>
-<p>使用正确的书写顺序 link visited hover active</p>
-<ol>
-<li>z-index问题 </li>
-</ol>
-<p>给父级添加position:relative;</p>
-<ol>
-<li>li边距无故增加</li>
-</ol>
-<p>设置ul的显示形式为<em>display:inline-block;  </em>只针对IE6/7有效</p>
-<ol>
-<li>在IE6/7中，overflow无法正确的隐藏有相对定位position:relative;的子元素。</li>
-</ol>
-<p>给外包容器加上position:relative;</p>
-<ol>
-<li>border:none在IE6中不起作用</li>
-</ol>
-<p>改成border:0;就可以</p>
-<ol>
-<li><p>100%高度<br>在IE6下，如果要给元素定义100%高度，必须要明确定义它的父级元素的高度，如果你需要给元素定义满屏的高度，就得先给HTML和body定义height:100%;</p>
-</li>
-<li><p>躲猫猫bug：定义了:hover的链接，当鼠标移到那些连接上时，在IE6下就会触发躲猫猫。</p>
-</li>
-</ol>
-<p>1、在（那个未浮动的）内容之后添加一个<span style="clear:both;"></span></p>
-<p>2、触发包含了这些链接的容器的hasLayout，一个简单的方法就是给其定义height:1%</p>
-<ol>
-<li>IE6 绝对定位的元素 1px间距bug：当绝对定位的父元素或宽度为奇数时，bottom和right会多出1px</li>
-</ol>
-<p>针对IE6进行hack处理</p>
+        <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><p>在sass里，可以使用@if让我们根据一些条件来应用特定的样式</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">if</span> 条件 &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果条件为真的话，括号里的代码就会释放出来</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">true</span>;</span><br><span class="line">.rounded&#123;</span><br><span class="line">   @<span class="keyword">if</span> $use-refixes &#123;</span><br><span class="line">   	-webkit-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-moz-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-ms-border-radius:<span class="number">5</span>px;</span><br><span class="line">   	-o-border-radius:<span class="number">5</span>px;</span><br><span class="line">   &#125;</span><br><span class="line">   border-radius:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  -webkit-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -moz-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -ms-border-radius: <span class="number">5</span>px;</span><br><span class="line">  -o-border-radius: <span class="number">5</span>px;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果是另外一种情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$use-refixes:<span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+<p>—》<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.rounded &#123;</span><br><span class="line">  border-radius: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>if else在sass里的写法是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	@<span class="keyword">if</span> $theme == dark &#123;</span><br><span class="line">		background:black;</span><br><span class="line">	&#125; @<span class="keyword">else</span> <span class="keyword">if</span> $theme == light &#123;</span><br><span class="line">		background:white;</span><br><span class="line">	&#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>在sass里的for循环是这样的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; through &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一种是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">for</span> $<span class="keyword">var</span> form &lt;开始值&gt; to &lt;结束值&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，开始值和结束值的关系可以是升序也可以是倒序，但是每次只能+1或者-1</p>
+<p>这两种有什么区别呢？</p>
+<p>区别就是 from 1 to 4 的话是执行三次，i的变化是 1 2 3</p>
+<p>from 1 through 4 的话是执行四次，i的变化是 1 2 3 4</p>
+<p>如：</p>
+<p>from to</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> to $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>from through</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$columns:<span class="number">4</span>;</span><br><span class="line">@<span class="keyword">for</span> $i <span class="keyword">from</span> <span class="number">1</span> through $columns&#123;</span><br><span class="line">	.col-#&#123;$i&#125;&#123;</span><br><span class="line">		width:<span class="number">100</span>% <span class="regexp">/ $columns * $i;</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.col<span class="number">-1</span> &#123;</span><br><span class="line">  width: <span class="number">25</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">50</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-3</span> &#123;</span><br><span class="line">  width: <span class="number">75</span>%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="each-遍历list类型"><a href="#each-遍历list类型" class="headerlink" title="each 遍历list类型"></a>each 遍历list类型</h3><p>在sass里可以利用each方法来遍历咱们的list类型的数据</p>
+<p>list类型在js里类似于数组，那么each类似于for in遍历，结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@each $item <span class="keyword">in</span> $list&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$colors:success error warning;</span><br><span class="line">$map:(success:green,<span class="attr">warning</span>:yellow,<span class="attr">error</span>:red);</span><br><span class="line">@each $color <span class="keyword">in</span> $colors&#123;</span><br><span class="line">	.bg-#&#123;$color&#125;&#123;</span><br><span class="line">		background:map-get($map,$color);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.bg-success &#123;</span><br><span class="line">  background: green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-error &#123;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bg-warning &#123;</span><br><span class="line">  background: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="@while 循环"></a>@while 循环</h3><p>在sass里，拥有@while循环，比@for会更好用一些,@for循环只能从一个数到另一个数变化之间执行，每次变化都是1，while设置循环结构的话更为灵活；</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">while</span> 条件&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>eq：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$i:<span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">while</span> $i&gt;<span class="number">0</span>&#123;</span><br><span class="line">	.item-#&#123;$i&#125;&#123;</span><br><span class="line">		width:$i*<span class="number">5</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	$i:$i - <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：$i - 2 需要用空格隔开哟</p>
+<p>———》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.item<span class="number">-6</span> &#123;</span><br><span class="line">  width: <span class="number">30</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-4</span> &#123;</span><br><span class="line">  width: <span class="number">20</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.item<span class="number">-2</span> &#123;</span><br><span class="line">  width: <span class="number">10</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>在sass里也可以定义函数，并且也可以有返回值</p>
+<p>结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="function"><span class="keyword">function</span> 名称 (<span class="params">参数<span class="number">1</span>，参数<span class="number">2</span></span>)</span>&#123;</span><br><span class="line">    @<span class="keyword">return</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例如，我们做一个返回map里key对应的值的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$colors:(light:#ffffff,dark:#000000,gray:#555555);</span><br><span class="line"></span><br><span class="line">@<span class="function"><span class="keyword">function</span> <span class="title">color</span>(<span class="params">$key</span>)</span>&#123;</span><br><span class="line">	@<span class="keyword">return</span> map-get($colors,$key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">	background:color(light);</span><br><span class="line">	color:color(dark);</span><br><span class="line">	border-color:color(gray);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  background: #ffffff;</span><br><span class="line">  color: #000000;</span><br><span class="line">  border-color: #555555;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -947,7 +1269,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
@@ -957,172 +1279,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/IE6bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Doctype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/Doctype/">Doctype的作用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/Doctype/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:01:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Doctype的作用"><a href="#Doctype的作用" class="headerlink" title="Doctype的作用"></a>Doctype的作用</h3><p>&lt;!Doctype&gt;声明位于文档中的 最前端，处于<html>标签之前。告知浏览器的解析器，用声明文档类型规范来解析这个文档。<br>Doctype不存在或格式不正确会导致文档以混杂模式呈现</html></p>
-<p>严格模式就是浏览器根据web标准去解析页面，是一种要求严格的DTD，不允许只用任何表现层的语法</p>
-<p>混杂模式是一种向后兼容的解析方法</p>
-<p>出发标准模式或者说严格模式很简单，就是HTML前申明正确的DTD，触发混杂模式可以在HTML文档开始不声明DTD，或者在Doctype前加入XML声明</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/Doctype/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css选择符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/css选择符/">css 选择符</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/css选择符/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="css-选择符"><a href="#css-选择符" class="headerlink" title="css 选择符"></a>css 选择符</h2><ol>
-<li>id选择器（#myid）</li>
-<li>类选择器（.myclassname）</li>
-<li>标签选择器（div,h1,p）</li>
-<li>相邻选择器（h1 + p）</li>
-<li>子选择器（ul&lt;li）</li>
-<li>后代选择器（li a）</li>
-<li>通配符选择器（*）</li>
-<li>属性选择器（a[rel=”external”]）</li>
-<li>伪类选择器（a:hover,li:nth-child）</li>
-</ol>
-<p>可继承：font-size，font-family，color</p>
-<p>不可继承：border padding margin width height</p>
-<p>优先级就近原则，样式定义最近者为准；载入样式以最后载入的定位为准；</p>
-<p>优先级为：!important &gt; 内联 &gt; id &gt; class &gt; tag</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/css选择符/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/07/4.sass的分支结构、循环结构、函数/">展开全文 >></a>
         </p>
       
 
@@ -1285,15 +1442,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
             
             <div class="clearfix"></div>
