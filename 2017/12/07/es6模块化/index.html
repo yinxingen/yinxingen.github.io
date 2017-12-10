@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="yinxingen">
 <meta property="og:description" content="关于ES6模块化历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。 在nodeJS中，有模块化的方法，使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-07T12:17:22.377Z">
+<meta property="og:updated_time" content="2017-12-10T10:56:45.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于ES6模块化">
 <meta name="twitter:description" content="关于ES6模块化历史上，JavaScript 一直没有模块（module）体系，无法将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。其他语言都有这项功能，比如 Ruby 的require、Python 的import，甚至就连 CSS 都有@import，但是 JavaScript 任何这方面的支持都没有，这对开发大型的、复杂的项目形成了巨大障碍。 在nodeJS中，有模块化的方法，使">
@@ -183,11 +183,8 @@
 <p>我们也可以使用webpack工具来进行模块化打包，是因为webpack跑在nodeJS中，说到底还是nodeJS中的模块化</p>
 <p>但是在ES6中，我们第一次在js语法中加入了模块化的东西，目前很多浏览器都不支持，所以说还需要编译</p>
 <h5 id="ES6模块化的规范"><a href="#ES6模块化的规范" class="headerlink" title="ES6模块化的规范"></a>ES6模块化的规范</h5><p>模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。</p>
-<ol>
-<li><p>暴露</p>
-<p>可以export直接暴露出某些对象，可以暴露多个：</p>
-</li>
-</ol>
+<p>1.暴露</p>
+<p>  可以export直接暴露出某些对象，可以暴露多个：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴露多个接口 在定义的时候暴露</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> str = <span class="string">'abcd'</span></span><br><span class="line"><span class="keyword">export</span>  <span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fn'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> person = &#123;</span><br><span class="line">    name:<span class="string">'二狗'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//暴露多个接口，在&#123;&#125;里放入要暴露的对象</span></span><br><span class="line"><span class="keyword">export</span> &#123;str,fn,person&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>因为直接暴露的对象在引入的时候名字不能改变，可能会导致在引入的模块中造成命名冲突
 可以在暴露的时候通过as来定义别名
@@ -198,12 +195,9 @@
 </code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> str</span><br><span class="line"><span class="keyword">export</span> &#123;fn,person&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>引入：
 </code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> abc,&#123;fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a'</span><span class="comment">//abc就是上面的str</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>导入</p>
-<p> 如果被引入的模块没有暴露，只是一段逻辑代码需要在引入模块里运行的话</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modules/empty'</span></span><br></pre></td></tr></table></figure>
+<p>2.导入</p>
+<pre><code>如果被引入的模块没有暴露，只是一段逻辑代码需要在引入模块里运行的话
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./modules/empty'</span></span><br></pre></td></tr></table></figure>
 <pre><code>如果要导入某一个模块中暴露的一些对象的话，注意，不一定非要把其暴露的模块全部引入，导出的对象的名字不能错
 </code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> &#123;str,fn,person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line">    <span class="built_in">console</span>.log(str,person)</span><br><span class="line">    fn()</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">    在引入模块中暴露的接口的时候，很可能会产生命名冲突，依赖于在暴露的时候定义别名的话，也不是很安全，所以最好在引入的时候命名别名</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> &#123;str <span class="keyword">as</span> a_str,fn <span class="keyword">as</span> a_fn,person <span class="keyword">as</span> a_person&#125; <span class="keyword">from</span> <span class="string">'./modules/module_a.js'</span></span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">    如果要引入的模块暴露出来的对象有很多，我们在引入的时候可以放入到一个对象中去使用：</span></span><br><span class="line"><span class="string">    A对象不需要自己定义，引入的时候会自动创建</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> A <span class="keyword">from</span> <span class="string">'./modules/module_a'</span></span><br><span class="line">    <span class="built_in">console</span>.log(A)</span><br></pre></td></tr></table></figure>
       
@@ -314,18 +308,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/12/07/跨域/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/12/07/利用gulp实现热更新，配置sass，合并css文件，css兼容处理/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          跨域问题
+          利用gulp实现热更新，配置sass，合并css文件，css兼容处理
         
       </div>
     </a>
   
   
-    <a href="/2017/12/07/1.sass的安装,编译，风格/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1.sass的安装，编译与风格</div>
+    <a href="/2017/12/07/跨域/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">跨域问题</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -467,11 +461,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,15 +481,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>

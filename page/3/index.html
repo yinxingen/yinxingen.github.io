@@ -157,6 +157,161 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-3.sass的数据类型与函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/3.sass的数据类型与函数/">3.sass的数据类型</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/3.sass的数据类型与函数/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:09:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在sass里有数字、字符串、列表、颜色等类型</p>
+<p>在cmd里 输入 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass -i</span><br></pre></td></tr></table></figure>
+<p>就会进入到交互模式，输入的计算可以马上得到结果</p>
+<p>type-of()可以用来得到数据类型，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>注意数字类型的可以包含单位，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px) -&gt; number</span><br></pre></td></tr></table></figure>
+<p>字符串类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(hello) -&gt; string</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="string">'hello'</span>) -&gt; string</span><br></pre></td></tr></table></figure>
+<p>list类型：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(<span class="number">1</span>px solid red) -&gt; list</span><br><span class="line"></span><br><span class="line">type-<span class="keyword">of</span>(<span class="number">5</span>px <span class="number">10</span>px) -&gt; list</span><br></pre></td></tr></table></figure>
+<p>颜色：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type-<span class="keyword">of</span>(red)  -&gt; color</span><br><span class="line">type-<span class="keyword">of</span>(rgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)  -&gt; color</span><br><span class="line">type-of(#333)  -&gt; color</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="number-计算"><a href="#number-计算" class="headerlink" title="number 计算"></a>number 计算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>+<span class="number">9</span> -》<span class="number">10</span></span><br><span class="line"><span class="number">2</span>*<span class="number">8</span> -》<span class="number">16</span></span><br><span class="line">(<span class="number">8</span>/<span class="number">2</span>) -&gt;<span class="number">4</span> <span class="comment">//除法要写括号</span></span><br></pre></td></tr></table></figure>
+<p>也可以包含单位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px + <span class="number">5</span>px -&gt; <span class="number">10</span>px</span><br><span class="line"><span class="number">5</span>px <span class="number">-2</span> -&gt;<span class="number">3</span>px</span><br><span class="line"><span class="number">5</span>px *<span class="number">2</span> -&gt;<span class="number">10</span>px</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px * <span class="number">2</span>px -&gt;<span class="number">10</span>px*px <span class="comment">//这样就不对了哟</span></span><br><span class="line"></span><br><span class="line">（<span class="number">10</span>px/<span class="number">2</span>px） -&gt; <span class="number">5</span><span class="comment">//除法单位取消</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>+<span class="number">2</span>*<span class="number">5</span>px-&gt;<span class="number">13</span>px</span><br></pre></td></tr></table></figure>
+<h2 id="好吧，都是一些小学的数学题，很简单对吧"><a href="#好吧，都是一些小学的数学题，很简单对吧" class="headerlink" title="好吧，都是一些小学的数学题，很简单对吧"></a>好吧，都是一些小学的数学题，很简单对吧</h2><h3 id="处理数字的函数"><a href="#处理数字的函数" class="headerlink" title="处理数字的函数"></a>处理数字的函数</h3><p>绝对值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">abs(<span class="number">10</span>) -&gt; <span class="number">10</span>;</span><br><span class="line">abs(<span class="number">10</span>px) -&gt; <span class="number">10</span>px;</span><br><span class="line">abs(<span class="number">-10</span>px) -&gt; <span class="number">10</span>px;</span><br></pre></td></tr></table></figure>
+<p>四舍五入相关</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">round(<span class="number">3.4</span>)-&gt;<span class="number">3</span>  <span class="comment">//四舍五入</span></span><br><span class="line">round(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">ceil(<span class="number">3.2</span>)-&gt;<span class="number">4</span>  <span class="comment">//向上取整</span></span><br><span class="line">ceil(<span class="number">3.6</span>)-&gt;<span class="number">4</span></span><br><span class="line"></span><br><span class="line">floor(<span class="number">3.2</span>)-&gt;<span class="number">3</span>  <span class="comment">//向下取整</span></span><br><span class="line">floor(<span class="number">3.9</span>)-&gt;<span class="number">3</span></span><br><span class="line"></span><br><span class="line">percentage(<span class="number">600</span>px/<span class="number">1000</span>px) -&gt;<span class="number">65</span>%  <span class="comment">//百分之</span></span><br><span class="line"></span><br><span class="line">min(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) -&gt; <span class="number">1</span>   <span class="comment">//最小值</span></span><br><span class="line"></span><br><span class="line">max(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>) -&gt; <span class="number">5</span>  <span class="comment">//最大值</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串相关"><a href="#字符串相关" class="headerlink" title="字符串相关"></a>字符串相关</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//带引号和不带引号的字符串想加为带引号的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="string">"a"</span> + b -&gt;<span class="string">"ab"</span></span><br><span class="line">a + <span class="string">"b"</span> -&gt;<span class="string">"ab"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串+数字</span></span><br><span class="line"><span class="string">"ab"</span> + <span class="number">1</span> -&gt;<span class="string">"ab1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字符串 - 和 / 字符串</span></span><br><span class="line"><span class="string">"a"</span> - b -&gt;<span class="string">"a-b"</span></span><br><span class="line"><span class="string">"a"</span> / b -&gt;<span class="string">"a/b"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注意字符串不能相乘</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p>大写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"hello"</span>;</span><br><span class="line">to-upper-<span class="keyword">case</span>($word) -&gt; <span class="string">"HELLO"</span></span><br></pre></td></tr></table></figure>
+<p>小写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">to-lower-<span class="keyword">case</span>($word) -&gt; <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
+<p>得到length：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-length($word) -&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>得到字符串在字符串里的位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-index($word,<span class="string">"el"</span>) -&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>字符串中插入字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$word:<span class="string">"Hello"</span>;</span><br><span class="line">str-insert($word,<span class="string">"aa"</span>,<span class="number">2</span>) -&gt; <span class="string">"Haaello"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="颜色相关"><a href="#颜色相关" class="headerlink" title="颜色相关"></a>颜色相关</h3><p>在sass里除了关键字、十六进制、rgb和rgba之外还有一种颜色是HSL</p>
+<p>分别表示的是 色相 0-360（deg） 饱和度 0-100% 明度 0-100%</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">0</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以有透明哟<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background-color:hsl(<span class="number">60</span>,<span class="number">100</span>%,<span class="number">50</span>%，<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-》</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">  background-color: rgba(<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><p>lighten函数和darken函数可以把颜色加深或减淡，即调整明度，第一个参数为颜色，第二个参数为百分比，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:#ff0000;</span><br><span class="line"></span><br><span class="line">$light-color:lighten($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">$dark-color:darken($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$light-color;</span><br><span class="line">	border-color:$dark-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #ff0000;</span><br><span class="line">  background: #ff9999;</span><br><span class="line">  border-color: #660000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>saturate和desaturate函数可以调整颜色的纯度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:hsl(<span class="number">0</span>,<span class="number">50</span>%,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$saturate-color:saturate($color,<span class="number">50</span>%);</span><br><span class="line"></span><br><span class="line">$desaturate-color:desaturate($color,<span class="number">30</span>%);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$saturate-color;</span><br><span class="line">	border-color:$desaturate-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: #bf4040;</span><br><span class="line">  background: red;</span><br><span class="line">  border-color: #996666;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用transparentize来让颜色更透明</p>
+<p>用opatify来让颜色更不透明</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$color:rgba(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>);</span><br><span class="line"></span><br><span class="line">$opacify-color:opacify($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">$transparentize-color:transparentize($color,<span class="number">0.3</span>);</span><br><span class="line"></span><br><span class="line">.a&#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background:$opacify-color;</span><br><span class="line">	border-color:$transparentize-color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.a &#123;</span><br><span class="line">  color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">  background: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.8</span>);</span><br><span class="line">  border-color: rgba(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>在sass里，用空格或者逗号隔开的值就是列表类型<br>如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>px solid red</span><br><span class="line"></span><br><span class="line">Courier,microsoft yahei</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表函数"><a href="#列表函数" class="headerlink" title="列表函数"></a>列表函数</h3><p>sass里的列表类似与数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">获取列表的长度</span><br><span class="line">length(<span class="number">5</span>px <span class="number">10</span>x)  <span class="number">2</span></span><br><span class="line"></span><br><span class="line">获取列表中的第几个元素</span><br><span class="line">nth(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">2</span>)  <span class="number">10</span>px</span><br><span class="line"></span><br><span class="line">获取一个元素在一个列表里的下标</span><br><span class="line">index(<span class="number">1</span>px solid red,solid) <span class="number">2</span></span><br><span class="line"></span><br><span class="line">给列表里加入新的元素</span><br><span class="line">append(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px)  <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px</span><br><span class="line"></span><br><span class="line">连接两个列表</span><br><span class="line">join(<span class="number">5</span>px <span class="number">10</span>px,<span class="number">5</span>px <span class="number">0</span>) <span class="number">5</span>px <span class="number">10</span>px <span class="number">5</span>px <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map类型"><a href="#map类型" class="headerlink" title="map类型"></a>map类型</h3><p>sass里的map类型类似与js里的object</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$map:(key1:value1,<span class="attr">key2</span>:value2,<span class="attr">key3</span>:value3);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="map-函数"><a href="#map-函数" class="headerlink" title="map 函数"></a>map 函数</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个map</span></span><br><span class="line">$color:(light:#ffffff,dark:#000000);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取map 的length</span></span><br><span class="line">length($color)    -&gt;<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//得到map里key对应的值</span></span><br><span class="line">map-get($color,dark)   -&gt;#000000</span><br><span class="line"></span><br><span class="line">获取map里的所有键的列表</span><br><span class="line">map-keys($color)   -&gt;(<span class="string">"light"</span>,<span class="string">"dark"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">获取map里的所有值的列表</span><br><span class="line">map-values($color)  -&gt; (<span class="string">"#ffffff"</span>,<span class="string">"#000000"</span>) <span class="comment">//列表类型</span></span><br><span class="line"></span><br><span class="line">判断map里是否含有这个key</span><br><span class="line">map-has-key($color,light)   -&gt;<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">给map里添加键值对</span><br><span class="line">map-merge($color,(light-gray:#cccccc))</span><br><span class="line"></span><br><span class="line">-&gt;(light:#ffffff,dark:#000000,light-gray:#cccccc)</span><br><span class="line"></span><br><span class="line">移除map里的某个键值对</span><br><span class="line">map-remove($colors,light)  -&gt;(dark:#000000,light-gray:#cccccc)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p>在sass里通过&gt; &lt; 比较得到的值就是布尔值 true 和false</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span>px&gt;<span class="number">3</span>px -&gt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span>px&lt;<span class="number">2</span>px -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>在sass里也可以有或 且 非</p>
+<p>且：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>或：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">5</span>px &gt; <span class="number">3</span>px) or (<span class="number">5</span>px &lt; <span class="number">2</span>px) -&gt; <span class="literal">true</span></span><br><span class="line">(<span class="number">5</span>px &lt; <span class="number">3</span>px) and (<span class="number">5</span>px &gt; <span class="number">2</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>非：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">not(<span class="number">5</span>px&gt;<span class="number">3</span>px) -&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="interpolation"><a href="#interpolation" class="headerlink" title="interpolation"></a>interpolation</h3><p>在sass里可以通过interpolation的方式来在变量名和属性名上拼接变量值，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$name:<span class="string">"info"</span>;</span><br><span class="line">$attr:<span class="string">"border"</span>;</span><br><span class="line"></span><br><span class="line">.alert-#&#123;$name&#125;&#123;</span><br><span class="line">	#&#123;$attr&#125;-color:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—-&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.alert-info &#123;</span><br><span class="line">  border-color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/3.sass的数据类型与函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-4.sass的分支结构、循环结构、函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1287,83 +1442,6 @@ vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
 
 
   
-    <article id="post-Doctype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/Doctype/">Doctype的作用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/Doctype/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:01:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Doctype的作用"><a href="#Doctype的作用" class="headerlink" title="Doctype的作用"></a>Doctype的作用</h3><p>&lt;!Doctype&gt;声明位于文档中的 最前端，处于<html>标签之前。告知浏览器的解析器，用声明文档类型规范来解析这个文档。<br>Doctype不存在或格式不正确会导致文档以混杂模式呈现</html></p>
-<p>严格模式就是浏览器根据web标准去解析页面，是一种要求严格的DTD，不允许只用任何表现层的语法</p>
-<p>混杂模式是一种向后兼容的解析方法</p>
-<p>出发标准模式或者说严格模式很简单，就是HTML前申明正确的DTD，触发混杂模式可以在HTML文档开始不声明DTD，或者在Doctype前加入XML声明</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/Doctype/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1477,11 +1555,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1497,15 +1575,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>
