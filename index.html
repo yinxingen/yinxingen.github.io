@@ -160,11 +160,24 @@
     <article id="post-前后端渲染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/10/前后端渲染/">前后端渲染之争</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/10/前后端渲染/" class="archive-article-date">
+  	<time datetime="2017-12-10T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-10</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 前后端渲染之争<br>date: 2017-12-10 15:18:10</p>
-<h2 id="tags-页面"><a href="#tags-页面" class="headerlink" title="tags: 页面"></a>tags: 页面</h2><h2 id="前后端渲染之争"><a href="#前后端渲染之争" class="headerlink" title="前后端渲染之争"></a>前后端渲染之争</h2><h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><blockquote>
+        <h2 id="前后端渲染之争"><a href="#前后端渲染之争" class="headerlink" title="前后端渲染之争"></a>前后端渲染之争</h2><h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><blockquote>
 <p>十年前，几乎所有网站都使用 ASP、Java、PHP 这类做后端渲染，但后来随着 jQuery、Angular、React、Vue 等 JS 框架的崛起，开始转向了前端渲染。从 2014 年起又开始流行了同构渲染，号称是未来，集成了前后端渲染的优点，但转眼间三年过去了，很多当时壮心满满的框架（Rendlr、Lazo）从先驱变成了先烈。同构到底是不是未来？自己的项目该如何选型？我想不应该只停留在追求热门和拘泥于固定模式上，忽略了前后端渲染之“争”的“核心点”，关注如何提升“用户体验”。</p>
 </blockquote>
 <p>主要分析前端渲染的优势，并没有进行深入探讨。我想通过它为切入口来深入探讨一下。<br>明确三个概念：<br>1.「后端渲染」指传统的 ASP、Java 或 PHP 的渲染机制；<br>2.「前端渲染」指使用 JS 来渲染页面大部分内容，代表是现在流行的 SPA 单页面应用；<br>3.「同构渲染」指前后端共用 JS，首次渲染时使用 Node.js 来直出 HTML。一般来说同构渲染是介于前后端中的共有部分。</p>
@@ -190,8 +203,9 @@
 <p>个性化的缓存是遇到的另外一个问题。可以把每个用户个性化信息缓存到浏览器，这是一个天生的分布式缓存系统。我们有个数据类应用通过在浏览器合理设置缓存，双十一当天节省了 70% 的请求量。试想如果这些缓存全部放到服务器存储，需要的存储空间和计算都是很非常大。</p>
 <p>2.不容忽视的服务器端和浏览器环境差异<br>前端代码在编写时并没有过多的考虑后端渲染的情景，因此各种 BOM 对象和 DOM API 都是拿来即用。这从客观层面也增加了同构渲染的难度。我们主要遇到了以下几个问题：<br>•document 等对象找不到的问题<br>•DOM 计算报错的问题<br>•前端渲染和服务端渲染内容不一致的问题</p>
 <blockquote>
-<p>由于前端代码使用的 window 在 node 环境是不存在的，所以要 mock window，其中最重要的是 cookie，userAgent，location。但是由于每个用户访问时是不一样的 window，那么就意味着你得每次都更新 window。<br>而服务端由于 js require 的 cache 机制，造成前端代码除了具体渲染部分都只会加载一遍。这时候 window 就得不到更新了。所以要引入一个合适的更新机制，比如把读取改成每次用的时候再读取。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isSsr = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">  !(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.document &amp;&amp; <span class="built_in">window</span>.document.createElement &amp;&amp; <span class="built_in">window</span>.setTimeout)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>由于前端代码使用的 window 在 node 环境是不存在的，所以要 mock window，其中最重要的是 cookie，userAgent，location。但是由于每个用户访问时是不一样的 window，那么就意味着你得每次都更新 window。<br>而服务端由于 js require 的 cache 机制，造成前端代码除了具体渲染部分都只会加载一遍。这时候 window 就得不到更新了。所以要引入一个合适的更新机制，比如把读取改成每次用的时候再读取。</p>
 </blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> isSsr = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">  !(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.document &amp;&amp; <span class="built_in">window</span>.document.createElement &amp;&amp; <span class="built_in">window</span>.setTimeout)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>原因是很多 DOM 计算在 SSR 的时候是无法进行的，涉及到 DOM 计算的的内容不可能做到 SSR 和 CSR 完全一致，这种不一致可能会带来页面的闪动。</p>
 <p>3.内存溢出<br>前端代码由于浏览器环境刷新一遍内存重置的天然优势，对内存溢出的风险并没有考虑充分。<br>比如在 React 的 <code>componentWillMount</code> 里做绑定事件就会发生内存溢出，因为 React 的设计是后端渲染只会运行 <code>componentDidMount</code> 之前的操作，而不会运行 <code>componentWillUnmount</code> 方法（一般解绑事件在这里）。</p>
 <p>4.异步操作<br>前端可以做非常复杂的请求合并和延迟处理，但为了同构，所有这些请求都在预先拿到结果才会渲染。而往往这些请求是有很多依赖条件的，很难调和。纯 React 的方式会把这些数据以埋点的方式打到页面上，前端不再发请求，但仍然再渲染一遍来比对数据。造成的结果是流程复杂，大规模使用成本高。幸运的是 Next.js 解决了这一些，后面会谈到。</p>
@@ -216,6 +230,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">前后端渲染</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -691,6 +716,98 @@
 
 
   
+    <article id="post-BFC是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/BFC是什么/">BFC是什么</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/BFC是什么/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="BFC是什么"><a href="#BFC是什么" class="headerlink" title="BFC是什么?"></a>BFC是什么?</h2><blockquote>
+<p>Block Formatting Contexts,即块级格式化上下文，它是一个独立的渲染区域。BFC就是一个独立的盒子，并且与这个独立盒子里的布局不受外部影响，当然它也不会影响到外面的元素。</p>
+</blockquote>
+<p>触发BFC</p>
+<blockquote>
+<p>1.根元素</p>
+<p>2.float属性不为none（如：left | right）</p>
+<p>3.overflow的值不为visible（如：hidden | auto | scroll）</p>
+<p>4.display属性值为inline-block | flex | inline-flex | table-cell | table-caption</p>
+<p>4.position为absolute或fixed</p>
+</blockquote>
+<p>应用BFC</p>
+<blockquote>
+<ol>
+<li>自适应两栏布局</li>
+<li>解决margin叠加问题</li>
+<li>清除内部浮动</li>
+</ol>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/BFC是什么/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-iframe的优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -833,98 +950,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/08/div+css的布局较table布局有什么优点/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BFC是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/BFC是什么/">BFC是什么</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/BFC是什么/" class="archive-article-date">
-  	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="BFC是什么"><a href="#BFC是什么" class="headerlink" title="BFC是什么?"></a>BFC是什么?</h2><blockquote>
-<p>Block Formatting Contexts,即块级格式化上下文，它是一个独立的渲染区域。BFC就是一个独立的盒子，并且与这个独立盒子里的布局不受外部影响，当然它也不会影响到外面的元素。</p>
-</blockquote>
-<p>触发BFC</p>
-<blockquote>
-<p>1.根元素</p>
-<p>2.float属性不为none（如：left | right）</p>
-<p>3.overflow的值不为visible（如：hidden | auto | scroll）</p>
-<p>4.display属性值为inline-block | flex | inline-flex | table-cell | table-caption</p>
-<p>4.position为absolute或fixed</p>
-</blockquote>
-<p>应用BFC</p>
-<blockquote>
-<ol>
-<li>自适应两栏布局</li>
-<li>解决margin叠加问题</li>
-<li>清除内部浮动</li>
-</ol>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/BFC是什么/">展开全文 >></a>
         </p>
       
 
@@ -1157,19 +1182,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1185,6 +1210,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">性能优化</a>
               </li>
              
@@ -1193,7 +1222,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
+                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
               </li>
             
             <div class="clearfix"></div>
