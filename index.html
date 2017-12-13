@@ -157,6 +157,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于font" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/13/关于font/">关于字体图标</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/13/关于font/" class="archive-article-date">
+  	<time datetime="2017-12-13T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一般情况下，我们在页面中有两个地方需要用到特殊文字 </p>
+<ol>
+<li>图标的地方可以使用字体图标，</li>
+</ol>
+<p>但是，有兼容问题，因为定义字体的时候用的是@font-face关键字,在用这个设置字体的时候需要设置字体文件，而不同的浏览器可能支持的是不同的字体文件，我们需要引入多个字体文件才能让所有浏览器使用，但是，需要引入的文件增多，增加了http请求</p>
+<ol>
+<li>页面中出现特殊字体</li>
+</ol>
+<p>这两种情况，我们都可以使用图片来解决，在网络情况较差的时候，一张图片是从上到下一行一行加载</p>
+<p>这个时候我们也可以考虑使用特殊字体</p>
+<p>页面中使用特殊字体，需要先定义特殊字体，浏览器自带的有微软雅黑，宋体，黑体</p>
+<p>@font-face{<br>    font-family:’abc’;<br>    src:url(‘’)<br>}</p>
+<p><a href="http://www.yestone.com" target="_blank" rel="noopener">有字库</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">关于字体图标</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/13/关于font/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-前后端渲染" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -716,6 +802,97 @@
 
 
   
+    <article id="post-iframe的优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/iframe的优缺点/">iframe的优缺点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/iframe的优缺点/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iframe的优缺点？"><a href="#iframe的优缺点？" class="headerlink" title="iframe的优缺点？"></a>iframe的优缺点？</h2><p>优点</p>
+<ol>
+<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
+<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
+<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
+<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
+<li>重载页面时不需要重载整个页面，只需要重载页面中的一个框架页(减少了数据的传输，增加了网页下载速度)</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>页面样式调试麻烦，出现多个滚动条；</li>
+<li>浏览器的后退按钮失效；</li>
+<li>过多会增加服务器的HTTP请求；</li>
+<li>小型的移动设备无法完全显示框架；</li>
+<li>产生多个页面，不易管理；</li>
+<li>不容易打印；</li>
+<li>代码复杂，无法被一些搜索引擎解读。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/iframe的优缺点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-BFC是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -808,97 +985,6 @@
 
 
   
-    <article id="post-iframe的优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/iframe的优缺点/">iframe的优缺点</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/iframe的优缺点/" class="archive-article-date">
-  	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="iframe的优缺点？"><a href="#iframe的优缺点？" class="headerlink" title="iframe的优缺点？"></a>iframe的优缺点？</h2><p>优点</p>
-<ol>
-<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
-<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
-<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
-<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
-<li>重载页面时不需要重载整个页面，只需要重载页面中的一个框架页(减少了数据的传输，增加了网页下载速度)</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>页面样式调试麻烦，出现多个滚动条；</li>
-<li>浏览器的后退按钮失效；</li>
-<li>过多会增加服务器的HTTP请求；</li>
-<li>小型的移动设备无法完全显示框架；</li>
-<li>产生多个页面，不易管理；</li>
-<li>不容易打印；</li>
-<li>代码复杂，无法被一些搜索引擎解读。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/iframe的优缺点/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-div+css的布局较table布局有什么优点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -906,7 +992,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/div+css的布局较table布局有什么优点/">css的布局较table布局有什么优点</a>
+      <a class="article-title" href="/2017/12/08/div+css的布局较table布局有什么优点/">div+css的布局较table布局有什么优点</a>
     </h1>
   
 
@@ -950,104 +1036,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/08/div+css的布局较table布局有什么优点/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript this指针、闭包、作用域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/JavaScript this指针、闭包、作用域/">JavaScript this指针、闭包、作用域</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/08/JavaScript this指针、闭包、作用域/" class="archive-article-date">
-  	<time datetime="2017-12-08T01:44:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JavaScript-this指针、闭包、作用域？"><a href="#JavaScript-this指针、闭包、作用域？" class="headerlink" title="JavaScript this指针、闭包、作用域？"></a>JavaScript this指针、闭包、作用域？</h2><p>作用域：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">for(var i =0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(i) //10</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在ES5中，只有全局作用域和函数作用域，并没有块作用域，但是我们可以实现块作用域的功能。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line">for(var i =0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;)()</span><br><span class="line">console.log(i)</span><br><span class="line"></span><br><span class="line">//i is not defined,报错</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这其实就创建了一个局部作用域，该作用域声明的变量只有在该块内有效，外部访问不了。这种写法的好处就是可以做到不污染全局变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=10;</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在ES5中，变量的声明问题，在ES5中并不是严格，你可以直接采用a=10,来声明一个全局变量。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=10;</span><br><span class="line"></span><br><span class="line">(function()&#123;</span><br><span class="line">    console.log(a)//undefined</span><br><span class="line">    var a=1;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>变量提升。（ES5中的概念，ES6中新的用法不会出现变量提升）,变量的声明提升到函数的最上面。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let i=0;i&lt;10;i++)&#123;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">// a is not defined 报错</span><br></pre></td></tr></table></figure>
-<p>let为js添加了新的作用域就是块作用域</p>
-<blockquote>
-<p>只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。</p>
-<p>闭包：闭包就是能够读取其他函数内部变量的函数。</p>
-<p>this总是指向调用该函数的对象.要判断this的指向，其实就是判断this所在的函数属于谁:</p>
-<p>1)有对象就指向调用对象<br>2)没调用对象就指向全局对象(全局也没有就是window)        </p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/JavaScript this指针、闭包、作用域/">展开全文 >></a>
         </p>
       
 
@@ -1190,10 +1178,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -1202,7 +1186,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,7 +1194,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">关于字体图标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1222,7 +1214,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+                <a href="javascript:void(0)" class="js-tag color1">浏览器缓存</a>
               </li>
             
             <div class="clearfix"></div>
