@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017/11 | yinxingen</title>
+  <title>关于promise的详细讲解 | yinxingen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="走在前端的路上">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yinxingen">
-<meta property="og:url" content="http://yoursite.com/archives/2017/11/index.html">
+  <meta name="description" content="到处是回调函数,代码非常臃肿难看, Promise 主要用来解决这种编程方式, 将某些代码封装于内部。 Promise 直译为“承诺”，但一般直接称为 Promise; 代码的可读性非常重要,因为开发人员支出一般比计算机硬件的支出要大很多倍。 虽然同步代码更容易跟踪和调试, 但异步方式却具有更好的性能与灵活性. 怎样在">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于promise的详细讲解">
+<meta property="og:url" content="http://yoursite.com/2017/12/13/关于promise/index.html">
 <meta property="og:site_name" content="yinxingen">
-<meta property="og:description" content="走在前端的路上">
+<meta property="og:description" content="到处是回调函数,代码非常臃肿难看, Promise 主要用来解决这种编程方式, 将某些代码封装于内部。 Promise 直译为“承诺”，但一般直接称为 Promise; 代码的可读性非常重要,因为开发人员支出一般比计算机硬件的支出要大很多倍。 虽然同步代码更容易跟踪和调试, 但异步方式却具有更好的性能与灵活性. 怎样在同一时刻发起多个请求, 然后分别处理响应结果? Promise 现已成为 Jav">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T04:06:12.366Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yinxingen">
-<meta name="twitter:description" content="走在前端的路上">
+<meta name="twitter:title" content="关于promise的详细讲解">
+<meta name="twitter:description" content="到处是回调函数,代码非常臃肿难看, Promise 主要用来解决这种编程方式, 将某些代码封装于内部。 Promise 直译为“承诺”，但一般直接称为 Promise; 代码的可读性非常重要,因为开发人员支出一般比计算机硬件的支出要大很多倍。 虽然同步代码更容易跟踪和调试, 但异步方式却具有更好的性能与灵活性. 怎样在同一时刻发起多个请求, 然后分别处理响应结果? Promise 现已成为 Jav">
   
     <link rel="alternative" href="/atom.xml" title="yinxingen" type="application/atom+xml">
   
@@ -155,405 +157,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-关于promise" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于promise的详细讲解
+    </h1>
+  
+
+        
+        <a href="/2017/12/13/关于promise/" class="archive-article-date">
+  	<time datetime="2017-12-13T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-13</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>到处是回调函数,代码非常臃肿难看, Promise 主要用来解决这种编程方式, 将某些代码封装于内部。</p>
+<p>Promise 直译为“承诺”，但一般直接称为 Promise;</p>
+<p>代码的可读性非常重要,因为开发人员支出一般比计算机硬件的支出要大很多倍。</p>
+<p>虽然同步代码更容易跟踪和调试, 但异步方式却具有更好的性能与灵活性. 怎样在同一时刻发起多个请求, 然后分别处理响应结果? Promise 现已成为 JavaScript 中非常重要的一个组成部分, 很多新的API都以 promise 的方式来实现。下面简要介绍 promise, 以及相应的 API 和使用示例!</p>
+<h4 id="Promises-周边"><a href="#Promises-周边" class="headerlink" title="Promises 周边"></a>Promises 周边</h4><p>XMLHttpRequest 是异步API, 但不算 Promise 方式。当前使用 Promise 的原生 api 包括:<br>•Battery API<br>•fetch API (用来替代 XHR)<br>•ServiceWorker API</p>
+<p>Promise 会越来越流行,所以前端开发需要快速掌握它们。当然, Node.js 是另一个使用 Promise 的平台(显然, Promise 在Node中是一个核心特性)。<br>测试 promises 可能比你想象的还要容易, 因为 setTimeout 可以用来当作异步“任务”!</p>
+<h5 id="Promise-基本用法"><a href="#Promise-基本用法" class="headerlink" title="Promise 基本用法"></a>Promise 基本用法</h5><p>直接使用 new Promise() 构造函数的方式, 应该只用来处理遗留的异步任务编程, 例如 setTimeout或者 XMLHttpRequest。 通过 new 关键字创建一个新的 Promise 对象, 该对象有 resolve(搞定!) 和 reject(拒绝!) 两个回调函数:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ... ... </span></span><br><span class="line">    <span class="comment">// 此处,可以执行某些异步任务,然后...</span></span><br><span class="line">    <span class="comment">// 在回调中,或者任何地方执行 resolve/reject</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="comment">/* good condition */</span>) &#123;</span><br><span class="line">        resolve(<span class="string">'传入成果结果信息,如 data'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'失败:原因...!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; </span><br><span class="line">    <span class="comment">/* do something with the result */</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">/* error :( */</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>一般是由开发人员根据异步任务执行的结果,来手动调用 resolve 或者 reject. 一个典型的例子是将 XMLHttpRequest 转换为基于Promise的任务:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本段示例代码来源于 Jake Archibald's Promises and Back:</span></span><br><span class="line"><span class="comment">// http://www.html5rocks.com/en/tutorials/es6/promises/#toc-promisifying-xmlhttprequest</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 返回一个 promise 对象.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 执行常规的 XHR 请求</span></span><br><span class="line">            <span class="keyword">var</span> req = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">            req.open(<span class="string">'GET'</span>, url);</span><br><span class="line"></span><br><span class="line">            req.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// This is called even on 404 etc</span></span><br><span class="line">            <span class="comment">// so check the status</span></span><br><span class="line">            <span class="keyword">if</span> (req.status == <span class="number">200</span>) &#123;</span><br><span class="line">            <span class="comment">// Resolve the promise with the response text</span></span><br><span class="line">            resolve(req.response);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Otherwise reject with the status text</span></span><br><span class="line">            <span class="comment">// which will hopefully be a meaningful error</span></span><br><span class="line">            reject(<span class="built_in">Error</span>(req.statusText));</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Handle network errors</span></span><br><span class="line">            req.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            reject(<span class="built_in">Error</span>(<span class="string">"网络出错"</span>));</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Make the request</span></span><br><span class="line">            req.send();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用!</span></span><br><span class="line">    get(<span class="string">'story.json'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Success!"</span>, response);</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"Failed!"</span>, error);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>有时候在 promise 方法体中不需要执行异步任务 —— 当然,在有可能会执行异步任务的情况下, 返回 promise 将是最好的方式, 这样只需要给定结果处理函数就行。在这种情况下, 不需要使用 new 关键字, 直接返回 Promise.resolve() 或者 Promise.reject()即可。例如:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userCache = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserDetail</span>(<span class="params">username</span>) </span>&#123;</span><br><span class="line"><span class="comment">// In both cases, cached or not, a promise will be returned</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (userCache[username]) &#123;</span><br><span class="line">    <span class="comment">// Return a promise without the "new" keyword</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(userCache[username]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use the fetch API to get the information</span></span><br><span class="line"><span class="comment">// fetch returns a promise</span></span><br><span class="line"><span class="keyword">return</span> fetch(<span class="string">'users/'</span> + username + <span class="string">'.json'</span>)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    userCache[username] = result;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Could not find user: '</span> + username);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为总是会返回 promise, 所以只需要通过 then 和 catch 方法处理结果即可!</p>
+<h5 id="then"><a href="#then" class="headerlink" title="then"></a>then</h5><p>每个 promise 实例都有 then 方法, 用来处理执行结果。 第一个 then 方法回调的参数, 就是 resolve() 传入的那个值:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(<span class="number">10</span>); &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// console 输出的结果:</span></span><br><span class="line"><span class="comment">// 10</span></span><br></pre></td></tr></table></figure></p>
+<p>then 回调由 promise 的 resolved 触发。你也可以使用链式的 then` 回调方法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(<span class="number">10</span>); &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'first then: '</span>, num); <span class="keyword">return</span> num * <span class="number">2</span>; &#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'second then: '</span>, num); <span class="keyword">return</span> num * <span class="number">2</span>; &#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'last then: '</span>, num);&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// console 输出的结果:</span></span><br><span class="line"><span class="comment">// first then:  10</span></span><br><span class="line"><span class="comment">// second then:  20</span></span><br><span class="line"><span class="comment">// last then:  40</span></span><br></pre></td></tr></table></figure>
+<p>每个 then 收到的结果都是之前那个 then 返回的值。<br>如果 promise 已经 resolved, 但之后才调用 then 方法, 则立即触发回调。如果promise被拒绝之后才调用 then, 则回调函数不会被触发。</p>
+<h5 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h5><p>当 promise 被拒绝时, catch 回调就会被执行:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; reject(<span class="string">'Done!'</span>); &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'done'</span>, e); &#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">'catch: '</span>, e); &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// console 输出的结果:</span></span><br><span class="line"><span class="comment">// 'catch: Done!'</span></span><br></pre></td></tr></table></figure>
+<p>传入 reject 方法的参数由你自己决定。一般来说是传入一个 Error 对象:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reject(<span class="built_in">Error</span>(<span class="string">'Data could not be found'</span>));</span><br></pre></td></tr></table></figure></p>
+<h5 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h5><p>想想JavaScript加载器的情形: 有时候会触发多个异步交互, 但只在所有请求完成之后才会做出响应。—— 这种情况可以使用 Promise.all 来处理。Promise.all 方法接受一个 promise 数组, 在所有 promises 都搞定之后, 触发一个回调:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Both promises resolved</span></span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// One or more promises was rejected</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Promise.all 的最佳示例是通过fetch同时发起多个 AJAX请求时:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request1 = fetch(<span class="string">'/users.json'</span>);</span><br><span class="line"><span class="keyword">var</span> request2 = fetch(<span class="string">'/articles.json'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([request1, request2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Both promises done!</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>你也可以组合使用 fetch 和 Battery 之类的 API ,因为他们都返回 promises:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all([fetch(<span class="string">'/users.json'</span>), navigator.getBattery()]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Both promises done!</span></span><br><span class="line">&#125;);</span><br><span class="line">当然, 处理拒绝的情况比较复杂。如果某个 promise 被拒绝, 则 <span class="keyword">catch</span> 将会被第一个拒绝(rejection)所触发:</span><br><span class="line"><span class="keyword">var</span> req1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(<span class="string">'First!'</span>); &#125;, <span class="number">4000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> req2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; reject(<span class="string">'Second!'</span>); &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Promise</span>.all([req1, req2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Then: '</span>, one);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Catch: '</span>, err);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// From the console:</span></span><br><span class="line"><span class="comment">// Catch: Second!</span></span><br></pre></td></tr></table></figure>
+<p>随着越来越多的 API 支持 promise, Promise.all 将会变得超级有用。</p>
+<h5 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h5><p>Promise.race 是一个有趣的函数. 与 Promise.all 相反, 只要某个 priomise 被 resolved 或者 rejected, 就会触发 Promise.race:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> req1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(<span class="string">'First!'</span>); &#125;, <span class="number">8000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> req2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123; </span><br><span class="line">    <span class="comment">// 通过 setTimeout 模拟异步任务</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; resolve(<span class="string">'Second!'</span>); &#125;, <span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Promise</span>.race([req1, req2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">one</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Then: '</span>, one);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">one, two</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Catch: '</span>, one);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// From the console:</span></span><br><span class="line"><span class="comment">// Then: Second!</span></span><br></pre></td></tr></table></figure>
+<p>一个案例是请求的资源有 主站资源和备用资源(以防某个不可用)。<br>改变习惯, 使用 Promise<br>在过去几年中 Promise 一直是个热门话题(如果你是 Dojo Toolkit 用户,那么就是已经有10年了), 已经从一个JavaScript框架变成了语言的一个主要成分. 很快你就会看到大多数新的 JavaScript api 都会基于 Promise 的方式来实现……<br>… 当然这是一件好事! 开发人员能够避开回调的地狱, 异步交互也可以像其他变量一样传递. Promise 还需要一段时间来普及, 现在是时候去学习他们了!</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/29/缓存的一些问题/" class="archive-article-date">
-  	<time datetime="2017-11-29T01:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/29/缓存的一些问题/">浏览器缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器缓存</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/12/13/关于promise/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/网页性能优化/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/12/13/关于font/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          关于字体图标
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/10/前后端渲染/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前后端渲染之争</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/网页性能优化/">网页性能优化</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">性能优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/rem和em/">rem与em</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/盒模型/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/IE6bug/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/Doctype/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:01:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/Doctype/">Doctype的作用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/css选择符/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/css选择符/">css 选择符</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/28/HTML与xhtml的区别/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/28/HTML与xhtml的区别/">html 与 xhtml 的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/27/CSS样式/" class="archive-article-date">
-  	<time datetime="2017-11-27T07:20:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/27/CSS样式/">关于CSS样式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/27/CSS中清除浮动的几种方式/" class="archive-article-date">
-  	<time datetime="2017-11-27T06:40:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/27/CSS中清除浮动的几种方式/">清除浮动</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/11/page/2/">2</a><a class="page-number" href="/archives/2017/11/page/3/">3</a><a class="extend next" rel="next" href="/archives/2017/11/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -577,8 +382,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
