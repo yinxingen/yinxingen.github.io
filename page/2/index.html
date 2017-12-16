@@ -157,19 +157,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-BFC是什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-div+css的布局较table布局有什么优点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/08/BFC是什么/">BFC是什么</a>
+      <a class="article-title" href="/2017/12/08/div+css的布局较table布局有什么优点/">div+css的布局较table布局有什么优点</a>
     </h1>
   
 
         
-        <a href="/2017/12/08/BFC是什么/" class="archive-article-date">
+        <a href="/2017/12/08/div+css的布局较table布局有什么优点/" class="archive-article-date">
   	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
 </a>
         
@@ -177,25 +177,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="BFC是什么"><a href="#BFC是什么" class="headerlink" title="BFC是什么?"></a>BFC是什么?</h2><blockquote>
-<p>Block Formatting Contexts,即块级格式化上下文，它是一个独立的渲染区域。BFC就是一个独立的盒子，并且与这个独立盒子里的布局不受外部影响，当然它也不会影响到外面的元素。</p>
-</blockquote>
-<p>触发BFC</p>
-<blockquote>
-<p>1.根元素</p>
-<p>2.float属性不为none（如：left | right）</p>
-<p>3.overflow的值不为visible（如：hidden | auto | scroll）</p>
-<p>4.display属性值为inline-block | flex | inline-flex | table-cell | table-caption</p>
-<p>4.position为absolute或fixed</p>
-</blockquote>
-<p>应用BFC</p>
-<blockquote>
-<ol>
-<li>自适应两栏布局</li>
-<li>解决margin叠加问题</li>
-<li>清除内部浮动</li>
+        <h2 id="div-css的布局较table布局有什么优点？"><a href="#div-css的布局较table布局有什么优点？" class="headerlink" title="div+css的布局较table布局有什么优点？"></a>div+css的布局较table布局有什么优点？</h2><ol>
+<li>符合W3C标准，代码结构清晰明了，结构、样式和行为分离，带来足够好的可维护性。</li>
+<li>布局精准，网站版面布局修改简单。</li>
+<li>加快了页面的加载速度（最重要的）（在IE中要将整个table加载完了才显示内容）。</li>
+<li>节约站点所占的空间和站点的流量。</li>
+<li>用只包含结构化内容的HTML代替嵌套的标签，提高另外搜索引擎对网页的搜索效率。</li>
 </ol>
-</blockquote>
 
       
 
@@ -219,7 +207,98 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/08/BFC是什么/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/08/div+css的布局较table布局有什么优点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-iframe的优缺点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/08/iframe的优缺点/">iframe的优缺点</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/08/iframe的优缺点/" class="archive-article-date">
+  	<time datetime="2017-12-08T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iframe的优缺点？"><a href="#iframe的优缺点？" class="headerlink" title="iframe的优缺点？"></a>iframe的优缺点？</h2><p>优点</p>
+<ol>
+<li>iframe能够原封不动的把嵌入的网页展现出来。</li>
+<li>如果有多个网页引用iframe，那么你只需要修改iframe的内容，就可以实现调用的每一个页面内容的更改，方便快捷。</li>
+<li>网页如果为了统一风格，头部和版本都是一样的，就可以写成一个页面，用iframe来嵌套，可以增加代码的可重用。</li>
+<li>如果遇到加载缓慢的第三方内容如图标和广告，这些问题可以由iframe来解决。</li>
+<li>重载页面时不需要重载整个页面，只需要重载页面中的一个框架页(减少了数据的传输，增加了网页下载速度)</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>页面样式调试麻烦，出现多个滚动条；</li>
+<li>浏览器的后退按钮失效；</li>
+<li>过多会增加服务器的HTTP请求；</li>
+<li>小型的移动设备无法完全显示框架；</li>
+<li>产生多个页面，不易管理；</li>
+<li>不容易打印；</li>
+<li>代码复杂，无法被一些搜索引擎解读。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">浏览器问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/08/iframe的优缺点/">展开全文 >></a>
         </p>
       
 
@@ -781,6 +860,96 @@ npm install -D gulp-concat
 
 
   
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/跨域/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="跨域问题的产生："><a href="#跨域问题的产生：" class="headerlink" title="跨域问题的产生："></a>跨域问题的产生：</h2><blockquote>
+<p>因为浏览器有同源策略，只有在同域名，同端口，同协议的情况下才可以进行数据交互；有的时候，例如：在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司数据服务器不只有一个，所以跨域问题也必然存在</p>
+</blockquote>
+<h3 id="一、jsonp解决跨域请求"><a href="#一、jsonp解决跨域请求" class="headerlink" title="一、jsonp解决跨域请求"></a>一、jsonp解决跨域请求</h3><blockquote>
+<p>jsonp是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，src不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说jsonp是前后端结合的方式。</p>
+<p>注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间</p>
+<p>缺点：jsonp只能get请求</p>
+</blockquote>
+<p>1、nodejs代码，配置路由（使用express模块）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line"><span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//前端回调函数的名字         </span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>];</span><br><span class="line">    <span class="comment">//注意，在content 后拼接一个空字符串，将获取的数据转义正常输出，否则有时候读取的数据格式为buffer数据类型    </span></span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>) + <span class="string">''</span>; </span><br><span class="line">    <span class="comment">//返回给前端函数数据            </span></span><br><span class="line">    res.send(fn + <span class="string">'('</span> + content + <span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="number">2</span>、js代码，返回数据（函数中用到的是es6解构赋值参数）</span><br><span class="line">Jsonp(&#123;         </span><br><span class="line">    url: <span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results) &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123; url, success &#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签         </span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">""</span>)</span><br><span class="line">        <span class="comment">//随机函数名字         </span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span> + <span class="built_in">Date</span>.now()</span><br><span class="line">        <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">            <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name] </span><br><span class="line">    &#125;     </span><br><span class="line">    $script[<span class="number">0</span>].src = url + <span class="string">'?callback='</span> + random_name </span><br><span class="line">    $(<span class="string">"body"</span>).append($script)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、cors解决跨域请求"><a href="#二、cors解决跨域请求" class="headerlink" title="二、cors解决跨域请求"></a>二、cors解决跨域请求</h3><blockquote>
+<p>cors纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题</p>
+</blockquote>
+<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/data_cors"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应                 </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);       </span><br><span class="line">    &#125;       </span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、js代码获取返回的数据</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">      url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">      success(results)&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(results)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、服务端代理proxy解决跨域请求"><a href="#三、服务端代理proxy解决跨域请求" class="headerlink" title="三、服务端代理proxy解决跨域请求"></a>三、服务端代理proxy解决跨域请求</h3><blockquote>
+<p>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器</p>
+</blockquote>
+<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目标服务器接口 3000：</span></span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">          <span class="comment">//此次请求的源信息</span></span><br><span class="line">          res.send(<span class="string">'proxy'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、代理服务器<span class="number">1234</span>：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/to3000"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理        </span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的        </span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问          </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法             </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);</span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">           </span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">        <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url, (res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>, (chunk) =&gt; &#123;              </span><br><span class="line">            result += chunk      </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>, () =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">                <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result) </span><br><span class="line">        &#125;)     </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、js代码，开发服务器<span class="number">9000</span>：</span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;   </span><br><span class="line">    url: <span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data: &#123;    </span><br><span class="line">        url: <span class="string">"http://localhost:3000/data_proxy"</span>   </span><br><span class="line">    &#125;,</span><br><span class="line">       success(results) &#123;      </span><br><span class="line">        <span class="built_in">console</span>.log(results)   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-es6模块化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -847,96 +1016,6 @@ npm install -D gulp-concat
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/12/07/es6模块化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/跨域/" class="archive-article-date">
-  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="跨域问题的产生："><a href="#跨域问题的产生：" class="headerlink" title="跨域问题的产生："></a>跨域问题的产生：</h2><blockquote>
-<p>因为浏览器有同源策略，只有在同域名，同端口，同协议的情况下才可以进行数据交互；有的时候，例如：在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司数据服务器不只有一个，所以跨域问题也必然存在</p>
-</blockquote>
-<h3 id="一、jsonp解决跨域请求"><a href="#一、jsonp解决跨域请求" class="headerlink" title="一、jsonp解决跨域请求"></a>一、jsonp解决跨域请求</h3><blockquote>
-<p>jsonp是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，src不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说jsonp是前后端结合的方式。</p>
-<p>注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间</p>
-<p>缺点：jsonp只能get请求</p>
-</blockquote>
-<p>1、nodejs代码，配置路由（使用express模块）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line"><span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//前端回调函数的名字         </span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>];</span><br><span class="line">    <span class="comment">//注意，在content 后拼接一个空字符串，将获取的数据转义正常输出，否则有时候读取的数据格式为buffer数据类型    </span></span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>) + <span class="string">''</span>; </span><br><span class="line">    <span class="comment">//返回给前端函数数据            </span></span><br><span class="line">    res.send(fn + <span class="string">'('</span> + content + <span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="number">2</span>、js代码，返回数据（函数中用到的是es6解构赋值参数）</span><br><span class="line">Jsonp(&#123;         </span><br><span class="line">    url: <span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results) &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123; url, success &#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签         </span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">""</span>)</span><br><span class="line">        <span class="comment">//随机函数名字         </span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span> + <span class="built_in">Date</span>.now()</span><br><span class="line">        <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">            <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name] </span><br><span class="line">    &#125;     </span><br><span class="line">    $script[<span class="number">0</span>].src = url + <span class="string">'?callback='</span> + random_name </span><br><span class="line">    $(<span class="string">"body"</span>).append($script)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="二、cors解决跨域请求"><a href="#二、cors解决跨域请求" class="headerlink" title="二、cors解决跨域请求"></a>二、cors解决跨域请求</h3><blockquote>
-<p>cors纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题</p>
-</blockquote>
-<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/data_cors"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应                 </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);       </span><br><span class="line">    &#125;       </span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、js代码获取返回的数据</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">      url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">      success(results)&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(results)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="三、服务端代理proxy解决跨域请求"><a href="#三、服务端代理proxy解决跨域请求" class="headerlink" title="三、服务端代理proxy解决跨域请求"></a>三、服务端代理proxy解决跨域请求</h3><blockquote>
-<p>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器</p>
-</blockquote>
-<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目标服务器接口 3000：</span></span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">          <span class="comment">//此次请求的源信息</span></span><br><span class="line">          res.send(<span class="string">'proxy'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、代理服务器<span class="number">1234</span>：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/to3000"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理        </span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的        </span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问          </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法             </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);</span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">           </span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">        <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url, (res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>, (chunk) =&gt; &#123;              </span><br><span class="line">            result += chunk      </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>, () =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">                <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result) </span><br><span class="line">        &#125;)     </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、js代码，开发服务器<span class="number">9000</span>：</span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;   </span><br><span class="line">    url: <span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data: &#123;    </span><br><span class="line">        url: <span class="string">"http://localhost:3000/data_proxy"</span>   </span><br><span class="line">    &#125;,</span><br><span class="line">       success(results) &#123;      </span><br><span class="line">        <span class="built_in">console</span>.log(results)   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
         </p>
       
 
@@ -1118,158 +1197,6 @@ npm install -D gulp-concat
 
 
   
-    <article id="post-2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">2.sass的变量、嵌套、混合（mixin）、继承拓展、@import、comment</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/" class="archive-article-date">
-  	<time datetime="2017-12-07T11:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="变量、嵌套、混合（mixin）、继承拓展、-import、comment"><a href="#变量、嵌套、混合（mixin）、继承拓展、-import、comment" class="headerlink" title="变量、嵌套、混合（mixin）、继承拓展、@import、comment"></a>变量、嵌套、混合（mixin）、继承拓展、@import、comment</h2><h3 id="变量的意义"><a href="#变量的意义" class="headerlink" title="变量的意义"></a>变量的意义</h3><p>在sass里我们可以定义多个变量来存放颜色、边框等等的样式，这样就可以在下面想要使用样式的时候使用变量了</p>
-<p>这样的优点就是便于维护，更改方便</p>
-<hr>
-<h3 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h3><p>可以通过$来定义变量，在变量名字中可以使用-和<em>来作为连接，并且-和</em>是可以互通的，就是用起来一模一样。</p>
-<p>变量的值可以是字符串、数字、颜色等等，在变量里还可以使用其他变量，使用的时候直接写变量名就好了</p>
-<p>例如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$primary-color:#ff6600;</span><br><span class="line">$primary-border:<span class="number">1</span>px solid $primary_color;</span><br><span class="line"></span><br><span class="line">div.box&#123;</span><br><span class="line">	background:$primary-color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header&#123;</span><br><span class="line">	border:$primary-border;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">div.box &#123;</span><br><span class="line">  background: #ff6600;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h1.page-header &#123;</span><br><span class="line">  border: 1px solid #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="嵌套的使用"><a href="#嵌套的使用" class="headerlink" title="嵌套的使用"></a>嵌套的使用</h3><p>合理的使用嵌套语法，可以使我们编写代码更为快捷</p>
-<p>假设我们想写这样的css：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在sass里我们可以这样写</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">	height:<span class="number">100</span>px;</span><br><span class="line">	ul&#123;</span><br><span class="line">		margin:<span class="number">0</span>;</span><br><span class="line">		li &#123;</span><br><span class="line">			float:left;</span><br><span class="line">			list-style:none;</span><br><span class="line">			padding:<span class="number">5</span>px;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>大家会发现，写出来的代码父和子之间都有空格隔开，如果我们需要给a加上伪类的话我们这样写</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        :hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在里面就会出现这样的情况</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.nav a :hover &#123;</span><br><span class="line">  color: #ff6600;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们发现在a和:hover之间有了空格，这样是不好的，所以我们需要在写的时候在：hover之前把a加上，这样就需要用到在之类里引用父类选择器的方式，我们可以用&amp;符号代替父类</p>
-<p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    a&#123;</span><br><span class="line">        color:#fff;</span><br><span class="line">        &amp;:hover&#123;</span><br><span class="line">            color:#ff6600;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样就好了，下面来个完整的代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.nav&#123;</span><br><span class="line">    height:<span class="number">100</span>px;</span><br><span class="line">    ul&#123;</span><br><span class="line">    	margin:<span class="number">0</span>;</span><br><span class="line">    	li&#123;</span><br><span class="line">    		float:left;</span><br><span class="line">    		list-style:none;</span><br><span class="line">    		padding:<span class="number">5</span>px;</span><br><span class="line">    	&#125;</span><br><span class="line">    	a&#123;</span><br><span class="line">    		display:block;</span><br><span class="line">    		color:#000;</span><br><span class="line">    		&amp;:hover&#123;</span><br><span class="line">    			color:#f60;</span><br><span class="line">    			background:red;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &amp; &amp;-text&#123;</span><br><span class="line">    	font-size:<span class="number">15</span>px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—–》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.nav &#123;</span><br><span class="line">  height: <span class="number">100</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul li &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  list-style: none;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a &#123;</span><br><span class="line">  display: block;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.nav ul a:hover &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background: red;</span><br><span class="line">&#125;</span><br><span class="line">.nav .nav-text &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="嵌套属性"><a href="#嵌套属性" class="headerlink" title="嵌套属性"></a>嵌套属性</h3><p>我们可以把一些个复合属性的子属性来嵌套编写，加快编写速度，例如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		family:Helvitica;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">		weight:bold;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">.nav&#123;</span><br><span class="line">	border:<span class="number">1</span>px solid red&#123;</span><br><span class="line">		left:none;</span><br><span class="line">		right:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next&#123;</span><br><span class="line">	transition:&#123;</span><br><span class="line">		property:all;</span><br><span class="line">		delay:<span class="number">2</span>s;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—–》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  font-family: Helvitica;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.nav &#123;</span><br><span class="line">  border: <span class="number">1</span>px solid red;</span><br><span class="line">  border-left: none;</span><br><span class="line">  border-right: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.page-next &#123;</span><br><span class="line">  transition-property: all;</span><br><span class="line">  transition-delay: <span class="number">2</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="mixin-混合"><a href="#mixin-混合" class="headerlink" title="mixin 混合"></a>mixin 混合</h3><blockquote>
-<p>你可以把它想象成一个有名字的定义好的样式</p>
-</blockquote>
-<p>每一个mixin都有自己的名字，类似于js里的函数定义方法如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@mixin 名字(参数<span class="number">1</span>，参数<span class="number">2.</span>..)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用方法是在其他选择器css样式里通过@include引入，其实就相当于将mixin里的代码写入到这个选择器的css里，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert &#123;</span><br><span class="line">	color:#f60;</span><br><span class="line">	background-color:#f60;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:pink;</span><br><span class="line">	&#125;</span><br><span class="line">	&amp;-a&#123;</span><br><span class="line">		color:red;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—–》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: #f60;</span><br><span class="line">  background-color: #f60;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: pink;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning-a &#123;</span><br><span class="line">  color: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>刚才是没有参数的mixin，mixin也可以拥有参数，需要注意的是：</p>
-<ul>
-<li>形参的名字前要加$</li>
-<li>传参的时候只写值的话要按顺序传</li>
-<li>传参的时候不想按顺序的话需要加上形参名字</li>
-</ul>
-<p>例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@mixin alert($color,$background) &#123;</span><br><span class="line">	color:$color;</span><br><span class="line">	background-color:$background;</span><br><span class="line">	a&#123;</span><br><span class="line">		color:darken($color,<span class="number">10</span>%);<span class="comment">//把颜色加深百分之十</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert(red,blue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info&#123;</span><br><span class="line">	@include alert($background:red,<span class="attr">$color</span>:blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>——》</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert-warning &#123;</span><br><span class="line">  color: red;</span><br><span class="line">  background-color: blue;</span><br><span class="line">&#125;</span><br><span class="line">.alert-warning a &#123;</span><br><span class="line">  color: #cc0000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  color: blue;</span><br><span class="line">  background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">.alert-info a &#123;</span><br><span class="line">  color: #0000cc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="继承拓展-extend"><a href="#继承拓展-extend" class="headerlink" title="继承拓展 extend"></a>继承拓展 extend</h3><p>如果我们有一个选择器想要拥有另一个选择所有的东西，不管是样式还是子元素等等，可以使用@extend来继承</p>
-<p>大家需要注意的是，++b继承a的时候，a的子元素设置了样式，也会给b的子元素设置样式++，达到完全一样的情况，例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.alert &#123;</span><br><span class="line">	padding:<span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:<span class="number">15</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>—-》</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="partials"><a href="#partials" class="headerlink" title="partials"></a>partials</h3><p>在以前咱们编写css的时候，一个css引入另一个css需要使用@import，其实这是不好的，会多发一次http请求，影响咱们站点的响应速度。</p>
-<p>在sass里，咱们可以把小的sass文件分出去，叫做partials，在某个sass里通过@import ‘partials名’去引入，注意路径哟，这样的话就可以把partials里的代码引到咱们大的sass里一起编译</p>
-<ul>
-<li>需要注意的是 partials的文件名前要加_</li>
-</ul>
-<h6 id="base-sass"><a href="#base-sass" class="headerlink" title="_base.sass  :"></a>_base.sass  :</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">	margin:<span class="number">0</span>;</span><br><span class="line">	padding:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h6 id="style-sass"><a href="#style-sass" class="headerlink" title="style.sass :"></a>style.sass :</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;base&quot;;</span><br><span class="line"></span><br><span class="line">.alert &#123;</span><br><span class="line">	padding:5px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a &#123;</span><br><span class="line">	font:&#123;</span><br><span class="line">		weight:bold;</span><br><span class="line">		size:15px;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">	@extend .alert;</span><br><span class="line">	backgournd:skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>———–&gt;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">  margin: <span class="number">0</span>;</span><br><span class="line">  padding: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert, .alert-info &#123;</span><br><span class="line">  padding: <span class="number">5</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert a, .alert-info a &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-info &#123;</span><br><span class="line">  backgournd: skyblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样的话我们就可以把模块化的思想引入到sass里了</p>
-<hr>
-<h3 id="comment注释"><a href="#comment注释" class="headerlink" title="comment注释"></a>comment注释</h3><p>sass里的注释有三种</p>
-<ul>
-<li>多行注释</li>
-<li>单行注释</li>
-<li>强制注释</li>
-</ul>
-<p>多行注释：压缩后不会出现在css里 /<em>  </em>/</p>
-<p>单行注释: 不会出现在css里 //</p>
-<p>强制注释：压缩后也会出现在css里 /<em>!  </em>/</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/07/2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1379,6 +1306,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -1387,15 +1318,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">mobile</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1404,6 +1327,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
              
               <li class="article-tag-list-item">

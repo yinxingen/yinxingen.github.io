@@ -157,6 +157,158 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IE6bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/28/IE6bug/">IE6bug</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/28/IE6bug/" class="archive-article-date">
+  	<time datetime="2017-11-28T07:03:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="IE6bug"><a href="#IE6bug" class="headerlink" title="IE6bug"></a>IE6bug</h2><ol>
+<li>&lt;!DOCTYPE HTML&gt;文档类型的声明。</li>
+</ol>
+<p>产生条件：IE6浏览器，当我们没有书写这个文档声明的时候，会触发IE6浏览器的怪异解析现象；</p>
+<p>解决办法：书写文档声明。</p>
+<ol>
+<li>横向双倍外边距</li>
+</ol>
+<p>产生条件：在IE6中块元素浮动后，会出现横向双倍margin现象。</p>
+<p>解决办法： 在float标签的样式控制中加入display：inline或display：block</p>
+<ol>
+<li>默认行高</li>
+</ol>
+<p>产生条件：清除浮动的时候，有些人会采取一种清浮动的方法，使用一个空的div，然后为这个div设置{clear：both}。在大部分</p>
+<p>浏览器当中，这样做是没有任何问题的，但是在IE6浏览器当中，div即使是空的，也会存在默认行高。</p>
+<p>解决办法：设置其高度为0，并设置{height:0;overflow:hidden;clear:both;}</p>
+<p>IE6没有办法定义1px左右的宽度的容器 （默认行高造成的）</p>
+<p>解决方法：使用{overflow:hidden;zoom:0.08;line-height:1px}</p>
+<ol>
+<li>img外部的border</li>
+</ol>
+<p>产生条件：img外部有a标签，即img标签有链接时</p>
+<p>解决办法：设置img边框border:0;</p>
+<ol>
+<li>多显示一个字<br>产生条件：多个浮动元素中间夹杂HTML注释语句，浮动元素宽度设置为100%；则在下一行多显示一个上一行的最后一个字符；</li>
+</ol>
+<p>处理方法：果断删掉注释！</p>
+<ol>
+<li>CSS选择器区分<br>IE6不支持子选择器；先针对IE6使用常规申明CSS选择器，然后再用子选择器针对IE7+及其他浏览器。<br>处理方法：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IE6 专用 */</span></span><br><span class="line">.content &#123;<span class="attr">color</span>:red;&#125;</span><br><span class="line"><span class="comment">/* 其他浏览器 */</span></span><br><span class="line">div&gt;p .content</span><br><span class="line">&#123;<span class="attr">color</span>:blue;&#125; --&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>最小高度<br>IE6 不支持min-height属性，但它却认为height就是最小高度。解决方法：使用ie6不支持但其余浏览器支持的属性!important。<br>处理方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#container &#123;</span><br><span class="line">    min-height:<span class="number">200</span>px;</span><br><span class="line">    height:auto !important; </span><br><span class="line">    height:<span class="number">200</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DIV浮动IE文本产生3象素的bug</p>
+</li>
+</ol>
+<p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#box&#123; float:left; width:800px;&#125;</span><br><span class="line">#left&#123; float:left; width:50%;&#125;</span><br><span class="line">#right&#123; width:50%;&#125;</span><br><span class="line">*html #left&#123; margin-right:-3px; //这句是关键</span><br><span class="line"></span><br><span class="line">&lt;div id=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"left"</span>&gt;＜/div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"right"</span>&gt;＜/div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>png24位的图片在IE6浏览器出现背景；解决方案：用png8的，也可以引用一段脚本处理</p>
+</li>
+<li><p>IE6下为什么图片下有空隙产生</p>
+</li>
+</ol>
+<p>解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top,bottom,middle,text-bottom 都可以解决.</p>
+<ol>
+<li>超链接hover点击后失效</li>
+</ol>
+<p>使用正确的书写顺序 link visited hover active</p>
+<ol>
+<li>z-index问题 </li>
+</ol>
+<p>给父级添加position:relative;</p>
+<ol>
+<li>li边距无故增加</li>
+</ol>
+<p>设置ul的显示形式为<em>display:inline-block;  </em>只针对IE6/7有效</p>
+<ol>
+<li>在IE6/7中，overflow无法正确的隐藏有相对定位position:relative;的子元素。</li>
+</ol>
+<p>给外包容器加上position:relative;</p>
+<ol>
+<li>border:none在IE6中不起作用</li>
+</ol>
+<p>改成border:0;就可以</p>
+<ol>
+<li><p>100%高度<br>在IE6下，如果要给元素定义100%高度，必须要明确定义它的父级元素的高度，如果你需要给元素定义满屏的高度，就得先给HTML和body定义height:100%;</p>
+</li>
+<li><p>躲猫猫bug：定义了:hover的链接，当鼠标移到那些连接上时，在IE6下就会触发躲猫猫。</p>
+</li>
+</ol>
+<p>1、在（那个未浮动的）内容之后添加一个<span style="clear:both;"></span></p>
+<p>2、触发包含了这些链接的容器的hasLayout，一个简单的方法就是给其定义height:1%</p>
+<ol>
+<li>IE6 绝对定位的元素 1px间距bug：当绝对定位的父元素或宽度为奇数时，bottom和right会多出1px</li>
+</ol>
+<p>针对IE6进行hack处理</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/28/IE6bug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Doctype" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1043,85 +1195,6 @@ visibility:hidden;
 
 
   
-    <article id="post-数组，字符串去重排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/26/数组，字符串去重排序/">数组，字符串去重排序</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/26/数组，字符串去重排序/" class="archive-article-date">
-  	<time datetime="2017-11-26T04:33:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数组去重：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>];</span><br><span class="line">      <span class="keyword">var</span> newArray = []</span><br><span class="line">      <span class="keyword">var</span> str = arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> a - b</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">          <span class="keyword">if</span> (str[i] != str[i + <span class="number">1</span>]) &#123;</span><br><span class="line">              newArray.push(arr[i])</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      alert(newArray)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> arr =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> list = [];</span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(list.indexOf(value) == <span class="number">-1</span>)&#123;</span><br><span class="line">		list.push(value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">alert(list);</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">      <span class="keyword">var</span> arr =[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>];</span><br><span class="line">      <span class="keyword">var</span> list = [...new <span class="built_in">Set</span>(arr)];</span><br><span class="line">      alert(list);</span><br></pre></td></tr></table></figure>
-<p>排序：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>];</span><br><span class="line">       <span class="keyword">var</span> str = []</span><br><span class="line">       arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> a - b</span><br><span class="line">       &#125;)</span><br><span class="line">       alert(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line">		<span class="keyword">var</span> arr = [<span class="number">7</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; arr.length;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j &lt; arr.length - i;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>])&#123;<span class="comment">//将&gt;变&lt;;成反向排序</span></span><br><span class="line">					<span class="keyword">var</span> t = arr[j];</span><br><span class="line">					arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">					arr[j+<span class="number">1</span>] = t;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		alert(arr);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//选择排序</span></span><br><span class="line">		<span class="keyword">var</span> arr = [<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; arr.length - <span class="number">1</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">1</span> + i; j &lt; arr.length; j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(arr[i] &gt; arr[j])&#123;</span><br><span class="line">					<span class="keyword">var</span> t = arr[i];</span><br><span class="line">					arr[i] = arr[j];</span><br><span class="line">					arr[j] = t;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		alert(arr);</span><br></pre></td></tr></table></figure>
-<p>字符串：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将helloChina反转输出</span></span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">var</span> str = <span class="string">"helloChina"</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//alert(str.split("").reverse().join(""))</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i = str.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">           (idocument.write(str.charAt))</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="keyword">var</span> a = str.split(<span class="string">""</span>)</span><br><span class="line">       <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Array</span></span><br><span class="line">       <span class="keyword">while</span> (a.length) &#123;</span><br><span class="line">           b.push(a.pop())</span><br><span class="line">       &#125;</span><br><span class="line">       alert(b.join(<span class="string">""</span>))</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">数组 字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/26/数组，字符串去重排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1231,6 +1304,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
@@ -1239,15 +1316,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">mobile</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">浏览器问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1256,6 +1325,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编辑器</a>
               </li>
              
               <li class="article-tag-list-item">
