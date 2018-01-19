@@ -157,6 +157,248 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/跨域/">跨域问题</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/跨域/" class="archive-article-date">
+  	<time datetime="2017-12-07T12:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="跨域问题的产生："><a href="#跨域问题的产生：" class="headerlink" title="跨域问题的产生："></a>跨域问题的产生：</h2><blockquote>
+<p>因为浏览器有同源策略，只有在同域名，同端口，同协议的情况下才可以进行数据交互；有的时候，例如：在公司开发项目的时候，前端开发的服务器可能和后端服务器不是同一个，因为可能是通过gulp、webpack搭建的开发服务器，就需要解决跨域问题，再例如，在大公司数据服务器不只有一个，所以跨域问题也必然存在</p>
+</blockquote>
+<h3 id="一、jsonp解决跨域请求"><a href="#一、jsonp解决跨域请求" class="headerlink" title="一、jsonp解决跨域请求"></a>一、jsonp解决跨域请求</h3><blockquote>
+<p>jsonp是一种前后端结合的跨域方式，原理就是通过script标签的src属性来进行数据请求，src不受同源策略的影响，故而能请求到数据，需要注意的是，数据处理需要通过回调函数来进行，而本质上，我们把回调函数的名字告诉后端，后端将数据放入到回调函数里，所以说需要告知后端，回调函数是什么，这也就是为什么说jsonp是前后端结合的方式。</p>
+<p>注意：一个script只能请求一次，多次请求应该去动态的创建script，回调函数也只能使用一次，所以也需要动态创建 ，使用完成后移除，避免污染全局空间</p>
+<p>缺点：jsonp只能get请求</p>
+</blockquote>
+<p>1、nodejs代码，配置路由（使用express模块）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//后端的任务，就是把数据放到前端的那个函数里并给它执行一下</span></span><br><span class="line"><span class="comment">//直接返回这个操作的js字符串，因为这个字符串会被script当成js代码来运行</span></span><br><span class="line">app.get(<span class="string">'/data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//前端回调函数的名字         </span></span><br><span class="line">    <span class="keyword">let</span> fn = req.query[<span class="string">'callback'</span>];</span><br><span class="line">    <span class="comment">//注意，在content 后拼接一个空字符串，将获取的数据转义正常输出，否则有时候读取的数据格式为buffer数据类型    </span></span><br><span class="line">    <span class="keyword">var</span> content = fs.readFileSync(<span class="string">'./datas/data.json'</span>) + <span class="string">''</span>; </span><br><span class="line">    <span class="comment">//返回给前端函数数据            </span></span><br><span class="line">    res.send(fn + <span class="string">'('</span> + content + <span class="string">')'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="number">2</span>、js代码，返回数据（函数中用到的是es6解构赋值参数）</span><br><span class="line">Jsonp(&#123;         </span><br><span class="line">    url: <span class="string">"http://localhost:3000/data"</span>,</span><br><span class="line">    success(results) &#123; </span><br><span class="line">        <span class="built_in">console</span>.log(results)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Jsonp</span>(<span class="params">&#123; url, success &#125;</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//动态创建script标签         </span></span><br><span class="line">    <span class="keyword">let</span> $script = $(<span class="string">""</span>)</span><br><span class="line">        <span class="comment">//随机函数名字         </span></span><br><span class="line">    <span class="keyword">var</span> random_name = <span class="string">'random_fn_'</span> + <span class="built_in">Date</span>.now()</span><br><span class="line">        <span class="comment">//创建的随机全局函数</span></span><br><span class="line">    <span class="built_in">window</span>[random_name] = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        success(data)</span><br><span class="line">            <span class="comment">//处理完数据之后，将script删掉，函数delete掉</span></span><br><span class="line">        $script.remove()</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>[random_name] </span><br><span class="line">    &#125;     </span><br><span class="line">    $script[<span class="number">0</span>].src = url + <span class="string">'?callback='</span> + random_name </span><br><span class="line">    $(<span class="string">"body"</span>).append($script)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、cors解决跨域请求"><a href="#二、cors解决跨域请求" class="headerlink" title="二、cors解决跨域请求"></a>二、cors解决跨域请求</h3><blockquote>
+<p>cors纯后端的解决方式,每次请求都会有一个origin信息被后端捕捉，后端可以通过设置对这个origin的域允许访问来解决跨域问题</p>
+</blockquote>
+<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">"/data_cors"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//此次请求的源信息</span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的</span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应                 </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);       </span><br><span class="line">    &#125;       </span><br><span class="line">    res.send(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、js代码获取返回的数据</span><br><span class="line"></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">      url:<span class="string">"http://localhost:3000/data_cors"</span>,</span><br><span class="line">      success(results)&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(results)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、服务端代理proxy解决跨域请求"><a href="#三、服务端代理proxy解决跨域请求" class="headerlink" title="三、服务端代理proxy解决跨域请求"></a>三、服务端代理proxy解决跨域请求</h3><blockquote>
+<p>因为服务器间的数据交互没有跨域限制，所以我们可以通过一个中间代理服务器来请求目标服务器的数据，也就是开发服务器发送请求到代理服务器，代理服务器再请求目标服务器，将数据返回给开发服务器</p>
+</blockquote>
+<p>1、nodejs代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目标服务器接口 3000：</span></span><br><span class="line">app.get(<span class="string">"/data_proxy"</span>,(req,res)=&gt;&#123;</span><br><span class="line">          <span class="comment">//此次请求的源信息</span></span><br><span class="line">          res.send(<span class="string">'proxy'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="number">2</span>、代理服务器<span class="number">1234</span>：</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">"/to3000"</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="comment">//代理服务器1234对9000做跨域处理        </span></span><br><span class="line">    <span class="keyword">var</span> reqOrigin = req.header(<span class="string">"origin"</span>);</span><br><span class="line">    <span class="comment">//如果源信息存在，且源是运行访问的        </span></span><br><span class="line">    <span class="keyword">if</span> (reqOrigin != <span class="literal">undefined</span> &amp;&amp; reqOrigin.indexOf(<span class="string">"http://localhost:9000"</span>) &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">//设置允许 http://localhost:3000 这个域响应            </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"http://localhost:9000"</span>);</span><br><span class="line">        <span class="comment">//允许这个域访问          </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">        <span class="comment">//允许的请求方法             </span></span><br><span class="line">        res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"Content-Type,Content-Length, Authorization, Accept,X-Requested-With"</span>);</span><br><span class="line">    &#125;     </span><br><span class="line">    <span class="comment">//获取到9000真正要调用的3000目标服务器的接口</span></span><br><span class="line">           </span><br><span class="line">    <span class="keyword">var</span> url = req.query[<span class="string">'url'</span>]</span><br><span class="line">    <span class="keyword">let</span> _res = res</span><br><span class="line">        <span class="comment">//代理服务器1234像目标服务器3000发送请求（没有跨域限制）</span></span><br><span class="line">    http.get(url, (res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="string">''</span></span><br><span class="line">        res.on(<span class="string">"data"</span>, (chunk) =&gt; &#123;              </span><br><span class="line">            result += chunk      </span><br><span class="line">        &#125;)</span><br><span class="line">        res.on(<span class="string">"end"</span>, () =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(result)</span><br><span class="line">                <span class="comment">//代理服务器1234将请求到的目标服务器3000的数据返回给开发服务器9000</span></span><br><span class="line">            _res.send(result) </span><br><span class="line">        &#125;)     </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、js代码，开发服务器<span class="number">9000</span>：</span><br><span class="line"><span class="comment">//当前服务器9000向代理服务器1234发送请求</span></span><br><span class="line">$.ajax(&#123;   </span><br><span class="line">    url: <span class="string">"http://localhost:1234/to3000"</span>,</span><br><span class="line">    data: &#123;    </span><br><span class="line">        url: <span class="string">"http://localhost:3000/data_proxy"</span>   </span><br><span class="line">    &#125;,</span><br><span class="line">       success(results) &#123;      </span><br><span class="line">        <span class="built_in">console</span>.log(results)   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">跨域问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/跨域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-1.sass的安装,编译，风格" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/07/1.sass的安装,编译，风格/">1.sass的安装，编译与风格</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/07/1.sass的安装,编译，风格/" class="archive-article-date">
+  	<time datetime="2017-12-07T11:11:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-安装sass"><a href="#1-安装sass" class="headerlink" title="1.安装sass"></a>1.安装sass</h2><h3 id="1-安装ruby"><a href="#1-安装ruby" class="headerlink" title="1.安装ruby"></a>1.安装ruby</h3><blockquote>
+<p>因为sass是用ruby语言写的，所以需要安装ruby环境</p>
+</blockquote>
+<p>打开安装包去安装ruby，记住要勾选 下面选项来配置环境路径</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Add Ruby executables to your PATH</li>
+</ul>
+<p>安装完成之后继续下一步操作</p>
+<hr>
+<h3 id="2-安装sass"><a href="#2-安装sass" class="headerlink" title="2.安装sass"></a>2.安装sass</h3><p>在cmd里通过gem安装sass</p>
+<blockquote>
+<p>gem是ruby的包管理工具，类似于nodejs 的npm</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install sass</span><br></pre></td></tr></table></figure>
+<p>这个时候如果不翻墙的话是会出问题的，因为：</p>
+<p>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。这时候我们可以通过gem sources命令来配置源，先移除默认的<a href="https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem" target="_blank" rel="noopener">https://rubygems.org源，然后添加淘宝的源https://ruby.taobao.org/，然后查看下当前使用的源是哪个，如果是淘宝的，则表示可以输入sass安装命令gem</a> install sass了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources --remove https:<span class="comment">//rubygems.org/</span></span><br><span class="line">$ gem sources -a https:<span class="comment">//ruby.taobao.org/ 【如果你系统不支持https，请将淘宝源更换成：gem sources -a http://gems.ruby-china.org】</span></span><br><span class="line">$ gem sources -l</span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"></span><br><span class="line">https:<span class="comment">//ruby.taobao.org</span></span><br><span class="line"># 请确保只有 ruby.taobao.org</span><br><span class="line">$ gem install sass</span><br></pre></td></tr></table></figure>
+<p>安装好之后执行sass -v就可以看到sass的版本了</p>
+<p>实在实在不行，就安装离线文件吧,但是失败率也很高</p>
+<p>gem install  ./…/sass-3.4.22.gem</p>
+<h2 id="2-编译sass文件的方式"><a href="#2-编译sass文件的方式" class="headerlink" title="2.编译sass文件的方式"></a>2.编译sass文件的方式</h2><h3 id="1-命令行编译"><a href="#1-命令行编译" class="headerlink" title="1.命令行编译"></a>1.命令行编译</h3><blockquote>
+<p>可以通过cmd命令行执行sass方法来编译</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass scss/a.scss:css/a.css</span><br></pre></td></tr></table></figure>
+<p>sass 后面写要编译的sass文件的路径，‘：’后面写的是<br>要输出的目录及名字</p>
+<blockquote>
+<ul>
+<li>需要注意的是：必须有这个文件夹才能在里面生成css</li>
+</ul>
+</blockquote>
+<p>这样的话写一句执行一次编译一次有些太麻烦</p>
+<p>可以开启一个watch来监听文件变化来进行编译</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css</span><br></pre></td></tr></table></figure>
+<p>–watch表示要监听 ：前后的两个都是文件夹，表示scss文件夹的文件改变就编译到css文件夹</p>
+<hr>
+<h3 id="2-其他方式编译"><a href="#2-其他方式编译" class="headerlink" title="2.其他方式编译"></a>2.其他方式编译</h3><p>除了命令行工具其实还可以用考拉、gulp等工具进行编译，但是ruby和sass是必须要安装的</p>
+<p>考拉的方式就不多做介绍了，大家i自己去看一下</p>
+<p>gulp的话呢是需要gulp-sass的模块来编译，使用方式类似于gulp-less</p>
+<p>这里是网址，<a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener">点击查看</a></p>
+<h2 id="3-sass四种风格"><a href="#3-sass四种风格" class="headerlink" title="3.sass四种风格"></a>3.sass四种风格</h2><h3 id="sass编译的格式"><a href="#sass编译的格式" class="headerlink" title="sass编译的格式"></a>sass编译的格式</h3><p>sass编译输出的css有四种格式</p>
+<ul>
+<li>nested 嵌套</li>
+<li>compact 紧凑</li>
+<li>expanded 扩展</li>
+<li>compressed 压缩</li>
+</ul>
+<blockquote>
+<p>这些样式会影响输出的css的格式</p>
+</blockquote>
+<p>简单介绍一下：</p>
+<p>css默认输出的嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>—》</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">  ul li &#123;</span><br><span class="line">    list-style: none; &#125;</span><br></pre></td></tr></table></figure>
+<p>紧凑compact<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compact</span><br></pre></td></tr></table></figure>
+<p>这个时候输出的代码就是</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ul &#123; font-size: <span class="number">15</span>px; &#125;</span><br><span class="line">ul li &#123; list-style: none; padding: <span class="number">5</span>px; &#125;</span><br></pre></td></tr></table></figure>
+<p>compressed 压缩<br>在编译的时候需要执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure>
+<p>—&gt;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ul&#123;font-size:<span class="number">15</span>px&#125;ul li&#123;list-style:none;animation:all <span class="number">0.4</span>s&#125;</span><br></pre></td></tr></table></figure>
+<p>expanded 扩展<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style expanded</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ul &#123;</span><br><span class="line">  font-size: <span class="number">15</span>px;</span><br><span class="line">&#125;</span><br><span class="line">ul li &#123;</span><br><span class="line">  list-style: none;</span><br><span class="line">  animation: all <span class="number">0.3</span>s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>compressed 压缩<br>更像是平时写的css一样</p>
+<p>在编译的时候需要执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch scss:css --style compressed</span><br></pre></td></tr></table></figure></p>
+<p>—&gt;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.a&#123;<span class="attr">width</span>:<span class="number">100</span>px;height:<span class="number">100</span>px;border:<span class="number">1</span>px solid red&#125;.a .b&#123;<span class="attr">background</span>:red&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-sass与scss"><a href="#4-sass与scss" class="headerlink" title="4.sass与scss"></a>4.sass与scss</h2><h3 id="sass的两个语法版本"><a href="#sass的两个语法版本" class="headerlink" title="sass的两个语法版本"></a>sass的两个语法版本</h3><p>sass一开始用的是一种缩进式的语法格式</p>
+<p>采用这种格式文件的后缀名是.sass</p>
+<p>在sass3.0版本后我们常用的是sassy css语法，扩展名是.scss，更接近与css语法</p>
+<h3 id="两个版本的区别"><a href="#两个版本的区别" class="headerlink" title="两个版本的区别"></a>两个版本的区别</h3><ul>
+<li>后缀名不同 .sass和.scss</li>
+<li>语法不同，请看下面</li>
+</ul>
+<p>新版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">//单行文本注释</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span>;</span><br><span class="line"></span><br><span class="line">@mixin alert&#123;</span><br><span class="line">	color:red;</span><br><span class="line">	background:blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.alert-warning&#123;</span><br><span class="line">	@include alert;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ul&#123;</span><br><span class="line">	font-size:<span class="number">15</span>px;</span><br><span class="line">	li&#123;</span><br><span class="line">		list-style:none;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>老版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*新版本</span></span><br><span class="line"><span class="comment">多行文本注释</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">//新版本</span></span><br><span class="line"><span class="comment">  单行文本注释*/</span></span><br><span class="line"></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"base"</span></span><br><span class="line"></span><br><span class="line">=alert</span><br><span class="line">	color:red</span><br><span class="line">	background:blue</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">.alert-warning</span><br><span class="line">	+alert</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ul</span><br><span class="line">	font-size:<span class="number">15</span>px</span><br><span class="line">	li</span><br><span class="line">		list-style:none</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/07/1.sass的安装,编译，风格/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2.sass变量、嵌套、混合（mixin）、继承拓展、@import、comment" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1275,173 +1517,6 @@ vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
 
 
   
-    <article id="post-rem和em" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/rem和em/">rem与em</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/rem和em/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:10:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="rem与em"><a href="#rem与em" class="headerlink" title="rem与em"></a>rem与em</h2><ol>
-<li><p>rem是相对于根元素<html>的”font-size”为基准。比如说我们给html设置font-size为100<br>那么我们要给HTML中的p标签设置16px的字体，font-size设置.16rem就可以，在这里16px=.16rem</html></p>
-</li>
-<li><p>em一般都是以<body>的”font-size”为基准。比如说我们使用”1em”等于”10px”来改变默认值””1em=16px，这样一来我们设置字体大小相当于”14px”时，只需要将其值设置为”1.4em”</body></p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/rem和em/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-盒模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/28/盒模型/">关于盒模型</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/28/盒模型/" class="archive-article-date">
-  	<time datetime="2017-11-28T07:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="关于盒模型"><a href="#关于盒模型" class="headerlink" title="关于盒模型"></a>关于盒模型</h2><ol>
-<li><p>盒模型有两种：IE盒子模型、W3C盒子模型</p>
-</li>
-<li><p>盒模型：内容（content）、填充（padding）、边界（margin）、边框（border）</p>
-</li>
-<li><p>区别：IE的width部分把border和padding计算了进去</p>
-</li>
-</ol>
-<p>1、<br>标准：width是内容宽度，元素真正的宽度=margin+padding+border+width<br>怪异：width是元素实际宽度，内容宽度=width-（margin+padding+border）</p>
-<p>2、可以设置行内元素的宽高<br>    在标准模式下，给span等行内元素设置width和height都不会生效，而在怪异模式下，则会生效</p>
-<p>3、可设置百分比的高度<br>    在标准模式下，一个元素的高度是由其包含的内容来决定的，如果父元素没有设置宽高，子元素设置一个百分比的高度是无效的</p>
-<p>4、用margin：0 auto设置水平居中在IE下会失效<br>    使用margin：0 auto在标准模式下可以使元素水平居中，但在怪异模式下却会失效，怪异模式下的解决方法，用text-align属性：body{text-align：center}；#content{text-align：left}</p>
-<p>5、怪异模式下设置图片的padding会失效</p>
-<p>6、怪异模式下table中的字体属性不能继承上层的设置</p>
-<p>7、怪异模式下white-space：pre会失效</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">HTML+CSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/28/盒模型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1456,7 +1531,7 @@ vmax等于vw和vh中较大的那个  vmin等于vw和vh中较小的那个
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 yinxingen
+    		&copy; 2018 yinxingen
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1551,11 +1626,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1575,7 +1650,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端工程化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">http和https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1583,11 +1666,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+                <a href="javascript:void(0)" class="js-tag color1">web安全</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">http和https</a>
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
              
               <li class="article-tag-list-item">

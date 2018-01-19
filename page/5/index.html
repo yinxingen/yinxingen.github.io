@@ -157,6 +157,240 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/26/cookie/">Cookie</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/26/cookie/" class="archive-article-date">
+  	<time datetime="2017-11-26T04:40:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><h4 id="Cookie的诞生，为什么叫会话跟踪技术？"><a href="#Cookie的诞生，为什么叫会话跟踪技术？" class="headerlink" title="Cookie的诞生，为什么叫会话跟踪技术？"></a>Cookie的诞生，为什么叫会话跟踪技术？</h4><ol>
+<li><p>在一次会话从开始到结束的整个过程，全程跟踪记录客户端的状态（例如：是否登录、购物车信息、是否已下载、是否已点赞、视频播放进度等等）</p>
+</li>
+<li><p>你把cookie就当成是第一次跟服务器连接后，服务器发给你的身份牌，上面就记录跟你有关的信息，以后只要再跟服务器通信，必须带着这个身份牌。这样一来，关于你是谁？有没有登录过？购物车里有什么信息？服务器当然就很容易知道了。</p>
+</li>
+</ol>
+<h4 id="cookie的特点："><a href="#cookie的特点：" class="headerlink" title="cookie的特点："></a>cookie的特点：</h4><ol>
+<li><p>只能使用文本文件</p>
+</li>
+<li><p>文件有大小限制（4kb）， 数量限制</p>
+</li>
+<li><p>读取有域名限制：不可跨域读取，只能由来自写入cookie的同一域名的网页可进行读取。<br>简单的讲就是，谁写的cookie，谁才有权利读取</p>
+</li>
+<li><p>时效限制：每个cookie都有时效，最短的有效期是，会话级别：就是当浏览器关闭，那么cookie立即销毁</p>
+</li>
+</ol>
+<h4 id="cookie的使用"><a href="#cookie的使用" class="headerlink" title="cookie的使用"></a>cookie的使用</h4><p>一、添加cookie</p>
+<ol>
+<li><p>Document.cookie =“username=123”;//一次写入一个键值对，一次写入多个，只有第一个生效，或者采用&amp;符号链接user=张三&amp;password=123&amp;name=xxxx;</p>
+</li>
+<li><p>保存形式：key=value</p>
+</li>
+<li><p>如果有中文编码问题，使用encodeURIComponent(“xxxx”)编码，再使用decodeURIComponent(document.cookie)解码，能解决中文乱码问题</p>
+</li>
+</ol>
+<p>二、cookie失效时间</p>
+<ol>
+<li><p>如果不加这个参数，默认情况下为临时cookie，也就是关闭浏览器则cookie失效。</p>
+</li>
+<li><p>Expires=date,指定在什么时间，cookie被自动清理，如果手动调整系统的时间，让cookie消失，可以进行恢复，此时为假删除，当覆盖某个键值对，并设置失效时间过期时，则cookie被删除，不能恢复</p>
+</li>
+</ol>
+<p>3.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Var date = <span class="keyword">new</span> <span class="built_in">Date</span>():</span><br><span class="line"></span><br><span class="line">date.setDate(date.getDate() + <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.cookie = “user=” + <span class="built_in">encodeURIComponent</span>(“张志林”) + “;expires=” + date;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Cookie的完整存储形式</li>
+</ol>
+<p>name=value [;expires=date] [;path=path] [;domain=michael.com][;secure];<br>中括号是可选，name=value是必选。</p>
+<ol>
+<li>Cookie的路径问题</li>
+</ol>
+<p>在同一路径下的网页可以共享cookie，路径不同时，不能访问</p>
+<ol>
+<li>Cookie的域名问题</li>
+</ol>
+<p>1)    必须在绑定域名的服务器上才可以设置域名<br>2)    并且只能设置绑定的域名，也就是说，不同服务器间的cookie文件不共享</p>
+<ol>
+<li>Secure安全设置：指明必须通过安全的通信通道来传输（https）才能获取cookie.</li>
+</ol>
+<h4 id="cookie作用："><a href="#cookie作用：" class="headerlink" title="cookie作用："></a>cookie作用：</h4><blockquote>
+<p>1.可以在客户端上保存用户数据，起到简单的缓存和用户身份识别等作用。</p>
+<p>2.保存用户的登陆状态，用户进行登陆，成功登陆后，服务器生成特定的cookie返回给客户端，客户端下次访问该域名下的任何页面，将该cookie的信息发送给服务器，服务器经过检验，来判断用户是否登陆。</p>
+<p>3.记录用户的行为。</p>
+</blockquote>
+<h4 id="cookie弊端："><a href="#cookie弊端：" class="headerlink" title="cookie弊端："></a>cookie弊端：</h4><blockquote>
+<p>1.增加流量消耗，每次请求都需要带上cookie信息。</p>
+<p>2.安全性隐患，cookie使用明文传输。如果cookie被人拦截了，那人就可以取得所有的session信息。</p>
+<p>3.Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/26/cookie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Array方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/26/Array方法/">Array方法</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/26/Array方法/" class="archive-article-date">
+  	<time datetime="2017-11-26T04:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Array 方法（增，删，改，截，拼，复，排，转）</p>
+<p>一、增：<br>1、unshift（增加的内容）<br>在数组前增加内容<br>返回增加之后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr.unshift(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">alert(arr)  <span class="comment">//4,5,6,1,2,3</span></span><br></pre></td></tr></table></figure>
+<p>2、push(增加的内容)<br>在数组的前面增加内容<br>返回增加之后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">arr.push(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line">alert(arr)  <span class="comment">//1,2,3,4,5,6</span></span><br></pre></td></tr></table></figure>
+<p>二、删：<br>1、shift()<br>删除数组首部的元素<br>返回删除后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.shift()</span><br><span class="line">    alert(arr)   <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>2、 pop()<br>删除数组尾部的元素<br>返回被删除的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.pop()</span><br><span class="line">alert(str)  <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<p>三、改：<br>plice(开始下标，删除的长度，要增加的内容)<br>返回被删除的元素<br>可以实现增，删，改</p>
+<pre><code>增:
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.splice(<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line">alert(arr) <span class="comment">//1,2,3,4</span></span><br><span class="line">alert(str) <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<pre><code>删：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.splice(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">alert(arr) <span class="comment">//2,3</span></span><br><span class="line">alert(str) <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<pre><code>改：
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.splice(<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line">alert(arr)  <span class="comment">//4,2,3</span></span><br><span class="line">alert(str)  <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>四、截：<br>slice(开始下标，结束下标)（包括开始下标不包括结束下标）<br>返回被截取到的元素</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.slice(<span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line">alert(str)  <span class="comment">//1,2</span></span><br><span class="line">alert(arr) <span class="comment">//1,2,3</span></span><br></pre></td></tr></table></figure>
+<p>五、拼：<br>concat(要拼接的元素)<br>返回拼接后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.concat(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">alert(str) <span class="comment">//1,2,3,4,5</span></span><br><span class="line">alert(arr) <span class="comment">//1,2,3</span></span><br></pre></td></tr></table></figure>
+<p>六、复制数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> a = arr.slice(<span class="number">0</span>)</span><br><span class="line">alert(a) <span class="comment">//1,2,3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = arr.concat()</span><br><span class="line">alert(b) <span class="comment">//1,2,3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = []</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    str.push(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">alert(str)</span><br></pre></td></tr></table></figure>
+<p>七、排：<br>1、reverse()<br>将数组元素逆序排列<br>返回逆序后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.reverse()</span><br><span class="line">alert(str) <span class="comment">//3,2,1</span></span><br></pre></td></tr></table></figure>
+<p>2、 sort()<br>按编码排序<br>返回排序后的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">100</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.sort()</span><br><span class="line">alert(str) <span class="comment">//1,100,2,3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">回掉函数：</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> str = []</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123; <span class="comment">// b - a 从大到小按数字类型排列</span></span><br><span class="line">    <span class="keyword">return</span> a - b</span><br><span class="line">&#125;)</span><br><span class="line">alert(arr) <span class="comment">//1,3,4,5,6,8</span></span><br></pre></td></tr></table></figure>
+<p>八、转：<br>1、 toString()<br>将数组转为字符串，以逗号分隔</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.toString()</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">//1,2,3,4</span></span><br></pre></td></tr></table></figure>
+<p>2、 join(“连接符”)<br>       将数组转为指定连接符的字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">var</span> str = arr.join(<span class="string">""</span>)</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">//123</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">数组 字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/26/Array方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数组，字符串去重排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -902,7 +1136,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 yinxingen
+    		&copy; 2018 yinxingen
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -997,11 +1231,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">框架</a>
+                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ES6</a>
+                <a href="javascript:void(0)" class="js-tag color3">框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1021,7 +1255,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端工程化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">前后端渲染</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">http和https</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1029,11 +1271,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
+                <a href="javascript:void(0)" class="js-tag color1">web安全</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">http和https</a>
+                <a href="javascript:void(0)" class="js-tag color5">跨域问题</a>
               </li>
              
               <li class="article-tag-list-item">
